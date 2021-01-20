@@ -1,22 +1,3 @@
-// -*- C++ -*-
-//
-// Package:    triphoton-analysis/TriphotonAnalyzer
-// Class:      TriphotonAnalyzer
-//
-/**\class TriphotonAnalyzer TriphotonAnalyzer.cc triphoton-analysis/TriphotonAnalyzer/plugins/TriphotonAnalyzer.cc
-
- Description: [one line class summary]
-
- Implementation:
-     [Notes on implementation]
-*/
-//
-// Original Author:  Cilicia Uzziel Perez
-//         Created:  Wed, 20 Jan 2021 18:15:42 GMT
-//
-//
-
-
 // system include files
 #include <memory>
 
