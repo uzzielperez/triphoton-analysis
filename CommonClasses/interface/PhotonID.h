@@ -9,6 +9,9 @@
 #include "DataFormats/EcalDetId/interface/EBDetId.h"
 #include "DataFormats/EcalDetId/interface/EEDetId.h"
 
+#include <math.h>
+#include <iostream>
+
 namespace ExoDiPhotons{
 
   // checking for saturated photons in 5x5 around seed crystal
@@ -16,10 +19,9 @@ namespace ExoDiPhotons{
   bool isSaturated(const pat::Photon *photon, const EcalRecHitCollection *recHitsEB, const EcalRecHitCollection *recHitsEE,
 		   const CaloSubdetectorTopology* subDetTopologyEB_, const CaloSubdetectorTopology* subDetTopologyEE_) {
     using namespace std;
-    
     bool isSat = false;
     DetId seedDetId = ((photon->superCluster())->seed())->seed();
-    
+
     // check EB
     if (seedDetId.subdetId()==EcalBarrel) {
       CaloNavigator<DetId> cursor = CaloNavigator<DetId>(seedDetId,subDetTopologyEB_);
@@ -37,7 +39,7 @@ namespace ExoDiPhotons{
       	    if (it->checkFlag(EcalRecHit::kSaturated) && !it->checkFlag(EcalRecHit::kDead) && !it->checkFlag(EcalRecHit::kKilled)) {
       	      isSat = true;
       	    }
-      	  }	  
+      	  }
       	}
       }
     }
@@ -98,21 +100,15 @@ namespace ExoDiPhotons{
     else return false;
   }
 
-  bool passR9Cut(const pat::Photon* photon)
-  {
-    if(photon->full5x5_r9() > 0.8) return true;
-    else return false;
-  }
-
   // SIGMAiETAiETA
   bool passSigmaIetaIetaCut(const pat::Photon* photon, bool isSaturated) {
     double phoEta = fabs(photon->superCluster()->eta());
     double sIeIe = photon->full5x5_sigmaIetaIeta();
     double sIeIeCut = -1.;
-    
-    if (phoEta < 1.4442 && !isSaturated) sIeIeCut = 0.0105; 
+
+    if (phoEta < 1.4442 && !isSaturated) sIeIeCut = 0.0105;
     else if (phoEta < 1.4442 && isSaturated) sIeIeCut = 0.0112;
-    else if (1.566 < phoEta && phoEta < 2.5 && !isSaturated) sIeIeCut = 0.0280; 
+    else if (1.566 < phoEta && phoEta < 2.5 && !isSaturated) sIeIeCut = 0.0280;
     else if (1.566 < phoEta && phoEta < 2.5 && isSaturated) sIeIeCut = 0.0300;
 
     if (sIeIe < sIeIeCut) return true;
@@ -142,10 +138,10 @@ namespace ExoDiPhotons{
       }
     } // end EE
     else {
-      return 99999.99;
+      return -99999.99;
     }
   }
-  
+
   double phoKappaHighPtID(const pat::Photon *photon) {
     double phoEta = fabs(photon->superCluster()->eta());
     if (phoEta < 1.4442) {
@@ -171,7 +167,7 @@ namespace ExoDiPhotons{
       return -99999.99;
     }
   }
-  
+
   double phoEAHighPtID(const pat::Photon* photon) {
     double phoEta = fabs(photon->superCluster()->eta());
     if (phoEta < 1.4442) {
@@ -197,19 +193,37 @@ namespace ExoDiPhotons{
       return -99999.99;
     }
   }
-  
+
   double corPhoIsoHighPtID(const pat::Photon* photon, double rho) {
     double phoIso = photon->photonIso();
-    return (phoAlphaHighPtID(photon) + phoIso - rho*phoEAHighPtID(photon) - phoKappaHighPtID(photon)*photon->pt());
+    double corPhoIsoVal = (phoAlphaHighPtID(photon) + phoIso - rho*phoEAHighPtID(photon) - phoKappaHighPtID(photon)*photon->pt());
+    // std::cout << "phoAlphaHighPtID: " << phoAlphaHighPtID(photon)
+    //           << "; phoEAHighPtID(photon): " << phoEAHighPtID(photon)
+    //           << "; phoKappaHighPtID" << phoKappaHighPtID(photon)
+    //           << "; rho input:" << rho
+    //           << "; corPhoIsoVal: " << corPhoIsoVal << std::endl;
+    return corPhoIsoVal;
   }
-  
+
   bool passCorPhoIsoHighPtID(const pat::Photon* photon, double rho) {
     double phoEta = fabs(photon->superCluster()->eta());
-    double corPhoIsoCut = -999.9;
+    double corPhoIsoCut = -99999.9;
     double corPhoIso = corPhoIsoHighPtID(photon,rho);
 
     if (phoEta < 1.4442) corPhoIsoCut = 2.75;
     if (1.566 < phoEta && phoEta < 2.5) corPhoIsoCut = 2.00;
+
+    if (corPhoIso < corPhoIsoCut) return true;
+    else return false;
+  }
+
+  bool passlowPTCorPhoIso(const pat::Photon* photon, double rho) {
+    double phoEta = fabs(photon->superCluster()->eta());
+    double corPhoIsoCut = -99999.9;
+    double corPhoIso = corPhoIsoHighPtID(photon,rho);
+
+    if (phoEta < 1.4442) corPhoIsoCut = 4;
+    if (1.566 < phoEta && phoEta < 2.5) corPhoIsoCut = 2.5;
 
     if (corPhoIso < corPhoIsoCut) return true;
     else return false;
@@ -222,7 +236,7 @@ namespace ExoDiPhotons{
 
     // if (phoEta < 1.4442) corPhoIsoCut = 2.75;
     // if (1.560 < phoEta && phoEta < 2.5) corPhoIsoCut = 2.00;
-    
+
     // if ( corPhoIso < std::min((double)5.*corPhoIsoCut, (double)0.2*photon->pt()) ) return true;
     if ( corPhoIso < (double)0.2*photon->pt() ) return true; // updated denominator definition
     else return false;
@@ -234,12 +248,70 @@ namespace ExoDiPhotons{
       passChargedHadronCut(photon) &&
       passSigmaIetaIetaCut(photon,isSat) &&
       passCorPhoIsoHighPtID(photon,rho) &&
-      photon->passElectronVeto() &&
-      passR9Cut(photon)
+      photon->passElectronVeto()
     ) return true;
 
     else return false;
   }
+
+  // SIGMAiETAiETA Low pT
+
+  double sIeIeCutvspt(const pat::Photon* photon) {
+    double phoPT = photon->pt();
+    double p0 = 0.01701634;
+    double p1 = -0.000443893;
+    double p2 = 7.52907e-6;
+    double sieieCut = p2*pow(phoPT, 2.0) + p1*pow(phoPT, 1.0) + p0;
+    // if (phoPT == 12.0 || phoPT == 15.0 || phoPT == 20.0) std::cout << sieieCut << std::endl;
+    return sieieCut;
+  }
+
+  double sIeIeCutvspt_endcaps(const pat::Photon* photon) {
+    double phoPT = photon->pt();
+    double p0 = 0.047553;
+    double p1 = -0.00115685;
+    double p2 = 1.91035e-5;
+    double sieieCut = p2*pow(phoPT, 2.0) + p1*pow(phoPT, 1.0) + p0;
+    // if (phoPT == 12.0 || phoPT == 15.0 || phoPT == 20.0) std::cout << sieieCut << std::endl;
+    return sieieCut;
+  }
+
+  bool passlowPTSigmaIetaIetaCut(const pat::Photon* photon, bool isSaturated) {
+
+    double phoEta = fabs(photon->superCluster()->eta());
+    double sIeIe = photon->full5x5_sigmaIetaIeta();
+    double sIeIeCut = -1.;
+
+    if (phoEta < 1.4442 && !isSaturated){
+      // If phoPT is strictly less than 30, then sIeIeCut will be a function of pT.
+      if (photon->pt() < 30) sIeIeCut = sIeIeCutvspt(photon);
+      else if (photon->pt() >= 30) sIeIeCut = 0.0105; // Flattens out to normal cut
+    }
+
+    else if (1.566 < phoEta && phoEta < 2.5 && !isSaturated){
+      if (photon->pt() < 30) sIeIeCut = sIeIeCutvspt_endcaps(photon);
+      else if (photon->pt() >= 30) sIeIeCut = 0.0280; // Flattens out to normal cut
+    }
+
+    else if (phoEta < 1.4442 && isSaturated) sIeIeCut = 0.0112;
+    else if (1.566 < phoEta && phoEta < 2.5 && isSaturated) sIeIeCut = 0.0300;
+
+    if (sIeIe < sIeIeCut) return true;
+    else return false;
+  }
+
+  bool passLowPtID(const pat::Photon* photon, double rho, bool isSat) {
+    if (
+      passHadTowerOverEmCut(photon) &&
+      passChargedHadronCut(photon) &&
+      passlowPTSigmaIetaIetaCut(photon,isSat) &&
+      passlowPTCorPhoIso(photon,rho) &&
+      photon->passElectronVeto()
+    ) return true;
+
+    else return false;
+  }
+
 
   // must pass all cuts in the High pT ID except for the Sieie cut and chIso cut
   // NOTE: enforce chIso and sieie cuts offline depending on if this is used for numerator or fake template
@@ -247,8 +319,7 @@ namespace ExoDiPhotons{
     if (
       passHadTowerOverEmCut(photon) &&
       passCorPhoIsoHighPtID(photon,rho) &&
-      photon->passElectronVeto() &&
-      passR9Cut(photon)
+      photon->passElectronVeto()
     ) return true;
 
     else return false;
@@ -259,21 +330,20 @@ namespace ExoDiPhotons{
     double phoEta = fabs( photon->superCluster()->eta() );
     bool isEB = phoEta < 1.4442;
     bool isEE = 1.566 < phoEta && phoEta < 2.5;
-    
+
     // first check if the photon fails at least one of the high pT ID cuts
     bool failID = (
       !passHadTowerOverEmCut(photon) ||
       !passChargedHadronCut(photon) ||
-      !passSigmaIetaIetaCut(photon,isSat) ||
-      !passR9Cut(photon)
+      !passSigmaIetaIetaCut(photon,isSat)
     );
 
     if (isEB)
       failID = failID || !passCorPhoIsoHighPtID(photon,rho);
-    
+
     // now check if it pass the looser ID
     bool passLooseIso = passChargedHadronDenomCut(photon) && passCorPhoIsoDenom(photon,rho);
-    
+
     // require object to pass CSEV
     bool passCSEV = photon->passElectronVeto();
 
@@ -281,7 +351,8 @@ namespace ExoDiPhotons{
     bool passHadOverEmCut = photon->hadronicOverEm() < 0.1;
 
     bool passCorIso = passCorPhoIsoHighPtID(photon,rho);
-    
+
+
     bool retVal = false;
     if (isEB && failID && passLooseIso && passCSEV && passHadOverEmCut){
       retVal = true;
@@ -293,7 +364,7 @@ namespace ExoDiPhotons{
 
     return retVal;
   }
-  
+
 }
 
 

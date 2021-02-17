@@ -3,56 +3,29 @@
 
 namespace ExoDiPhotons {
 
-  bool is2017or2018(const TString& sample) {
-    if(sample.Contains("mc2017") || sample.Contains("upgrade2018")) return true;
-    else return false;
-  }
-
   // provides cross sections (in pb) that are used to calculate event weights
   double crossSection(const TString& sample) {
     double xsec = -1.0;
-    // Signal Samples 
+    // from running GenXsecAnalyzer on full sample
     if(sample.Contains("GGGJets_13TeV-sherpa")) xsec = 1.814e-01;
     if(sample.Contains("GGGJets_TuneCUETP8M1_13TeV_madgraphMLM_pythia8") && sample.Contains("Spring17")) xsec = 1.664e+00;
     if(sample.Contains("GGGJets_TuneCUETP8M1_13TeV_madgraphMLM_pythia8") && sample.Contains("Summer17")) xsec = 1.720e+00;
-    if(sample.Contains("GGGJets_TuneCUETP8M1_13TeV_madgraphMLM_pythia8") xsec =  0.108607;
-
-    // Background for Triphoton
-    if(sample.Contains("GGJets_Pt-15_13TeV-sherpa")) xsec = 140.05e+00;
+    if(sample.Contains("GGGJets_TuneCUETP8M1_13TeV_madgraphMLM_pythia8")) xsec =  0.108607;
+    // 2017 Low-pt Triphoton External Background Samples
+    if(sample.Contains("DiPhotonJetsBox_M40_80-Sherpa")) xsec = 3.101e+02;
+    if(sample.Contains("QCD_Pt-30toInf_DoubleEMEnriched_MGG-40to80_TuneCP5_13TeV_Pythia8")) xsec = 2.419e+05;
+    // Original Background samples
     if(sample.Contains("DiPhotonJets_MGG-80toInf_13TeV_amcatnloFXFX_pythia8")) xsec = 135.1;
     if(sample.Contains("DiPhotonJetsBox_MGG-80toInf_13TeV-Sherpa")) xsec = 82.81; // +/- 0.12
-    if(sample.Contains("GGJets_M-60To200_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 6.278e+00;
-      else xsec = 5.785e+00;
-    }
-    if(sample.Contains("GGJets_M-200To500_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 2.451e+00;
-      else xsec = 2.244e+00;
-    }
-    if(sample.Contains("GGJets_M-500To1000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 1.739e-01;
-      else xsec = 1.510e-01;
-    }
-    if(sample.Contains("GGJets_M-1000To2000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 1.445e-02;
-      else xsec = 1.084e-02;
-    }
-    if(sample.Contains("GGJets_M-2000To4000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 5.115e-04;
-      else xsec = 3.690e-04;
-    }
-    if(sample.Contains("GGJets_M-4000To6000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 3.394e-06;
-      else xsec = 2.451e-06;
-    }
-    if(sample.Contains("GGJets_M-6000To8000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 4.117e-08;
-      else xsec = 1.753e-08;
-    }
-    if(sample.Contains("GGJets_M-8000To13000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) xsec = 5.754e-10;
-      else xsec = 7.053e-11;
-    }
+    if(sample.Contains("GGJets_Pt-15_13TeV-sherpa")) xsec = 140.05e+00;
+    if(sample.Contains("GGJets_M-60To200_Pt-50_13TeV-sherpa")) xsec = 5.785e+00;
+    if(sample.Contains("GGJets_M-200To500_Pt-50_13TeV-sherpa")) xsec = 2.244e+00;
+    if(sample.Contains("GGJets_M-500To1000_Pt-50_13TeV-sherpa")) xsec = 1.510e-01;
+    if(sample.Contains("GGJets_M-1000To2000_Pt-50_13TeV-sherpa")) xsec = 1.084e-02;
+    if(sample.Contains("GGJets_M-2000To4000_Pt-50_13TeV-sherpa")) xsec = 3.690e-04;
+    if(sample.Contains("GGJets_M-4000To6000_Pt-50_13TeV-sherpa")) xsec = 2.451e-06;
+    if(sample.Contains("GGJets_M-6000To8000_Pt-50_13TeV-sherpa")) xsec = 1.753e-08;
+    if(sample.Contains("GGJets_M-8000To13000_Pt-50_13TeV-sherpa")) xsec = 7.053e-11;
     // 2017 Sherpa, from running GenXsecAnalyzer on full sample
     if(sample.Contains("GJets_HT-40To100_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 1.862e+04;
     if(sample.Contains("GJets_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 8.625e+03;
@@ -66,43 +39,17 @@ namespace ExoDiPhotons {
     if(sample.Contains("GJets_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 2.816e+02;
     if(sample.Contains("GJets_HT-600ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 9.465e+01;
     if(sample.Contains("GJets_DR-0p4_HT-400To600")) xsec = 1.560e+04;
-    // from xsdb
-    if(sample.Contains("WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 50260.0;
-    if(sample.Contains("WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 52940.0;
-    if(sample.Contains("QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 246300000.0;
-    if(sample.Contains("QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 28060000.0;
-    if(sample.Contains("QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1710000.0;
-    if(sample.Contains("QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 347500.0;
-    if(sample.Contains("QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 32060.0;
-    if(sample.Contains("QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 6829.0;
-    if(sample.Contains("QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1207.0;
-    if(sample.Contains("QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 120.0;
-    if(sample.Contains("QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 25.25;
-    if(sample.Contains("QCD_HT50to100_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT50to100_TuneCP5_13TeV-madgraph-pythia8")) xsec = 28060000.0;
-    if(sample.Contains("QCD_HT100to200_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT100to200_TuneCP5_13TeV-madgraph-pythia8")) xsec = 23700000.0;
     // from running GenXsecAnalyzer on full sample
-    if(sample.Contains("QCD_HT200to300_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT200to300_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.554e+06;
-    if(sample.Contains("QCD_HT300to500_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT300to500_TuneCP5_13TeV-madgraph-pythia8")) xsec = 3.234e+05;
-    if(sample.Contains("QCD_HT500to700_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT500to700_TuneCP5_13TeV-madgraph-pythia8")) xsec = 3.004e+04;
-    if(sample.Contains("QCD_HT700to1000_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT700to1000_TuneCP5_13TeV-madgraph-pythia8")) xsec = 6.353e+03;
-    if(sample.Contains("QCD_HT1000to1500_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT1000to1500_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.095e+03;
-    if(sample.Contains("QCD_HT1500to2000_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT1500to2000_TuneCP5_13TeV-madgraph-pythia8")) xsec = 9.913e+01;
-    if(sample.Contains("QCD_HT2000toInf_TuneCP5_13TeV-madgraphMLM-pythia8")
-       or sample.Contains("QCD_HT2000toInf_TuneCP5_13TeV-madgraph-pythia8")) xsec = 2.019e+01;
-    if(sample.Contains("WGJets_MonoPhoton_PtG-40to130_TuneCUETP8M1_13TeV-madgraph")) xsec = 1.270e+01; // +/- 4.610e-03
-    if(sample.Contains("WGJets_MonoPhoton_PtG-130_TuneCUETP8M1_13TeV-madgraph")) xsec = 6.565e-01; // +/- 7.876e-04
-    if(sample.Contains("WGJets_MonoPhoton_PtG-40to130_TuneCP5_13TeV-madgraph")) xsec = 7.163e-01; // +/- 2.925e-04
-    if(sample.Contains("WGJets_MonoPhoton_PtG-130_TuneCP5_13TeV-madgraph")) xsec = 7.152e-01; // +/- 2.628e-04
-    if(sample.Contains("TTGJets_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8")) xsec = 4.108e+00; // +/- 8.777e-03
-    if(sample.Contains("DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8")) xsec = 6.491e+03; // +/- 1.045e+01
+    if(sample.Contains("QCD_HT200to300_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.554e+06;
+    if(sample.Contains("QCD_HT300to500_TuneCP5_13TeV-madgraph-pythia8")) xsec = 3.234e+05;
+    if(sample.Contains("QCD_HT500to700_TuneCP5_13TeV-madgraph-pythia8")) xsec = 3.004e+04;
+    if(sample.Contains("QCD_HT700to1000_TuneCP5_13TeV-madgraph-pythia8")) xsec = 6.353e+03;
+    if(sample.Contains("QCD_HT1000to1500_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.095e+03;
+    if(sample.Contains("QCD_HT1500to2000_TuneCP5_13TeV-madgraph-pythia8")) xsec = 9.913e+01;
+    if(sample.Contains("QCD_HT2000toInf_TuneCP5_13TeV-madgraph-pythia8")) xsec = 2.019e+01;
+    if(sample.Contains("WGJets_MonoPhoton_PtG-40to130_TuneCP5_13TeV-madgraph")) xsec = 7.163e-01; // +/ 2.925e-04
+    if(sample.Contains("TTGJets_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8")) xsec = 4.108e+00; // +/ 8.777e-03
+    if(sample.Contains("DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8")) xsec = 6.491e+03; // +/ 1.045e+01
     // cross sections and filter efficiencies from MCM
     if(sample.Contains("QCD_Pt-20to30_EMEnriched")) xsec = 557600000*0.0096; // filter efficiency error (MCM): 0.0003
     if(sample.Contains("QCD_Pt-30to50_EMEnriched")) xsec = 136000000*0.073; // filter efficiency error (MCM): 0.015
@@ -128,28 +75,9 @@ namespace ExoDiPhotons {
     if(sample.Contains("QCD_Pt_1800to2400_TuneCUETP8M1")) xsec = 0.114943;
     if(sample.Contains("QCD_Pt_2400to3200_TuneCUETP8M1")) xsec = 0.00682981;
     if(sample.Contains("QCD_Pt_3200toInf_TuneCUETP8M1")) xsec = 0.000165445;
-    // cross sections from xsdb
-    if(sample.Contains("QCD_Pt_15to30_TuneCP5_13TeV_pythia8")) xsec = 1246000000.0;
-    if(sample.Contains("QCD_Pt_30to50_TuneCP5_13TeV_pythia8")) xsec = 106900000.0;
-    if(sample.Contains("QCD_Pt_50to80_TuneCP5_13TeV_pythia8")) xsec = 15710000.0;
-    if(sample.Contains("QCD_Pt_80to120_TuneCP5_13TeV_pythia8")) xsec = 2336000.0;
-    if(sample.Contains("QCD_Pt_120to170_TuneCP5_13TeV_pythia8")) xsec = 407300.0;
-    if(sample.Contains("QCD_Pt_170to300_TuneCP5_13TeV_pythia8")) xsec = 103500.0;
-    if(sample.Contains("QCD_Pt_300to470_TuneCP5_13TeV_pythia8")) xsec = 6830.0;
-    if(sample.Contains("QCD_Pt_470to600_TuneCP5_13TeV_pythia8")) xsec = 552.1;
-    if(sample.Contains("QCD_Pt_600to800_TuneCP5_13TeV_pythia8")) xsec = 156.5;
-    if(sample.Contains("QCD_Pt_800to1000_TuneCP5_13TeV_pythia8")) xsec = 26.28;
-    if(sample.Contains("QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8")) xsec = 7.47;
-    if(sample.Contains("QCD_Pt_1400to1800_TuneCP5_13TeV_pythia8")) xsec = 0.6484;
-    if(sample.Contains("QCD_Pt_1800to2400_TuneCP5_13TeV_pythia8")) xsec = 0.08743;
-    if(sample.Contains("QCD_Pt_2400to3200_TuneCP5_13TeV_pythia8")) xsec = 0.005236;
-    if(sample.Contains("QCD_Pt_3200toInf_TuneCP5_13TeV_pythia8")) xsec = 0.0001357;
     // cross sections from https://twiki.cern.ch/twiki/bin/viewauth/CMS/SummaryTable1G25ns
     if(sample.Contains("WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) xsec = 405.271;
-    if(sample.Contains("WGToLNuG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8")) xsec = 1.916e+02; // +/- 2.954e-01
-    if(sample.Contains("WGToLNuG_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 4.647e+02; // +/- 1.423e-01
     if(sample.Contains("ZGTo2LG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) xsec = 117.864;
-    if(sample.Contains("ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8")) xsec = 5.559e+01; // +/- 8.293e-02
     if(sample.Contains("TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8")) xsec = 3.697;
     if(sample.Contains("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) xsec = 1921.8*3;
     // MCM cross sections (NLO)
@@ -158,46 +86,7 @@ namespace ExoDiPhotons {
     if(sample.Contains("WToLNu_2J_13TeV-amcatnloFXFX-pythia8")) xsec = 2.544e+03; // +- 2.485e+02 pb
     // from https://twiki.cern.ch/twiki/bin/view/LHCPhysics/TtbarNNLO
     if(sample.Contains("TTJets_")) xsec = 815.96 ;
-    // from running GenXsecAnalyzer on full sample
-    if(sample.Contains("DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 8.096e+02; // +- 1.718e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 1.609e+02; // +- 4.384e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 4.858e+01; // +- 1.360e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 6.978e+00; // +- 2.120e-03 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 1.757e+00; // +- 5.599e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 8.098e-01; // +- 4.354e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 1.930e-01; // +- 2.526e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8")) xsec = 3.513e-03; // +- 5.263e-06 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-40to70_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 3.105e+02; // +- 3.212e-01 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 1.471e+02; // +- 4.371e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 1.609e+02; // +- 4.454e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 4.867e+01; // +- 1.395e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 6.984e+00; // +- 2.070e-03 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 1.744e+00; // +- 5.613e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 8.048e-01; // +- 4.359e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 1.880e+00; // +- 1.597e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8")) xsec = 3.476e-03; // +- 5.443e-06 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-70to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1.704e+02; // +- 5.046e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1.475e+02; // +- 8.438e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-200to400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 4.104e+01; // +- 4.009e-02 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-400to600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 5.675e+00; // +- 5.273e-03 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-600to800_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1.358e+00; // +- 4.539e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-800to1200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 6.236e-01; // +- 3.671e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-1200to2500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 1.512e-01; // +- 1.884e-04 pb
-    if(sample.Contains("DYJetsToLL_M-50_HT-2500toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8")) xsec = 3.659e-03; // +- 5.548e-06 pb
-    if(sample.Contains("TTGamma_Dilept_ptGamma100-200_TuneCP5_13TeV-madgraph-pythia8")) xsec = 3.427e-02; // +- 6.371e-06 pb
-    if(sample.Contains("TTGamma_Dilept_ptGamma200inf_TuneCP5_13TeV-madgraph-pythia8")) xsec = 6.800e-03; // +- 1.598e-06 pb
-    if(sample.Contains("TTGamma_Hadronic_ptGamma100-200_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.256e-01; // +- 2.998e-05 pb
-    if(sample.Contains("TTGamma_Hadronic_ptGamma200inf_TuneCP5_13TeV-madgraph-pythia8")) xsec = 2.678e-02; // +- 6.561e-06 pb
-    if(sample.Contains("TTGamma_SingleLept_ptGamma100-200_TuneCP5_13TeV-madgraph-pythia8")) xsec = 1.320e-01; // +- 1.011e-05 pb
-    if(sample.Contains("TTGamma_SingleLept_ptGamma200inf_TuneCP5_13TeV-madgraph-pythia8")) xsec = 2.703e-02; // +- 2.680e-06 pb
-    if(sample.Contains("TTGamma_Dilept_ptGamma100-200_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 3.428e-02; // +- 5.993e-06 pb
-    if(sample.Contains("TTGamma_Dilept_ptGamma200inf_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 6.797e-03; // +- 8.939e-07 pb
-    if(sample.Contains("TTGamma_Hadronic_ptGamma100-200_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 1.251e-01; // +- 2.912e-05 pb
-    if(sample.Contains("TTGamma_Hadronic_ptGamma200inf_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 2.687e-02; // +- 6.644e-06 pb
-    if(sample.Contains("TTGamma_SingleLept_ptGamma100-200_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 1.320e-01; // +- 9.733e-06 pb
-    if(sample.Contains("TTGamma_SingleLept_ptGamma200inf_TuneCP5_PSweights_13TeV-madgraph-pythia8")) xsec = 2.703e-02; // +- 2.555e-06 pb
-    if(sample.Contains("GGGJets_13TeV-sherpa")) xsec = 1.814e-01;
-    if(sample.Contains("GGGJets_TuneCUETP8M1_13TeV_madgraphMLM_pythia8")) xsec = 1.720e+00;
+
     // from running GenXsecAnalyzer on full sample
     if(sample.Contains("ADDGravToGG_MS-3000_NED-2_KK-1_M-1000To2000_13TeV-sherpa")) xsec = 9.139e-02;
     if(sample.Contains("ADDGravToGG_MS-3000_NED-2_KK-1_M-2000To3000_13TeV-sherpa")) xsec = 1.160e-02;
@@ -328,79 +217,7 @@ namespace ExoDiPhotons {
     if(sample.Contains("GG_M-2000To4000_Pt-70_13TeV-sherpa")) xsec = 2.315e-04;
     if(sample.Contains("GG_M-4000To8000_Pt-70_13TeV-sherpa")) xsec = 1.669e-06;
     if(sample.Contains("GG_M-8000To13000_Pt-70_13TeV-sherpa")) xsec = 5.430e-11;
-    if(sample.Contains("GG_M-500To1000_Pt70_TuneCP2_13TeV-pythia8")) xsec = 1.344e-01;
-    if(sample.Contains("GG_M-1000To2000_Pt70_TuneCP2_13TeV-pythia8")) xsec = 1.357e-02;
-    if(sample.Contains("GG_M-2000To4000_Pt70_TuneCP2_13TeV-pythia8")) xsec = 6.736e-04;
-    if(sample.Contains("GG_M-4000To13000_Pt70_TuneCP2_13TeV-pythia8")) xsec = 8.627e-06;
-    // from XSDB
-    if(sample.Contains("RSGravToGG_kMpl-001_M-1000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.01208;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-1250_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.003731;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-1750_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0005499;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-2000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0002422;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-2250_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0001135;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-2500_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.604e-05;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-2750_TuneCUEP8M1_13TeV-pythia8")) xsec = 2.859e-05;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-3000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.501e-05;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-3250_TuneCUEP8M1_13TeV-pythia8")) xsec = 8.03e-06;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-3500_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.384e-06;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-3750_TuneCUEP8M1_13TeV-pythia8")) xsec = 2.443e-06;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-4000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.365e-06;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-4500_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.371e-07;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-5000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.425e-07;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.3405;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-5500_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.675e-08;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-6000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.556e-08;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-6500_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.193e-09;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-7000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.784e-09;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-740_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.05437;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-750_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.05088;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-755_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.04915;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-760_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.04782;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-765_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.04589;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-770_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.04465;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-1000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.206;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-1250_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.3716;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-1500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.1348;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-1750_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0548;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-2000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.02407;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-2250_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.01129;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-2500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.005536;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-2750_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.002836;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-3000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.001492;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-3500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0004361;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-4000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.0001361;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-4500_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.354e-05;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-5000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.439e-05;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-500_TuneCUEP8M1_13TeV-pythia8")) xsec = 34.43;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-5500_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.807e-06;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-6000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.617e-06;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-6500_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.545e-07;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-7000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.991e-07;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-740_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.392;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-745_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.192;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-750_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.092;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-755_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.886;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-760_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.741;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-765_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.585;
-    if(sample.Contains("RSGravToGG_kMpl-01_M-770_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.428;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-1000_TuneCUEP8M1_13TeV-pythia8")) xsec = 4.829;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-1500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.5326;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-2000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.09455;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-3000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.005803;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-4000_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.000536;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-5000_TuneCUEP8M1_13TeV-pythia8")) xsec = 5.879e-05;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-500_TuneCUEP8M1_13TeV-pythia8")) xsec = 142.6;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-6000_TuneCUEP8M1_13TeV-pythia8")) xsec = 7.185e-06;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-7000_TuneCUEP8M1_13TeV-pythia8")) xsec = 1.03e-06;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-740_TuneCUEP8M1_13TeV-pythia8")) xsec = 21.32;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-745_TuneCUEP8M1_13TeV-pythia8")) xsec = 20.55;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-750_TuneCUEP8M1_13TeV-pythia8")) xsec = 20.62;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-755_TuneCUEP8M1_13TeV-pythia8")) xsec = 19.33;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-760_TuneCUEP8M1_13TeV-pythia8")) xsec = 18.74;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-765_TuneCUEP8M1_13TeV-pythia8")) xsec = 18.18;
-    if(sample.Contains("RSGravToGG_kMpl-02_M-770_TuneCUEP8M1_13TeV-pythia8")) xsec = 17.58;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-1500_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.001357;
-    if(sample.Contains("RSGravToGG_kMpl-001_M-745_TuneCUEP8M1_13TeV-pythia8")) xsec = 0.05274;
+
     // from running GenXsecAnalyzer on full sample (2017)
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_0p014_M_750_TuneCP2_13TeV_pythia8")) xsec =  3.035e-11;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_0p014_M_1000_TuneCP2_13TeV_pythia8")) xsec =  5.945e-12;
@@ -438,7 +255,7 @@ namespace ExoDiPhotons {
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_1500_TuneCP2_13TeV_pythia8")) xsec =  1.406e-10;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_1750_TuneCP2_13TeV_pythia8")) xsec =  4.166e-11;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_2000_TuneCP2_13TeV_pythia8")) xsec =  1.451e-11;
-    if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_2250_TuneCP2_13TeV_pythia8")) xsec =  5.826e-12;
+    if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_2500_TuneCP2_13TeV_pythia8")) xsec = 2.652e-12;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_2500_TuneCP2_13TeV_pythia8")) xsec =  2.652e-12;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_3000_TuneCP2_13TeV_pythia8")) xsec =  7.361e-13;
     if(sample.Contains("GluGluSpin0ToGammaGamma_W_5p6_M_3500_TuneCP2_13TeV_pythia8")) xsec =  2.657e-13;
@@ -555,7 +372,6 @@ namespace ExoDiPhotons {
     if(sample.Contains("ADDGravToGG_NegInt-0_LambdaT-13000_M-1000To2000_TuneCP2_13TeV-pythia8")) xsec =  1.331e-02;
     if(sample.Contains("ADDGravToGG_NegInt-0_LambdaT-13000_M-2000To4000_TuneCP2_13TeV-pythia8")) xsec =  6.594e-04;
     if(sample.Contains("ADDGravToGG_NegInt-0_LambdaT-13000_M-4000To13000_TuneCP2_13TeV-pythia8")) xsec =  7.635e-06;
-    if(sample.Contains("ADDGravToGG_NegInt-0_LambdaT-13000_M-4000To12990_TuneCP2_13TeV-pythia8")) xsec =  7.623e-06;
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-4000_M-500To1000_TuneCP2_13TeV-pythia8")) xsec =  1.311e-01;
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-4000_M-1000To2000_TuneCP2_13TeV-pythia8")) xsec =  1.903e-02;
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-4000_M-2000To3000_TuneCP2_13TeV-pythia8")) xsec =  5.572e-03;
@@ -612,7 +428,6 @@ namespace ExoDiPhotons {
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-13000_M-1000To2000_TuneCP2_13TeV-pythia8")) xsec = 1.340e-02;
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-13000_M-2000To4000_TuneCP2_13TeV-pythia8")) xsec =  6.859e-04;
     if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-13000_M-4000To13000_TuneCP2_13TeV-pythia8")) xsec =  1.059e-05;
-    if(sample.Contains("ADDGravToGG_NegInt-1_LambdaT-13000_M-4000To12990_TuneCP2_13TeV-pythia8")) xsec =  1.061e-05;
     // do not use weights for data
     //    if(sample.Contains("Run2015") || sample.Contains("Run2016") || sample.Contains("Run2017")) xsec = 1.0;
     if(sample.Contains("Run2015") || sample.Contains("Run2016") || sample.Contains("Run2017") || sample.Contains("Run2018")) xsec = 1.0;
@@ -629,47 +444,21 @@ namespace ExoDiPhotons {
 
     // average weight is non-zero for these samples because
     // of the njet weighting in Sherpa
-    if(sample.Contains("GGJets_M-60To200_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 3.52301168809078302e-01;
-      else average = 3.895719e-01;
-    }
-    if(sample.Contains("GGJets_M-200To500_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 2.63880645720520890e-01;
-      else average = 2.818643e-01;
-    }
-    if(sample.Contains("GGJets_M-500To1000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.97343491858191583e-01;
-      else average = 2.094533e-01;
-    }
-    if(sample.Contains("GGJets_M-1000To2000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.65930493374440380e-01;
-      else average = 1.749053e-01;
-    }
-    if(sample.Contains("GGJets_M-2000To4000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.53686513958987775e-01;
-      else average = 1.638999e-01;
-    }
-    if(sample.Contains("GGJets_M-4000To6000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.54441035528284226e-01;
-      else average = 1.673106e-01;
-    }
-    if(sample.Contains("GGJets_M-6000To8000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.68124672498689981e-01;
-      else average = 1.816810e-01;
-    }
-    if(sample.Contains("GGJets_M-8000To13000_Pt-50_13TeV-sherpa")) {
-      if(is2017or2018(sample)) average = 1.90791526332210665e-01;
-      else average = 1.972643e-01;
-    }
+    if(sample.Contains("GGJets_M-60To200_Pt-50_13TeV-sherpa")) average = 3.895719e-01;
+    if(sample.Contains("GGJets_M-200To500_Pt-50_13TeV-sherpa")) average = 2.818643e-01;
+    if(sample.Contains("GGJets_M-500To1000_Pt-50_13TeV-sherpa")) average = 2.094533e-01;
+    if(sample.Contains("GGJets_M-1000To2000_Pt-50_13TeV-sherpa")) average = 1.749053e-01;
+    if(sample.Contains("GGJets_M-2000To4000_Pt-50_13TeV-sherpa")) average = 1.638999e-01;
+    if(sample.Contains("GGJets_M-4000To6000_Pt-50_13TeV-sherpa")) average = 1.673106e-01;
+    if(sample.Contains("GGJets_M-6000To8000_Pt-50_13TeV-sherpa")) average = 1.816810e-01;
+    if(sample.Contains("GGJets_M-8000To13000_Pt-50_13TeV-sherpa")) average = 1.972643e-01;
     if(sample.Contains("DiPhotonJetsBox_MGG-80toInf_13TeV-Sherpa")) average = 4.730018e-01;
 
     // Madgraph5_aMC@NLO samples at NLO have a non-zero average weight
     // that should be removed, as well as negative weights
     if(sample.Contains("DiPhotonJets_MGG-80toInf_13TeV_amcatnloFXFX_pythia8")) average = 2.80907981496934667e+02*5.50762575783666608e-01;
     if(sample.Contains("WGToLNuG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) average = 1.501086e+03*6.283186e-01;
-    if(sample.Contains("WGToLNuG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8")) average = 3.56378496224989874e+02*6.00800000000000001e-01;
     if(sample.Contains("ZGTo2LG_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) average = 3.479100e+02*7.019238e-01;
-    if(sample.Contains("ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8")) average = 1.08567085412723003e+02*6.32200000000000095e-01;
     if(sample.Contains("DYJetsToLL_M-50_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8")) average = 2.344342e+04*6.286050e-01;
     if(sample.Contains("WToLNu_0J_13TeV-amcatnloFXFX-pythia8")) average = 7.143788e+04*8.534599e-01;
     if(sample.Contains("WToLNu_1J_13TeV-amcatnloFXFX-pythia8")) average = 9.293282e+04*5.323924e-01;

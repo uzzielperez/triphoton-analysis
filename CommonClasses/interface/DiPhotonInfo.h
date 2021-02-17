@@ -3,6 +3,7 @@
 
 #include "TMath.h"
 #include "TLorentzVector.h"
+#include "triphoton-analysis/CommonClasses/interface/GenParticleInfo.h"
 
 namespace ExoDiPhotons
 {
@@ -16,18 +17,16 @@ namespace ExoDiPhotons
     double deltaR;
     double cosThetaStar;
     double cosThetaStar_old;
+    double chiDiphoton;
 
     // fiducial flags
     bool isEBEB;
     bool isEBEE;
     bool isEEEB;
     bool isEEEE;
-
-    // new kinematic variables
-    double chiDiphoton;
   };
 
-  const std::string diphotonBranchDefString("Minv/D:qt:deltaPhi:deltaEta:deltaR:cosThetaStar:cosThetaStar_old:isEBEB/O:isEBEE:isEEEB:isEEEE:chiDiphoton/D");
+  std::string diphotonBranchDefString("Minv/D:qt:deltaPhi:deltaEta:deltaR:cosThetaStar:cosThetaStar_old:chiDiphoton:isEBEB/O:isEBEE:isEEEB:isEEEE");
 
   void InitDiphotonInfo(diphotonInfo_t &diphotonInfo) {
     // kinematics
