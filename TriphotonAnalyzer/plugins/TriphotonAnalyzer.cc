@@ -63,8 +63,8 @@ TriphotonAnalyzer::TriphotonAnalyzer(const edm::ParameterSet& ps)
 
    genParticlesToken_ = consumes<edm::View<reco::GenParticle> > (ps.getParameter<InputTag>("genparticles"));
    genInfoToken_      = consumes<GenEventInfoProduct>           (ps.getParameter<InputTag>("genInfo"));
-   // nEventsSample_     =                                         (ps.getParameter<uint32_t>("nEventsSample"));
-   // outputFile_        =                                  TString(ps.getParameter<std::string>("outputFile"));
+   nEventsSample_     =                                         (ps.getParameter<uint32_t>("nEventsSample"));
+   outputFile_        =                                  TString(ps.getParameter<std::string>("outputFile"));
 
    fTree = fs->make<TTree>("fTree", "TriphotonTree");
    fTree->Branch("Event",         &fEventInfo,         ExoDiPhotons::eventBranchDefString.c_str());
@@ -123,7 +123,8 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   ExoDiPhotons::FillGenEventInfo(fEventInfo, &(*genInfo));
 
   //FIXME: if local weight = xsec_
-  ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
+  //ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
+  ExoDiPhotons::FillEventWeights(fEventInfo, outputFile_, nEventsSample_);
   fillGenInfo(genParticles);
   fTree->Fill();
 

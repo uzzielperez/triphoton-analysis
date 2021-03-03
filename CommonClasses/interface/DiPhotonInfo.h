@@ -14,6 +14,7 @@ namespace ExoDiPhotons
     double qt;
     double deltaPhi;
     double deltaEta;
+    double deltaAbsEta;
     double deltaR;
     double cosThetaStar;
     double cosThetaStar_old;
@@ -26,7 +27,7 @@ namespace ExoDiPhotons
     bool isEEEE;
   };
 
-  std::string diphotonBranchDefString("Minv/D:qt:deltaPhi:deltaEta:deltaR:cosThetaStar:cosThetaStar_old:chiDiphoton:isEBEB/O:isEBEE:isEEEB:isEEEE");
+  std::string diphotonBranchDefString("Minv/D:qt:deltaPhi:deltaEta:deltaAbsEta:deltaR:cosThetaStar:cosThetaStar_old:chiDiphoton:isEBEB/O:isEBEE:isEEEB:isEEEE");
 
   void InitDiphotonInfo(diphotonInfo_t &diphotonInfo) {
     // kinematics
@@ -34,6 +35,7 @@ namespace ExoDiPhotons
     diphotonInfo.qt               = -99999.99;
     diphotonInfo.deltaPhi         = -99999.99;
     diphotonInfo.deltaEta         = -99999.99;
+    diphotonInfo.deltaAbsEta      = -99999.99;
     diphotonInfo.deltaR           = -99999.99;
     diphotonInfo.cosThetaStar     = -99999.99;
     diphotonInfo.cosThetaStar_old = -99999.99;
@@ -55,6 +57,7 @@ namespace ExoDiPhotons
     // there's a CMS function for deltaPhi in DataFormats/Math
     diphotonInfo.deltaPhi = reco::deltaPhi(photon_vector1.phi(),photon_vector2.phi());
     diphotonInfo.deltaEta = photon_vector1.eta()-photon_vector2.eta(); // always highest pt - second
+    diphotonInfo.deltaAbsEta  = fabs(photon_vector1.eta()-photon_vector2.eta());
     // use CMS function for deltaR
     diphotonInfo.deltaR = reco::deltaR(photon_vector1.eta(),photon_vector1.phi(),photon_vector2.eta(),photon_vector2.phi());
     // old deltaR - leave in to check
