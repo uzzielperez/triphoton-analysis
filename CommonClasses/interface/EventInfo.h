@@ -138,15 +138,15 @@ namespace ExoDiPhotons
     double normalizationLumi = 1000.; // pb
     eventInfo.weightLumi = crossSection(sample)*normalizationLumi/(nEventsSample*averageWeight(sample));
     eventInfo.weightAll = eventInfo.weight*eventInfo.weightLumi;
-    // std::cout << "WeightLumi: "                <<  eventInfo.weightLumi
-    //           << "; xsec: "                    << crossSection(sample)
-    //           << "; normalizationLumi: "       << normalizationLumi
-    //           << "; averageWeight: "           << averageWeight(sample)
-    //           << "; number of events: "        << nEventsSample
-    //           << "; weight: "                  << eventInfo.weight
-    //           << "; EventWeightAll Computed: " << eventInfo.weightAll
-    //           << " for sample "                << sample
-    //           << std::endl;
+    std::cout << "WeightLumi: "                <<  eventInfo.weightLumi
+              << "; xsec: "                    << crossSection(sample)
+              << "; normalizationLumi: "       << normalizationLumi
+              << "; averageWeight: "           << averageWeight(sample)
+              << "; number of events: "        << nEventsSample
+              << "; weight: "                  << eventInfo.weight
+              << "; EventWeightAll Computed: " << eventInfo.weightAll
+              << " for sample "                << sample
+              << std::endl;
   }
 
 // For locally generated datasets the cross-sections are not hard-coded
