@@ -3,8 +3,9 @@
 ```
 ├── Analyzers                # From MiniAOD/AOD to Ntuples
 ├── AnalysesTools            # From Ntuples to Histograms to Pretty Plots
-    ├── makeClass
-    ├── makePrettyPlots
+    ├── makeClass               # make raw histograms
+    ├── makePrettyPlots         # make histograms pretty with labels and stories
+    ├── etc                     # other tools 
 ├── LICENSE
 └── README.md
 ```
