@@ -4,7 +4,51 @@
 namespace TriPhotons
 {
 
-  void CompareDPhiDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2)
+  void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false){
+    TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+    hRatio->SetLineColor(color);
+    hRatio->SetMarkerColor(color);
+    // hRatio->SetMinimum(0.4);
+    // hRatio->SetMaximum(1.1);
+    hRatio->SetStats(0);
+    hRatio->Divide(hDenominator);
+    hRatio->Draw("ep, SAME");
+    hRatio->SetTitle("");
+    hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+    // hRatio->GetYaxis()->SetTitleSize(25);
+    hRatio->GetYaxis()->SetTitleOffset(0.8);
+    hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+    hRatio->GetXaxis()->SetTitleSize(25);
+    hRatio->GetXaxis()->SetTitleFont(43);
+    hRatio->GetXaxis()->SetTitleOffset(4.5);
+    hRatio->GetXaxis()->SetLabelFont(43);
+    hRatio->GetXaxis()->SetLabelSize(16);
+    hRatio->SetMinimum(min);
+    hRatio->SetMaximum(max);
+  }
+
+  void createRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false){
+    TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+    hRatio->SetLineColor(color);
+    hRatio->SetMarkerColor(color);
+    // hRatio->SetMinimum(0.4);
+    // hRatio->SetMaximum(1.1);
+    hRatio->SetStats(0);
+    hRatio->Divide(hDenominator);
+    hRatio->Draw("ep");
+    hRatio->SetTitle("");
+    hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+    // hRatio->GetYaxis()->SetTitleSize(25);
+    hRatio->GetYaxis()->SetTitleOffset(0.8);
+    hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+    hRatio->GetXaxis()->SetTitleSize(25);
+    hRatio->GetXaxis()->SetTitleFont(43);
+    hRatio->GetXaxis()->SetTitleOffset(4.5);
+    hRatio->GetXaxis()->SetLabelFont(43);
+    hRatio->GetXaxis()->SetLabelSize(16);
+  }
+
+  void CompareDPhiDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2, bool showRatio=false)
   {
 
     TString phoPairStr = phoNum1+phoNum2;
@@ -43,7 +87,7 @@ namespace TriPhotons
     c1->SaveAs("plots/triphoton_DPhi"+phoPairStr+"_sherpaVsMcfm.pdf");
   } // end Pt
 
-  void CompareMggDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2){
+  void CompareMggDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2, bool showRatio=false){
       TString phoPairStr = phoNum1+phoNum2;
       std::cout << "PhotonPair " << phoPairStr <<  std::endl;
       std::cout << "h_mA" << phoNum1 << "A" << phoNum2 << std::endl;
@@ -80,7 +124,7 @@ namespace TriPhotons
       c1->SaveAs("plots/triphoton_mAA"+phoPairStr+"_sherpaVsMcfm.pdf");
   }
 
-  void CompareDAbsEtaDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2)
+  void CompareDAbsEtaDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2, bool showRatio=false)
   {
 
     TString phoPairStr = phoNum1+phoNum2;
@@ -120,7 +164,7 @@ namespace TriPhotons
   } // end Pt
 
 
-  void ComparePtDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNumStr){
+  void ComparePtDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNumStr, bool showRatio=false){
 
     std::cout << "Get Pt for Photon " << phoNumStr <<  std::endl;
     std::cout << "h_pt"+phoNumStr << std::endl;
@@ -158,10 +202,9 @@ namespace TriPhotons
     c1->SaveAs("plots/triphoton_Pt"+phoNumStr+"_sherpaVsMcfm.pdf");
   } // end Pt
 
-  void CompareMggg(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo){
+  void CompareMggg(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, bool showRatio=false){
     /** Make baseline comparisons of Sherpa with MCFM **/
     /** Compares differential cross section measurements as a function of Mgg**/
-
 
     TString hminvstr = "h_minv";
     std::cout << "Get Minv " << hminvstr << std::endl;
@@ -171,12 +214,14 @@ namespace TriPhotons
     TH1F *h_mAAA_lo  = (TH1F*)  fMCFM_lo->Get("id29");
 
     //------- MCFM vs Sherpa
-    TCanvas *c = new TCanvas("c","c",800,600);
+    TCanvas *c = new TCanvas("c","c",600,600);
 
-    TPad *padMainPlot = new TPad("padMainPlot", "", 0, 0.3, 1, 1.0);
-    padMainPlot->SetBottomMargin(0); // joins upper and lower plot
-    padMainPlot->Draw();
-    padMainPlot->cd();
+    if (showRatio) {
+      TPad *padMainPlot = new TPad("padMainPlot", "", 0, 0.3, 1, 1.0);
+      padMainPlot->SetBottomMargin(0.2); // joins upper and lower plot
+      padMainPlot->Draw();
+      padMainPlot->cd();
+    }
 
     //h_mAAA_nlo->Scale(1/h_mAAA_nlo->GetEntries());
     // Differential Cross section = Cross section / bin width
@@ -204,61 +249,25 @@ namespace TriPhotons
     legsherpavsmcfm->Draw();
 
     //ratio Pad
-    c->cd(); // return to main canvas before defining ratio pad.
-    TPad *padRatio = new TPad("padRatio", "", 0, 0.05, 1, 0.3);
-    padRatio->SetTopMargin(0);
-    padRatio->SetBottomMargin(0.4);
-    padRatio->Draw();
-    padRatio->cd();
-    padRatio->SetGrid(0,1);
 
-    TH1D *h_ratio_nlo = (TH1D*) h_mAAA_nlo->Clone("h_mAAA_nlo");
-    h_ratio_nlo->SetLineColor(kBlack);
-    h_ratio_nlo->SetMarkerColor(kBlack);
-    // h_ratio_nlo->SetMinimum(0.4);
-    // h_ratio_nlo->SetMaximum(1.1);
-    h_ratio_nlo->SetStats(0);
-    h_ratio_nlo->Divide(h_mAAA_lo);
-    h_ratio_nlo->Draw("ep");
-    h_ratio_nlo->SetTitle("");
-    h_ratio_nlo->GetYaxis()->SetTitle("Pred./Data (LO)");
-    // h_ratio_nlo->GetYaxis()->SetTitleSize(25);
-    h_ratio_nlo->GetYaxis()->SetTitleOffset(0.8);
-    // h_ratio_nlo->GetYaxis()->SetNdivisions(505);
+    if (showRatio) {
+        c->cd(); // return to main canvas before defining ratio pad.
+        TPad *padRatio = new TPad("padRatio", "", 0, 0.05, 1, 0.3);
+        padRatio->SetTopMargin(0);
+        padRatio->SetBottomMargin(0.4);
+        padRatio->Draw();
+        padRatio->cd();
+        padRatio->SetGrid(0,1);
 
-    // h_ratio_nlo->GetYaxis()->CenterTitle();
-    // h_ratio_nlo->GetYaxis()->SetTitleFont(43);
-
-    // h_ratio_nlo->GetYaxis()->SetLabelSize(16);
-
-    //FIXME: Set Xaxis Title
-    // if (name == "pt") {
-    //   h_ratio_nlo->GetXaxis()->SetTitle("p_{T} (GeV)");
-    //   h_ratio_nlo->GetXaxis()->SetRangeUser(0,1500);
-    // }
-    // if (name == "eta") {
-    //   h_ratio_nlo->GetXaxis()->SetTitle("#eta");
-    //   h_ratio_nlo->GetXaxis()->SetRangeUser(-3,3);
-    // }
-    // if (name == "phi") {
-    //   h_ratio_nlo->GetXaxis()->SetTitle("#phi");
-    //   h_ratio_nlo->GetXaxis()->SetRangeUser(-4,4);
-    // }
-    // if (name == "phi" || name == "eta") h_ratio_nlo->GetXaxis()->CenterTitle();
-
-    h_ratio_nlo->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
-    h_ratio_nlo->GetXaxis()->SetTitleSize(25);
-    h_ratio_nlo->GetXaxis()->SetTitleFont(43);
-    h_ratio_nlo->GetXaxis()->SetTitleOffset(4.5);
-    h_ratio_nlo->GetXaxis()->SetLabelFont(43);
-    h_ratio_nlo->GetXaxis()->SetLabelSize(16);
+        // createRatio(h_mAAA_nlo, h_mAAA,kBlue);
+        createRatio(h_mAAA_lo, h_mAAA, kMagenta);
+    }
 
     c->SaveAs("plots/triphoton_Minv_sherpaVsMcfm.pdf");
 
     std::cout << h_mAAA->GetEntries() << std::endl;
     std::cout << h_mAAA_nlo->GetEntries() << std::endl;
     std::cout << h_mAAA_lo->GetEntries() << std::endl;
-
 
   }
 
