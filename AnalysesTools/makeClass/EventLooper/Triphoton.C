@@ -55,18 +55,32 @@ void Triphoton::Loop()
    h_phi3->Sumw2();
 
    // Pairs
-   TH1D *h_mA1A2 = new TH1D("h_mA1A2", "", 20, 0, 600);
-   TH1D *h_mA1A3 = new TH1D("h_mA1A3", "", 20, 0, 600);
-   TH1D *h_mA2A3 = new TH1D("h_mA2A3", "", 20, 0, 600);
-   TH1D *h_dEta12 = new TH1D("h_dEta12", "", 5, 0, 5);
-   TH1D *h_dEta23 = new TH1D("h_dEta23", "", 5, 0, 5);
-   TH1D *h_dEta13 = new TH1D("h_dEta13", "", 5, 0, 5);
-   TH1D *h_dPhi12 = new TH1D("h_dPhi12", "", 3, 0, 3);
-   TH1D *h_dPhi23 = new TH1D("h_dPhi23", "", 3, 0, 3);
-   TH1D *h_dPhi13 = new TH1D("h_dPhi13", "", 3, 0, 3);
-   TH1D *h_dAbsEta12 = new TH1D("h_dAbsEta12", "", 5, 0, 5);
-   TH1D *h_dAbsEta23 = new TH1D("h_dAbsEta23", "", 5, 0, 5);
-   TH1D *h_dAbsEta13 = new TH1D("h_dAbsEta13", "", 5, 0, 5);
+   // TH1D *h_mA1A2 = new TH1D("h_mA1A2", "", 20, 0, 600);
+   // TH1D *h_mA1A3 = new TH1D("h_mA1A3", "", 20, 0, 600);
+   // TH1D *h_mA2A3 = new TH1D("h_mA2A3", "", 20, 0, 600);
+   // TH1D *h_dEta12 = new TH1D("h_dEta12", "", 5, 0, 5);
+   // TH1D *h_dEta23 = new TH1D("h_dEta23", "", 5, 0, 5);
+   // TH1D *h_dEta13 = new TH1D("h_dEta13", "", 5, 0, 5);
+   // TH1D *h_dPhi12 = new TH1D("h_dPhi12", "", 3, 0, 3);
+   // TH1D *h_dPhi23 = new TH1D("h_dPhi23", "", 3, 0, 3);
+   // TH1D *h_dPhi13 = new TH1D("h_dPhi13", "", 3, 0, 3);
+   // TH1D *h_dAbsEta12 = new TH1D("h_dAbsEta12", "", 5, 0, 5);
+   // TH1D *h_dAbsEta23 = new TH1D("h_dAbsEta23", "", 5, 0, 5);
+   // TH1D *h_dAbsEta13 = new TH1D("h_dAbsEta13", "", 5, 0, 5);
+
+   TH1D *h_mA1A2 = new TH1D("h_mA1A2", "", 60, 0, 300);
+   TH1D *h_mA1A3 = new TH1D("h_mA1A3", "", 60, 0, 300);
+   TH1D *h_mA2A3 = new TH1D("h_mA2A3", "", 60, 0, 300);
+   TH1D *h_dEta12 = new TH1D("h_dEta12", "", 40, 0, 4);
+   TH1D *h_dEta23 = new TH1D("h_dEta23", "", 40, 0, 4);
+   TH1D *h_dEta13 = new TH1D("h_dEta13", "", 40, 0, 4);
+   TH1D *h_dPhi12 = new TH1D("h_dPhi12", "", 40, 0, 4);
+   TH1D *h_dPhi23 = new TH1D("h_dPhi23", "", 40, 0, 4);
+   TH1D *h_dPhi13 = new TH1D("h_dPhi13", "", 40, 0, 4);
+   TH1D *h_dAbsEta12 = new TH1D("h_dAbsEta12", "", 12, 0, 4);
+   TH1D *h_dAbsEta23 = new TH1D("h_dAbsEta23", "", 12, 0, 4);
+   TH1D *h_dAbsEta13 = new TH1D("h_dAbsEta13", "", 12, 0, 4);
+
 
    h_mA1A2->Sumw2();
    h_mA1A3->Sumw2();
