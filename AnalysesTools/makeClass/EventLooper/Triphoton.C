@@ -95,6 +95,110 @@ void Triphoton::Loop()
    h_dAbsEta23->Sumw2();
    h_dAbsEta13->Sumw2();
 
+   // 25-25-25 pt cut
+
+   // def histograms
+   TH1D *h_pT25_mAAA = new TH1D("h_pT25_minv", "", 80, 0, 400);
+   //TH1D *h_pT25_mAAA = new TH1D("h_pT25_", "", 20, 0, 100); fAAA->Get("h_pT25_minv_unweighted"); //just for debugging.
+   TH1D *h_pT25_pT1  = new TH1D("h_pT25_pT1", "", 20, 0, 200);
+   TH1D *h_pT25_pT2  = new TH1D("h_pT25_pT2", "", 20, 0, 200);
+   TH1D *h_pT25_pT3  = new TH1D("h_pT25_pT3", "", 20, 0, 200);
+   TH1D *h_pT25_eta1  = new TH1D("h_pT25_eta1", "", 20, -2.5, 2.5);
+   TH1D *h_pT25_eta2  = new TH1D("h_pT25_eta2", "", 20, -2.5, 2.5);
+   TH1D *h_pT25_eta3  = new TH1D("h_pT25_eta3", "", 20, -2.5, 2.5);
+   TH1D *h_pT25_phi1  = new TH1D("h_pT25_phi1", "", 20, -4, 4);
+   TH1D *h_pT25_phi2  = new TH1D("h_pT25_phi2", "", 20, -4, 4);
+   TH1D *h_pT25_phi3  = new TH1D("h_pT25_phi3", "", 20, -4, 4);
+   h_pT25_mAAA->Sumw2();
+   h_pT25_pT1->Sumw2();
+   h_pT25_pT2->Sumw2();
+   h_pT25_pT3->Sumw2();
+   h_pT25_eta1->Sumw2();
+   h_pT25_eta2->Sumw2();
+   h_pT25_eta3->Sumw2();
+   h_pT25_phi1->Sumw2();
+   h_pT25_phi2->Sumw2();
+   h_pT25_phi3->Sumw2();
+
+   TH1D *h_pT25_mA1A2 = new TH1D("h_pT25_mA1A2", "", 60, 0, 300);
+   TH1D *h_pT25_mA1A3 = new TH1D("h_pT25_mA1A3", "", 60, 0, 300);
+   TH1D *h_pT25_mA2A3 = new TH1D("h_pT25_mA2A3", "", 60, 0, 300);
+   TH1D *h_pT25_dEta12 = new TH1D("h_pT25_dEta12", "", 40, 0, 4);
+   TH1D *h_pT25_dEta23 = new TH1D("h_pT25_dEta23", "", 40, 0, 4);
+   TH1D *h_pT25_dEta13 = new TH1D("h_pT25_dEta13", "", 40, 0, 4);
+   TH1D *h_pT25_dPhi12 = new TH1D("h_pT25_dPhi12", "", 40, 0, 4);
+   TH1D *h_pT25_dPhi23 = new TH1D("h_pT25_dPhi23", "", 40, 0, 4);
+   TH1D *h_pT25_dPhi13 = new TH1D("h_pT25_dPhi13", "", 40, 0, 4);
+   TH1D *h_pT25_dAbsEta12 = new TH1D("h_pT25_dAbsEta12", "", 12, 0, 4);
+   TH1D *h_pT25_dAbsEta23 = new TH1D("h_pT25_dAbsEta23", "", 12, 0, 4);
+   TH1D *h_pT25_dAbsEta13 = new TH1D("h_pT25_dAbsEta13", "", 12, 0, 4);
+
+
+   h_pT25_mA1A2->Sumw2();
+   h_pT25_mA1A3->Sumw2();
+   h_pT25_mA2A3->Sumw2();
+   h_pT25_dEta12->Sumw2();
+   h_pT25_dEta23->Sumw2();
+   h_pT25_dEta13->Sumw2();
+   h_pT25_dPhi12->Sumw2();
+   h_pT25_dPhi23->Sumw2();
+   h_pT25_dPhi13->Sumw2();
+   h_pT25_dAbsEta12->Sumw2();
+   h_pT25_dAbsEta23->Sumw2();
+   h_pT25_dAbsEta13->Sumw2();
+
+   // 35-35-15 pt cut
+
+   // def histograms
+   TH1D *h_pT35_35_15_mAAA = new TH1D("h_pT35_35_15_minv", "", 80, 0, 400);
+   //TH1D *h_pT35_35_15_mAAA = new TH1D("h_pT35_35_15_", "", 20, 0, 100); fAAA->Get("h_pT35_35_15_minv_unweighted"); //just for debugging.
+   TH1D *h_pT35_35_15_pT1  = new TH1D("h_pT35_35_15_pT1", "", 20, 0, 200);
+   TH1D *h_pT35_35_15_pT2  = new TH1D("h_pT35_35_15_pT2", "", 20, 0, 200);
+   TH1D *h_pT35_35_15_pT3  = new TH1D("h_pT35_35_15_pT3", "", 20, 0, 200);
+   TH1D *h_pT35_35_15_eta1  = new TH1D("h_pT35_35_15_eta1", "", 20, -2.5, 2.5);
+   TH1D *h_pT35_35_15_eta2  = new TH1D("h_pT35_35_15_eta2", "", 20, -2.5, 2.5);
+   TH1D *h_pT35_35_15_eta3  = new TH1D("h_pT35_35_15_eta3", "", 20, -2.5, 2.5);
+   TH1D *h_pT35_35_15_phi1  = new TH1D("h_pT35_35_15_phi1", "", 20, -4, 4);
+   TH1D *h_pT35_35_15_phi2  = new TH1D("h_pT35_35_15_phi2", "", 20, -4, 4);
+   TH1D *h_pT35_35_15_phi3  = new TH1D("h_pT35_35_15_phi3", "", 20, -4, 4);
+   h_pT35_35_15_mAAA->Sumw2();
+   h_pT35_35_15_pT1->Sumw2();
+   h_pT35_35_15_pT2->Sumw2();
+   h_pT35_35_15_pT3->Sumw2();
+   h_pT35_35_15_eta1->Sumw2();
+   h_pT35_35_15_eta2->Sumw2();
+   h_pT35_35_15_eta3->Sumw2();
+   h_pT35_35_15_phi1->Sumw2();
+   h_pT35_35_15_phi2->Sumw2();
+   h_pT35_35_15_phi3->Sumw2();
+
+   TH1D *h_pT35_35_15_mA1A2 = new TH1D("h_pT35_35_15_mA1A2", "", 60, 0, 300);
+   TH1D *h_pT35_35_15_mA1A3 = new TH1D("h_pT35_35_15_mA1A3", "", 60, 0, 300);
+   TH1D *h_pT35_35_15_mA2A3 = new TH1D("h_pT35_35_15_mA2A3", "", 60, 0, 300);
+   TH1D *h_pT35_35_15_dEta12 = new TH1D("h_pT35_35_15_dEta12", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dEta23 = new TH1D("h_pT35_35_15_dEta23", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dEta13 = new TH1D("h_pT35_35_15_dEta13", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dPhi12 = new TH1D("h_pT35_35_15_dPhi12", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dPhi23 = new TH1D("h_pT35_35_15_dPhi23", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dPhi13 = new TH1D("h_pT35_35_15_dPhi13", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_dAbsEta12 = new TH1D("h_pT35_35_15_dAbsEta12", "", 12, 0, 4);
+   TH1D *h_pT35_35_15_dAbsEta23 = new TH1D("h_pT35_35_15_dAbsEta23", "", 12, 0, 4);
+   TH1D *h_pT35_35_15_dAbsEta13 = new TH1D("h_pT35_35_15_dAbsEta13", "", 12, 0, 4);
+
+
+   h_pT35_35_15_mA1A2->Sumw2();
+   h_pT35_35_15_mA1A3->Sumw2();
+   h_pT35_35_15_mA2A3->Sumw2();
+   h_pT35_35_15_dEta12->Sumw2();
+   h_pT35_35_15_dEta23->Sumw2();
+   h_pT35_35_15_dEta13->Sumw2();
+   h_pT35_35_15_dPhi12->Sumw2();
+   h_pT35_35_15_dPhi23->Sumw2();
+   h_pT35_35_15_dPhi13->Sumw2();
+   h_pT35_35_15_dAbsEta12->Sumw2();
+   h_pT35_35_15_dAbsEta23->Sumw2();
+   h_pT35_35_15_dAbsEta13->Sumw2();
+
    Long64_t nentries = fChain->GetEntriesFast();
 
    Long64_t nbytes = 0, nb = 0;
@@ -127,6 +231,57 @@ void Triphoton::Loop()
       h_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta);
       h_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
 
+      if ( (GenPhoton1_pt > 25) && (GenPhoton2_pt > 25) && (GenPhoton3_pt > 25) ){
+        h_pT25_mAAA->Fill(GenTriPhoton_Minv);
+        h_pT25_pT1->Fill(GenPhoton1_pt);
+        h_pT25_pT2->Fill(GenPhoton2_pt);
+        h_pT25_pT3->Fill(GenPhoton3_pt);
+        h_pT25_eta1->Fill(GenPhoton1_eta);
+        h_pT25_eta2->Fill(GenPhoton2_eta);
+        h_pT25_eta3->Fill(GenPhoton3_eta);
+        h_pT25_phi1->Fill(GenPhoton1_phi);
+        h_pT25_phi2->Fill(GenPhoton2_phi);
+        h_pT25_phi3->Fill(GenPhoton3_phi);
+
+        h_pT25_mA1A2->Fill(GenDiPhoton12_Minv);
+        h_pT25_mA1A3->Fill(GenDiPhoton13_Minv);
+        h_pT25_mA2A3->Fill(GenDiPhoton23_Minv);
+        h_pT25_dEta12->Fill(GenDiPhoton12_deltaEta);
+        h_pT25_dEta23->Fill(GenDiPhoton23_deltaEta);
+        h_pT25_dEta13->Fill(GenDiPhoton13_deltaEta);
+        h_pT25_dPhi12->Fill(GenDiPhoton12_deltaPhi);
+        h_pT25_dPhi23->Fill(GenDiPhoton23_deltaPhi);
+        h_pT25_dPhi13->Fill(GenDiPhoton13_deltaPhi);
+        h_pT25_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta);
+        h_pT25_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta);
+        h_pT25_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
+      }
+
+      if ( (GenPhoton1_pt > 35) && (GenPhoton2_pt > 35) && (GenPhoton3_pt > 15) ){
+        h_pT35_35_15_mAAA->Fill(GenTriPhoton_Minv);
+        h_pT35_35_15_pT1->Fill(GenPhoton1_pt);
+        h_pT35_35_15_pT2->Fill(GenPhoton2_pt);
+        h_pT35_35_15_pT3->Fill(GenPhoton3_pt);
+        h_pT35_35_15_eta1->Fill(GenPhoton1_eta);
+        h_pT35_35_15_eta2->Fill(GenPhoton2_eta);
+        h_pT35_35_15_eta3->Fill(GenPhoton3_eta);
+        h_pT35_35_15_phi1->Fill(GenPhoton1_phi);
+        h_pT35_35_15_phi2->Fill(GenPhoton2_phi);
+        h_pT35_35_15_phi3->Fill(GenPhoton3_phi);
+
+        h_pT35_35_15_mA1A2->Fill(GenDiPhoton12_Minv);
+        h_pT35_35_15_mA1A3->Fill(GenDiPhoton13_Minv);
+        h_pT35_35_15_mA2A3->Fill(GenDiPhoton23_Minv);
+        h_pT35_35_15_dEta12->Fill(GenDiPhoton12_deltaEta);
+        h_pT35_35_15_dEta23->Fill(GenDiPhoton23_deltaEta);
+        h_pT35_35_15_dEta13->Fill(GenDiPhoton13_deltaEta);
+        h_pT35_35_15_dPhi12->Fill(GenDiPhoton12_deltaPhi);
+        h_pT35_35_15_dPhi23->Fill(GenDiPhoton23_deltaPhi);
+        h_pT35_35_15_dPhi13->Fill(GenDiPhoton13_deltaPhi);
+        h_pT35_35_15_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta);
+        h_pT35_35_15_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta);
+        h_pT35_35_15_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
+      }
    }
    TFile file_out("data/AAA_histograms.root", "RECREATE");
    // TFile file_out("GGJets_histograms.root", "RECREATE");
@@ -155,6 +310,60 @@ void Triphoton::Loop()
    h_dAbsEta12->Write();
    h_dAbsEta23->Write();
    h_dAbsEta13->Write();
+
+   // pt 25-25-25 cut
+
+   h_pT25_mAAA->Write();
+   h_pT25_pT1->Write();
+   h_pT25_pT2->Write();
+   h_pT25_pT3->Write();
+   h_pT25_eta1->Write();
+   h_pT25_eta2->Write();
+   h_pT25_eta3->Write();
+   h_pT25_phi1->Write();
+   h_pT25_phi2->Write();
+   h_pT25_phi3->Write();
+
+   h_pT25_mA1A2->Write();
+   h_pT25_mA1A3->Write();
+   h_pT25_mA2A3->Write();
+   h_pT25_dEta12->Write();
+   h_pT25_dEta23->Write();
+   h_pT25_dEta13->Write();
+   h_pT25_dPhi12->Write();
+   h_pT25_dPhi23->Write();
+   h_pT25_dPhi13->Write();
+
+   h_pT25_dAbsEta12->Write();
+   h_pT25_dAbsEta23->Write();
+   h_pT25_dAbsEta13->Write();
+
+   // pt 35-35-15 cut
+
+   h_pT35_35_15_mAAA->Write();
+   h_pT35_35_15_pT1->Write();
+   h_pT35_35_15_pT2->Write();
+   h_pT35_35_15_pT3->Write();
+   h_pT35_35_15_eta1->Write();
+   h_pT35_35_15_eta2->Write();
+   h_pT35_35_15_eta3->Write();
+   h_pT35_35_15_phi1->Write();
+   h_pT35_35_15_phi2->Write();
+   h_pT35_35_15_phi3->Write();
+
+   h_pT35_35_15_mA1A2->Write();
+   h_pT35_35_15_mA1A3->Write();
+   h_pT35_35_15_mA2A3->Write();
+   h_pT35_35_15_dEta12->Write();
+   h_pT35_35_15_dEta23->Write();
+   h_pT35_35_15_dEta13->Write();
+   h_pT35_35_15_dPhi12->Write();
+   h_pT35_35_15_dPhi23->Write();
+   h_pT35_35_15_dPhi13->Write();
+
+   h_pT35_35_15_dAbsEta12->Write();
+   h_pT35_35_15_dAbsEta23->Write();
+   h_pT35_35_15_dAbsEta13->Write();
 
    file_out.ls();
    file_out.Close();
