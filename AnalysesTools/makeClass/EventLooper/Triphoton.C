@@ -232,55 +232,56 @@ void Triphoton::Loop()
       h_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
 
       if ( (GenPhoton1_pt > 25) && (GenPhoton2_pt > 25) && (GenPhoton3_pt > 25) ){
-        h_pT25_mAAA->Fill(GenTriPhoton_Minv);
-        h_pT25_pT1->Fill(GenPhoton1_pt);
-        h_pT25_pT2->Fill(GenPhoton2_pt);
-        h_pT25_pT3->Fill(GenPhoton3_pt);
-        h_pT25_eta1->Fill(GenPhoton1_eta);
-        h_pT25_eta2->Fill(GenPhoton2_eta);
-        h_pT25_eta3->Fill(GenPhoton3_eta);
-        h_pT25_phi1->Fill(GenPhoton1_phi);
-        h_pT25_phi2->Fill(GenPhoton2_phi);
-        h_pT25_phi3->Fill(GenPhoton3_phi);
+        h_pT25_mAAA->Fill(GenTriPhoton_Minv, Event_weightAll);
+        h_pT25_pT1->Fill(GenPhoton1_pt, Event_weightAll);
+        h_pT25_pT2->Fill(GenPhoton2_pt, Event_weightAll);
+        h_pT25_pT3->Fill(GenPhoton3_pt, Event_weightAll);
+        h_pT25_eta1->Fill(GenPhoton1_eta, Event_weightAll);
+        h_pT25_eta2->Fill(GenPhoton2_eta, Event_weightAll);
+        h_pT25_eta3->Fill(GenPhoton3_eta, Event_weightAll);
+        h_pT25_phi1->Fill(GenPhoton1_phi, Event_weightAll);
+        h_pT25_phi2->Fill(GenPhoton2_phi, Event_weightAll);
+        h_pT25_phi3->Fill(GenPhoton3_phi, Event_weightAll);
 
-        h_pT25_mA1A2->Fill(GenDiPhoton12_Minv);
-        h_pT25_mA1A3->Fill(GenDiPhoton13_Minv);
-        h_pT25_mA2A3->Fill(GenDiPhoton23_Minv);
-        h_pT25_dEta12->Fill(GenDiPhoton12_deltaEta);
-        h_pT25_dEta23->Fill(GenDiPhoton23_deltaEta);
-        h_pT25_dEta13->Fill(GenDiPhoton13_deltaEta);
-        h_pT25_dPhi12->Fill(GenDiPhoton12_deltaPhi);
-        h_pT25_dPhi23->Fill(GenDiPhoton23_deltaPhi);
-        h_pT25_dPhi13->Fill(GenDiPhoton13_deltaPhi);
-        h_pT25_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta);
-        h_pT25_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta);
-        h_pT25_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
+        h_pT25_mA1A2->Fill(GenDiPhoton12_Minv, Event_weightAll);
+        h_pT25_mA1A3->Fill(GenDiPhoton13_Minv, Event_weightAll);
+        h_pT25_mA2A3->Fill(GenDiPhoton23_Minv, Event_weightAll);
+        h_pT25_dEta12->Fill(GenDiPhoton12_deltaEta, Event_weightAll);
+        h_pT25_dEta23->Fill(GenDiPhoton23_deltaEta, Event_weightAll);
+        h_pT25_dEta13->Fill(GenDiPhoton13_deltaEta, Event_weightAll);
+        h_pT25_dPhi12->Fill(GenDiPhoton12_deltaPhi, Event_weightAll);
+        h_pT25_dPhi23->Fill(GenDiPhoton23_deltaPhi, Event_weightAll);
+        h_pT25_dPhi13->Fill(GenDiPhoton13_deltaPhi, Event_weightAll);
+        h_pT25_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta, Event_weightAll);
+        h_pT25_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta, Event_weightAll);
+        h_pT25_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, Event_weightAll);
       }
 
       if ( (GenPhoton1_pt > 35) && (GenPhoton2_pt > 35) && (GenPhoton3_pt > 15) ){
+        // MCFM reports in fb, the Event_weightAll is 
         h_pT35_35_15_mAAA->Fill(GenTriPhoton_Minv);
-        h_pT35_35_15_pT1->Fill(GenPhoton1_pt);
-        h_pT35_35_15_pT2->Fill(GenPhoton2_pt);
-        h_pT35_35_15_pT3->Fill(GenPhoton3_pt);
-        h_pT35_35_15_eta1->Fill(GenPhoton1_eta);
-        h_pT35_35_15_eta2->Fill(GenPhoton2_eta);
-        h_pT35_35_15_eta3->Fill(GenPhoton3_eta);
-        h_pT35_35_15_phi1->Fill(GenPhoton1_phi);
-        h_pT35_35_15_phi2->Fill(GenPhoton2_phi);
-        h_pT35_35_15_phi3->Fill(GenPhoton3_phi);
+        h_pT35_35_15_pT1->Fill(GenPhoton1_pt, Event_weightAll);
+        h_pT35_35_15_pT2->Fill(GenPhoton2_pt, Event_weightAll);
+        h_pT35_35_15_pT3->Fill(GenPhoton3_pt, Event_weightAll);
+        h_pT35_35_15_eta1->Fill(GenPhoton1_eta, Event_weightAll);
+        h_pT35_35_15_eta2->Fill(GenPhoton2_eta, Event_weightAll);
+        h_pT35_35_15_eta3->Fill(GenPhoton3_eta, Event_weightAll);
+        h_pT35_35_15_phi1->Fill(GenPhoton1_phi, Event_weightAll);
+        h_pT35_35_15_phi2->Fill(GenPhoton2_phi, Event_weightAll);
+        h_pT35_35_15_phi3->Fill(GenPhoton3_phi, Event_weightAll);
 
-        h_pT35_35_15_mA1A2->Fill(GenDiPhoton12_Minv);
-        h_pT35_35_15_mA1A3->Fill(GenDiPhoton13_Minv);
-        h_pT35_35_15_mA2A3->Fill(GenDiPhoton23_Minv);
-        h_pT35_35_15_dEta12->Fill(GenDiPhoton12_deltaEta);
-        h_pT35_35_15_dEta23->Fill(GenDiPhoton23_deltaEta);
-        h_pT35_35_15_dEta13->Fill(GenDiPhoton13_deltaEta);
-        h_pT35_35_15_dPhi12->Fill(GenDiPhoton12_deltaPhi);
-        h_pT35_35_15_dPhi23->Fill(GenDiPhoton23_deltaPhi);
-        h_pT35_35_15_dPhi13->Fill(GenDiPhoton13_deltaPhi);
-        h_pT35_35_15_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta);
-        h_pT35_35_15_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta);
-        h_pT35_35_15_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta);
+        h_pT35_35_15_mA1A2->Fill(GenDiPhoton12_Minv, Event_weightAll);
+        h_pT35_35_15_mA1A3->Fill(GenDiPhoton13_Minv, Event_weightAll);
+        h_pT35_35_15_mA2A3->Fill(GenDiPhoton23_Minv, Event_weightAll);
+        h_pT35_35_15_dEta12->Fill(GenDiPhoton12_deltaEta, Event_weightAll);
+        h_pT35_35_15_dEta23->Fill(GenDiPhoton23_deltaEta, Event_weightAll);
+        h_pT35_35_15_dEta13->Fill(GenDiPhoton13_deltaEta, Event_weightAll);
+        h_pT35_35_15_dPhi12->Fill(GenDiPhoton12_deltaPhi, Event_weightAll);
+        h_pT35_35_15_dPhi23->Fill(GenDiPhoton23_deltaPhi, Event_weightAll);
+        h_pT35_35_15_dPhi13->Fill(GenDiPhoton13_deltaPhi, Event_weightAll);
+        h_pT35_35_15_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta, Event_weightAll);
+        h_pT35_35_15_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta, Event_weightAll);
+        h_pT35_35_15_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, Event_weightAll);
       }
    }
    TFile file_out("data/AAA_histograms.root", "RECREATE");
