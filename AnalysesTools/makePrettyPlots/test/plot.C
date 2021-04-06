@@ -14,7 +14,7 @@ void plot(bool local=false, bool isHLT20=false, bool isHLT30_30_15=false) {
 
   TString mcfm_path = "/uscms/home/cuperez/nobackup/tribosons/CMSSW_10_2_8/src/MCFM-8.3/Bin/";
   TString makeClass_path = "/uscms/home/cuperez/nobackup/tribosons/Triphoton-Dev/CMSSW_10_6_12/src/triphoton-analysis/AnalysesTools/";
-  TString fLOstr = "trigam_nlo_CT10.00_1.00_1.00_13TeV";
+  TString fLOstr  = "trigam_nlo_CT10.00_1.00_1.00_13TeV";
   TString fNLOstr = "trigam_lo_cteq6l1_1.00_1.00_13TeV";
 
   if (local) mcfm_path = "../../../data/"; makeClass_path = "../../";
