@@ -65,7 +65,7 @@ process.source = cms.Source("PoolSource",
 #
 #####################
 process.TFileService = cms.Service("TFileService",
-                fileName = cms.string(outName)
+                fileName = cms.string(outName))
                 # fileName = cms.string("DemoTriphotonInfo.root")
                 # fileName = cms.string("TriphotonBasicNtuples.root")
                 # fileName = cms.string("GGJetsBasicNtuples.root")
@@ -79,7 +79,8 @@ from EgammaUser.EgammaPostRecoTools.EgammaPostRecoTools import setupEgammaPostRe
 #from RecoEgamma.EgammaTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
 setupEgammaPostRecoSeq(process,
                        runVID=True,
-                       era='2018-Prompt',
+                       #era='2018-Prompt',
+                       era='2017-NovReReco',
                        phoIDModules=['RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_Fall17_94X_V2_cff',
                        'RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_Fall17_94X_V2_cff']
                        )
@@ -99,7 +100,7 @@ process.demo = cms.EDAnalyzer('TriphotonAnalyzer',
     genparticles = cms.InputTag("prunedGenParticles"),
     #genInfo = cms.InputTag("generator", "", "SIM"),
     genInfo = cms.InputTag("generator", "", "GEN"), # For sherpa GGJets
-    photonsMiniAOD = cms.InputTag("slimmedPhotons");
+    photonsMiniAOD = cms.InputTag("slimmedPhotons"),
     # For calculation of Event Weights
     outputFile = cms.string(outName),
     nEventsSample = cms.uint32(options.nEventsSample),
