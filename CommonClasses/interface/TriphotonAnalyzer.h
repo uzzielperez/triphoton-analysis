@@ -71,6 +71,7 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       edm::EDGetTokenT<edm::View<reco::GenParticle> > genParticlesToken_;
       edm::EDGetTokenT<edm::View<reco::GenParticle> > genParticlesMiniAODToken_;
       edm::EDGetTokenT<GenEventInfoProduct>           genInfoToken_;
+      edm::EDGetTokenT<edm::View<pat::Photon> >       photonsMiniAODToken_;
 
       edm::InputTag genParticles_;
 
@@ -84,6 +85,13 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       ExoDiPhotons::diphotonInfo_t      fGenDiphotonInfo13;
       ExoDiPhotons::diphotonInfo_t      fGenDiphotonInfo23;
       ExoDiPhotons::triphotonInfo_t     fGenTriphotonInfo;
+      ExoDiPhotons::photonInfo_t        fPhoton1Info;
+      ExoDiPhotons::photonInfo_t        fPhoton2Info;
+      ExoDiPhotons::photonInfo_t        fPhoton3Info;
+      ExoDiPhotons::diphotonInfo_t      fDiphotonInfo12;
+      ExoDiPhotons::diphotonInfo_t      fDiphotonInfo13;
+      ExoDiPhotons::diphotonInfo_t      fDiphotonInfo23;
+      ExoDiPhotons::triphotonInfo_t     fTriphotonInfo;
 
       double xsec_;
       uint32_t nEventsSample_;

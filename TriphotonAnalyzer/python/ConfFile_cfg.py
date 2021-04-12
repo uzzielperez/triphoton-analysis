@@ -2,7 +2,10 @@ import FWCore.ParameterSet.Config as cms
 from FWCore.ParameterSet.VarParsing import VarParsing
 from os.path import basename
 
-######## For Event Weights
+#####################
+# Options
+#
+#####################
 options = VarParsing ('python')
 
 options.register('nEventsSample',
@@ -25,14 +28,25 @@ else:
 #    outName = "ExoDiphotonAnalyzer.root"
 
 
-######### Basic
+#####################
+# Process Definition
+#
+#####################
 process = cms.Process("Demo")
-
 process.load("FWCore.MessageService.MessageLogger_cfi")
 
+
+#####################
+# maxEvents
+#
+#####################
 # process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32( options.maxEvents ) )
 
+#####################
+# Input
+#
+#####################
 process.source = cms.Source("PoolSource",
 
     fileNames = cms.untracked.vstring(
@@ -46,18 +60,46 @@ process.source = cms.Source("PoolSource",
 
 )
 
+#####################
+# Output Filename
+#
+#####################
 process.TFileService = cms.Service("TFileService",
                 fileName = cms.string(outName)
                 # fileName = cms.string("DemoTriphotonInfo.root")
                 # fileName = cms.string("TriphotonBasicNtuples.root")
                 # fileName = cms.string("GGJetsBasicNtuples.root")
                 # fileName = cms.string("DemoTriphotonInfo.root")
-                            )
+
+################
+# EGM Tools
+#
+################
+from EgammaUser.EgammaPostRecoTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
+#from RecoEgamma.EgammaTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
+setupEgammaPostRecoSeq(process,
+                       runVID=True,
+                       era='2018-Prompt',
+                       phoIDModules=['RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_Fall17_94X_V2_cff',
+                       'RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_Fall17_94X_V2_cff']
+                       )
+
+process.load('Configuration.StandardSequences.GeometryRecoDB_cff')
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff")
+from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
+process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v18')
+
+
+################
+# Input Tags
+#
+################                      )
 #FIXME GENPARTICLES input prunedGenParticles vs genParticles
 process.demo = cms.EDAnalyzer('TriphotonAnalyzer',
     genparticles = cms.InputTag("prunedGenParticles"),
     #genInfo = cms.InputTag("generator", "", "SIM"),
     genInfo = cms.InputTag("generator", "", "GEN"), # For sherpa GGJets
+    photonsMiniAOD = cms.InputTag("slimmedPhotons");
     # For calculation of Event Weights
     outputFile = cms.string(outName),
     nEventsSample = cms.uint32(options.nEventsSample),
