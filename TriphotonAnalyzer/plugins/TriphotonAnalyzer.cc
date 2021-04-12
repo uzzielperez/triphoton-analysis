@@ -138,6 +138,7 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   //ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
   ExoDiPhotons::FillEventWeights(fEventInfo, outputFile_, nEventsSample_);
   fillGenInfo(genParticles);
+  fillPhotonInfo(photons);
   fTree->Fill();
 
   // ==== FIXME:
@@ -189,7 +190,6 @@ TriphotonAnalyzer::fillDescriptions(edm::ConfigurationDescriptions& descriptions
 }
 
 void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles){
-
   // Store information in these vectors
   vector< edm::Ptr<const reco::GenParticle> > genPhotons;
   vector<int> interactingPartons;
@@ -237,6 +237,32 @@ void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticl
   if (genPhoton2 && genPhoton3) ExoDiPhotons::FillDiphotonInfo(fGenDiphotonInfo23,genPhoton2,genPhoton3);
   if (genPhoton1 && genPhoton2 && genPhoton3) ExoDiPhotons::FillTriphotonInfo(fGenTriphotonInfo,genPhoton1,genPhoton2,genPhoton3);
 } // end of fillGenInfo
+
+void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >  photons){
+  std::vector<edm::Ptr<pat::Photon>> patPhotons;
+
+  for (size_t i = 0; i < photons->size(); ++i){
+    const auto pho = photons->ptrAt(i);
+    patPhotons.push_back(pho);
+
+    // EGamma ID Standard;
+    bool passEGMLooseID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-loose");
+    bool passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-medium");
+    bool passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-tight");
+
+    std::cout << "Photon pt: "  << pho->pt()
+              << "; eta: "      << pho->eta()
+              << "; phi: "      << pho->phi()
+              << "; LooseID: "  << passEGMLooseID
+              << "; MediumID: " << passEGMMediumID
+              << "; TightID:  " << passEGMTightID
+              << std::endl;
+  }
+
+  std::cout << "NPhotons = " << photons->size() << std::endl;
+
+} //end
+
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(TriphotonAnalyzer);

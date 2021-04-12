@@ -75,7 +75,7 @@ process.TFileService = cms.Service("TFileService",
 # EGM Tools
 #
 ################
-from EgammaUser.EgammaPostRecoTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
+from EgammaUser.EgammaPostRecoTools import setupEgammaPostRecoSeq
 #from RecoEgamma.EgammaTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
 setupEgammaPostRecoSeq(process,
                        runVID=True,
