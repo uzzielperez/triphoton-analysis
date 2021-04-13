@@ -80,7 +80,7 @@ from RecoEgamma.EgammaTools.EgammaPostRecoTools import setupEgammaPostRecoSeq
 setupEgammaPostRecoSeq(process,
                        runVID=True,
                        #era='2018-Prompt',
-                       era='2017-NovReReco',
+                       era='2017-Nov17ReReco',
                        phoIDModules=['RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_Fall17_94X_V2_cff',
                        'RecoEgamma.PhotonIdentification.Identification.cutBasedPhotonID_Fall17_94X_V2_cff']
                        )
@@ -106,4 +106,4 @@ process.demo = cms.EDAnalyzer('TriphotonAnalyzer',
     nEventsSample = cms.uint32(options.nEventsSample),
 )
 
-process.p = cms.Path(process.demo)
+process.p = cms.Path(process.egammaPostRecoSeq*process.demo)
