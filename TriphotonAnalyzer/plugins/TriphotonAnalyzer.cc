@@ -116,6 +116,7 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 
   iEvent.getByToken(genParticlesToken_,    genParticles);
   iEvent.getByToken(genInfoToken_,         genInfo);
+  iEvent.getByToken(photonsMiniAODToken_,  photons);
 
   // Initialize
   ExoDiPhotons::InitEventInfo(fEventInfo);
@@ -238,7 +239,7 @@ void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticl
   if (genPhoton1 && genPhoton2 && genPhoton3) ExoDiPhotons::FillTriphotonInfo(fGenTriphotonInfo,genPhoton1,genPhoton2,genPhoton3);
 } // end of fillGenInfo
 
-void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >  photons){
+void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons){
   std::vector<edm::Ptr<pat::Photon>> patPhotons;
 
   for (size_t i = 0; i < photons->size(); ++i){
@@ -246,9 +247,9 @@ void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> 
     patPhotons.push_back(pho);
 
     // EGamma ID Standard;
-    bool passEGMLooseID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-loose");
-    bool passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-medium");
-    bool passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V2-tight");
+    bool passEGMLooseID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-loose");
+    bool passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-medium");
+    bool passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-tight");
 
     std::cout << "Photon pt: "  << pho->pt()
               << "; eta: "      << pho->eta()

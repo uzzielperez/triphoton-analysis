@@ -57,7 +57,7 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
 
     static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
     void fillGenInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles);
-    void fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >  photons);
+    void fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons);
 
     private:
       virtual void beginJob() override;

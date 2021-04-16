@@ -98,9 +98,9 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v18
 #FIXME GENPARTICLES input prunedGenParticles vs genParticles
 process.demo = cms.EDAnalyzer('TriphotonAnalyzer',
     genparticles = cms.InputTag("prunedGenParticles"),
-    #genInfo = cms.InputTag("generator", "", "SIM"),
-    genInfo = cms.InputTag("generator", "", "GEN"), # For sherpa GGJets
-    photonsMiniAOD = cms.InputTag("slimmedPhotons"),
+    genInfo = cms.InputTag("generator", "", "SIM"),
+    #genInfo = cms.InputTag("generator", "", "GEN"), # For sherpa GGJets
+    photonsMiniAOD = cms.InputTag("slimmedPhotons", "", "PAT"),
     # For calculation of Event Weights
     outputFile = cms.string(outName),
     nEventsSample = cms.uint32(options.nEventsSample),
