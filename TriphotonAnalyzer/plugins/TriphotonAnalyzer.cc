@@ -61,10 +61,11 @@ TriphotonAnalyzer::TriphotonAnalyzer(const edm::ParameterSet& ps)
    //now do what ever initialization is needed
    usesResource("TFileService");
 
-   genParticlesToken_ = consumes<edm::View<reco::GenParticle> > (ps.getParameter<InputTag>("genparticles"));
-   genInfoToken_      = consumes<GenEventInfoProduct>           (ps.getParameter<InputTag>("genInfo"));
-   nEventsSample_     =                                         (ps.getParameter<uint32_t>("nEventsSample"));
-   outputFile_        =                                  TString(ps.getParameter<std::string>("outputFile"));
+   genParticlesToken_    = consumes<edm::View<reco::GenParticle> > (ps.getParameter<InputTag>("genparticles"));
+   genInfoToken_         = consumes<GenEventInfoProduct>           (ps.getParameter<InputTag>("genInfo"));
+   photonsMiniAODToken_  = consumes<edm::View<pat::Photon> >       (ps.getParameter<edm::InputTag>("photonsMiniAOD"));
+   nEventsSample_        =                                         (ps.getParameter<uint32_t>("nEventsSample"));
+   outputFile_           =                                  TString(ps.getParameter<std::string>("outputFile"));
 
    fTree = fs->make<TTree>("fTree", "TriphotonTree");
    fTree->Branch("Event",         &fEventInfo,         ExoDiPhotons::eventBranchDefString.c_str());
@@ -75,6 +76,13 @@ TriphotonAnalyzer::TriphotonAnalyzer(const edm::ParameterSet& ps)
    fTree->Branch("GenDiPhoton13", &fGenDiphotonInfo13, ExoDiPhotons::diphotonBranchDefString.c_str());
    fTree->Branch("GenDiPhoton23", &fGenDiphotonInfo23, ExoDiPhotons::diphotonBranchDefString.c_str());
    fTree->Branch("GenTriPhoton",  &fGenTriphotonInfo,  ExoDiPhotons::triphotonBranchDefString.c_str());
+   fTree->Branch("Photon1",       &fPhoton1Info,       ExoDiPhotons::photonBranchDefString.c_str());
+   fTree->Branch("Photon2",       &fPhoton2Info,       ExoDiPhotons::photonBranchDefString.c_str());
+   fTree->Branch("Photon3",       &fPhoton3Info,       ExoDiPhotons::photonBranchDefString.c_str());
+   fTree->Branch("DiPhoton12",    &fDiphotonInfo12,    ExoDiPhotons::diphotonBranchDefString.c_str());
+   fTree->Branch("DiPhoton13",    &fDiphotonInfo13,    ExoDiPhotons::diphotonBranchDefString.c_str());
+   fTree->Branch("DiPhoton23",    &fDiphotonInfo23,    ExoDiPhotons::diphotonBranchDefString.c_str());
+   fTree->Branch("TriPhoton",     &fTriphotonInfo,     ExoDiPhotons::triphotonBranchDefString.c_str());
 
 }
 
@@ -104,9 +112,11 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
    // Handle, getByToken
   edm::Handle<edm::View<reco::GenParticle> > genParticles;
   edm::Handle<GenEventInfoProduct>           genInfo;
+  edm::Handle<edm::View<pat::Photon> >       photons;
 
   iEvent.getByToken(genParticlesToken_,    genParticles);
   iEvent.getByToken(genInfoToken_,         genInfo);
+  iEvent.getByToken(photonsMiniAODToken_,  photons);
 
   // Initialize
   ExoDiPhotons::InitEventInfo(fEventInfo);
@@ -117,6 +127,9 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   ExoDiPhotons::InitDiphotonInfo(fGenDiphotonInfo13);
   ExoDiPhotons::InitDiphotonInfo(fGenDiphotonInfo23);
   ExoDiPhotons::InitTriphotonInfo(fGenTriphotonInfo);
+  ExoDiPhotons::InitPhotonInfo(fPhoton1Info);
+  ExoDiPhotons::InitPhotonInfo(fPhoton2Info);
+  ExoDiPhotons::InitPhotonInfo(fPhoton3Info);
 
   // Update
   ExoDiPhotons::FillBasicEventInfo(fEventInfo, iEvent);
@@ -126,8 +139,14 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   //ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
   ExoDiPhotons::FillEventWeights(fEventInfo, outputFile_, nEventsSample_);
   fillGenInfo(genParticles);
+  fillPhotonInfo(photons);
   fTree->Fill();
 
+  // ==== FIXME:
+  // Update
+  // bool passEGMLooseID;
+  // bool passEGMMediumID;
+  // bool passEGMTightID;
 
 
 
@@ -172,7 +191,6 @@ TriphotonAnalyzer::fillDescriptions(edm::ConfigurationDescriptions& descriptions
 }
 
 void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles){
-
   // Store information in these vectors
   vector< edm::Ptr<const reco::GenParticle> > genPhotons;
   vector<int> interactingPartons;
@@ -220,6 +238,32 @@ void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticl
   if (genPhoton2 && genPhoton3) ExoDiPhotons::FillDiphotonInfo(fGenDiphotonInfo23,genPhoton2,genPhoton3);
   if (genPhoton1 && genPhoton2 && genPhoton3) ExoDiPhotons::FillTriphotonInfo(fGenTriphotonInfo,genPhoton1,genPhoton2,genPhoton3);
 } // end of fillGenInfo
+
+void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons){
+  std::vector<edm::Ptr<pat::Photon>> patPhotons;
+
+  for (size_t i = 0; i < photons->size(); ++i){
+    const auto pho = photons->ptrAt(i);
+    patPhotons.push_back(pho);
+
+    // EGamma ID Standard;
+    bool passEGMLooseID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-loose");
+    bool passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-medium");
+    bool passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-tight");
+
+    std::cout << "Photon pt: "  << pho->pt()
+              << "; eta: "      << pho->eta()
+              << "; phi: "      << pho->phi()
+              << "; LooseID: "  << passEGMLooseID
+              << "; MediumID: " << passEGMMediumID
+              << "; TightID:  " << passEGMTightID
+              << std::endl;
+  }
+
+  std::cout << "NPhotons = " << photons->size() << std::endl;
+
+} //end
+
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(TriphotonAnalyzer);
