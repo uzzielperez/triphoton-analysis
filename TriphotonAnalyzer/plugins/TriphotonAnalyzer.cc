@@ -84,6 +84,13 @@ TriphotonAnalyzer::TriphotonAnalyzer(const edm::ParameterSet& ps)
    fTree->Branch("DiPhoton23",    &fDiphotonInfo23,    ExoDiPhotons::diphotonBranchDefString.c_str());
    fTree->Branch("TriPhoton",     &fTriphotonInfo,     ExoDiPhotons::triphotonBranchDefString.c_str());
 
+   fSinglePhoTree = fs->make<TTree>("fSinglePhoTree", "SinglePhotonTree");
+   fSinglePhoTree->Branch("Event",         &fSEventInfo,        ExoDiPhotons::eventBranchDefString.c_str());
+   fSinglePhoTree->Branch("GenPhoton",     &fGenPhotonInfo,     ExoDiPhotons::genParticleBranchDefString.c_str());
+   fSinglePhoTree->Branch("GenPhotonNum",  &fGenPhotonNumber,   "num/I");
+   fSinglePhoTree->Branch("Photon",        &fPhotonInfo,        ExoDiPhotons::photonBranchDefString.c_str());
+   fSinglePhoTree->Branch("PhotonNum",     &fPhotonNumber,      "num/I");
+
 }
 
 
@@ -139,8 +146,13 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   //ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
   ExoDiPhotons::FillEventWeights(fEventInfo, outputFile_, nEventsSample_);
   fillGenInfo(genParticles);
-  fillPhotonInfo(photons);
+  // fillPhotonInfo(photons);
   fTree->Fill();
+
+  ExoDiPhotons::FillBasicEventInfo(fSEventInfo, iEvent);
+  ExoDiPhotons::FillGenEventInfo(fSEventInfo, &(*genInfo));
+  ExoDiPhotons::FillEventWeights(fSEventInfo, outputFile_, nEventsSample_);
+  fillMatchingInfo(genParticles, photons);
 
   // ==== FIXME:
   // Update
@@ -264,6 +276,140 @@ void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> 
 
 } //end
 
+void TriphotonAnalyzer::fillMatchingInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles,
+                                         const edm::Handle<edm::View<pat::Photon> >& photons){
+
+     //FIXME put in configuration file
+     bool debug = true;
+     bool dRthreshold = 0.5;
+
+     // FIXME: Put this sorter in a separate function
+     vector< edm::Ptr<const reco::GenParticle> > genPhotons;
+     std::vector<edm::Ptr<pat::Photon>> patPhotons;
+     vector<int> interactingPartons;
+
+     for (size_t i = 0; i < genParticles->size(); ++i){
+       const auto gen = genParticles->ptrAt(i);
+       if (gen->isHardProcess() && gen->pt() == 0)    interactingPartons.push_back(gen->pdgId());
+       if (gen->isHardProcess() && gen->pdgId()==22)  genPhotons.push_back(gen);
+     }
+
+     for (size_t i = 0; i < photons->size(); ++i){
+       const auto pho = photons->ptrAt(i);
+       patPhotons.push_back(pho);
+     }
+
+     sort(genPhotons.begin(), genPhotons.end(), ExoDiPhotons::comparePhotonsByPt);
+     sort(patPhotons.begin(), patPhotons.end(), ExoDiPhotons::comparePhotonsByPt);
+
+     if(interactingPartons.size() == 2){
+        fEventInfo.interactingParton1PdgId = interactingPartons[0];
+        fEventInfo.interactingParton2PdgId = interactingPartons[1];
+      }
+     else cout << "Exactly two interacting partons not found!" << endl;
+
+     // FIXME: Debugging for cmsRun
+     // Find PAT deltaR match for each Gen Photon
+     const reco::GenParticle *genPho;
+     const pat::Photon       *patPho;
+     edm::Ptr<pat::Photon>   patMatch;
+     int patMatchIndex= -1;
+     const pat::Photon *photon_reco_match    = NULL;
+     // const reco::GenParticle *photon_gen_match = NULL;
+
+     for ( std::vector<int>::size_type i = 0; i != genPhotons.size(); i++ ){
+         if (genPhotons.size() < 1) return;
+         genPho = &(*genPhotons.at(i));
+         double minDeltaR = 9999.99;
+
+         if (debug) std::cout << "GEN Pt: " << genPho->pt() << "; Eta: " << genPho->eta() << "; Phi: " << genPho->phi() << std::endl;
+
+         for ( std::vector<int>::size_type j = 0; j != patPhotons.size(); j++ ){
+           patPho = &(*patPhotons.at(j));
+           const auto pho = patPhotons.at(j);
+           double deltaR = reco::deltaR(genPho->eta(), genPho->phi(), patPho->eta(), patPho->phi());
+
+           if (debug) std::cout << "PAT Pt: " << patPho->pt() << "; Eta: " << patPho->eta() << "; Phi: " << patPho->phi() << "; deltaR: " << deltaR << std::endl;
+           if ( deltaR <= minDeltaR ){
+             minDeltaR = deltaR; patMatch = pho; photon_reco_match = &(*patPho);
+           }
+         } // pat photon loop
+
+         if ( minDeltaR < dRthreshold && debug) cout << "MATCH FOUND! - " << minDeltaR << std::endl;
+
+         fillgenPhoIDInfo( fGenPhotonInfo, genPho, minDeltaR);
+         fGenPhotonNumber = i + 1;
+
+         if ( minDeltaR < dRthreshold ){
+           fillpatPhoIDInfo(fPhotonInfo, photon_reco_match, patMatch);
+           fPhotonNumber = patMatchIndex+ 1;
+         }
+      } // end gen photon loop
+
+     // for ( std::vector<int>::size_type i = 0; i != genPhotons.size(); i++ ){
+     //   if (genPhotons.size() < 1) return;
+     //   genPho =  &(*genPhotons.at(i));
+     //   double minDeltaR = 99999.99;
+     //
+     //   for ( std::vector<int>::size_type j = 0; j != patPhotons.size(); j++ ){
+     //     patPho = &(*patPhotons.at(j));
+     //     const auto pho = patPhotons.at(j);
+     //     double deltaR = reco::deltaR(genPho->eta(), genPho->phi(), patPho->eta(), patPho->phi());
+     //
+     //     if ( deltaR <= minDeltaR ){
+     //        minDeltaR = deltaR;
+     //        if ( minDeltaR < 0.5 ){
+     //          photon_reco_match = &(*patPho);
+     //          photon_gen_match  = &(*genPho);
+     //          patMatch          = pho;
+     //          // patMatchIndex            = j;
+     //        }
+     //     }
+     //   } // end pat loop
+     //
+     //   // fillgenPhoIDInfo( fGenPhotonInfo, genPho, minDeltaR );
+     //   // fGenPhotonNumber = i + 1;
+     //
+     //   if ( minDeltaR < dRthreshold ){
+     //     // fillpatPhoIDInfo(fPhotonInfo, photon_reco_match, patMatch);
+     //     // fPhotonNumber = patMatchIndex+ 1;
+     //     if (debug){
+     //        cout << "MATCH FOUND! minDR: " << minDeltaR
+     //                                      << "; pt: "   << photon_gen_match->pt()  << " : " << photon_reco_match->pt()
+     //                                      << "; eta = " << photon_gen_match->eta() << " : " << photon_reco_match->eta()
+     //                                      << "; phi = " << photon_gen_match->phi() << " : " << photon_reco_match->phi() << std::endl;
+     //     }
+     //    }
+     //    fSinglePhoTree->Fill();
+     // } // end gen-pat matching loop
+}
+
+void TriphotonAnalyzer::fillgenPhoIDInfo( ExoDiPhotons::genParticleInfo_t &genParticleInfo,
+                                              const reco::GenParticle *genPho,
+                                              double minDeltaR){
+
+       ExoDiPhotons::FillGenParticleInfo(genParticleInfo, genPho);
+       genParticleInfo.minDeltaR = minDeltaR;
+}
+
+void TriphotonAnalyzer::fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo,
+                                              const pat::Photon *photon,
+                                              edm::Ptr<pat::Photon> pho){
+  photonInfo.passEGMLooseID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-loose");
+  photonInfo.passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-medium");
+  photonInfo.passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-tight");
+
+  // FIXME: Put in config
+  bool debug = true;
+
+  if (debug) {
+    std::cout << "Matched Photon pt: "  << pho->pt() << "; eta: " << pho->eta() << "; phi: "<< pho->phi()
+            << "; LooseID: "    << photonInfo.passEGMLooseID
+            << "; MediumID: "   << photonInfo.passEGMMediumID
+            << "; TightID:  "   << photonInfo.passEGMTightID
+            << std::endl;
+  }
+}
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(TriphotonAnalyzer);
