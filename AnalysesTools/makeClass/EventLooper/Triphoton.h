@@ -185,7 +185,7 @@ public :
 #endif
 
 #ifdef Triphoton_cxx
-Triphoton::Triphoton(TTree *tree) : fChain(0) 
+Triphoton::Triphoton(TTree *tree) : fChain(0)
 {
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
@@ -205,7 +205,7 @@ Triphoton::Triphoton(TTree *tree) : fChain(0)
       // The following code should be used if you want this class to access a chain
       // of trees.
       TChain * chain = new TChain("demo/fTree","");
-      chain->Add("/uscms/home/cuperez/nobackup/tribosons/Triphoton-Dev/CMSSW_10_6_12/src/out_GGGJets_Pt-15_13TeV-sherpa_evt17999.root/demo/fTree");
+      chain->Add("/uscms/home/cuperez/nobackup/tribosons/Triphoton-Dev/CMSSW_10_2_15/src/out_GGGJets_Pt-15_13TeV-sherpa_evt17800.root/demo/fTree");
       tree = chain;
 #endif // SINGLE_TREE
 
