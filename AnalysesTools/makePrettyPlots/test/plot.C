@@ -1,6 +1,7 @@
 #include "Comparisons.h"
 #include "ATLASComparisons.h"
 #include "Selections.h"
+#include "DataComparisons.h"
 
 // Run as 'plot.C(true)' for local
 // FIXME: Clean by putting in separate Actions header file
@@ -39,10 +40,29 @@ void compareMCFMSherpa(TFile *fAAA, TFile *fNLO, TFile *fLO,  bool isHLT20 = fal
   TriPhotons::CompareDAbsEtaDists(fAAA, fNLO, fLO, "2", "3", isHLT20, isHLT30_30_15);
 }
 
-void plot(bool local=false, bool isHLT20=false, bool isHLT30_30_15=false) {
-    // Run as 'plot.C(true)' for local
-    // FIXME more intuitive local, HLT20, 30
+void singlePhoEff(TString fSherpaNtuple){
+  //TriPhotons::efficiency(fSherpaNtuple, "matching", "EB");
+  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "loose");
+  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "medium");
+  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "tight");
 
+  //TriPhotons::efficiency(fSherpaNtuple, "matching", "EE");
+  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "loose");
+  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "medium");
+  TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "tight");
+  //FIXME: why can't I run both matching and selection efficiency all at once
+  // Put some title
+
+  // Tests:
+  // TriPhotons::analyzeSinglePhoEff(fSherpaNtuple, "matching", "EB");
+  // TriPhotons::ratioplot1();
+  // TriPhotons::ratioplot2();
+}
+
+void plot(bool local=true, bool isHLT20=true, bool isHLT30_30_15=false){
+    // Run as 'plot.C(true)' for local
+    // Set local to default so we work with ntuples in local computer
+    // FIXME more intuitive local, HLT20, 30
   gROOT->SetStyle("Plain");
   gStyle->SetOptTitle(0);
   gStyle->SetPalette(1,0);
@@ -70,20 +90,18 @@ void plot(bool local=false, bool isHLT20=false, bool isHLT30_30_15=false) {
   // ACTIONS:
   //compareATLAS(fNLO_atlas);
   //compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
-  //TriPhotons::efficiency(fSherpaNtuple, "matching", "EB");
-  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "loose");
-  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "medium");
-  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EB", "tight");
-
-  //TriPhotons::efficiency(fSherpaNtuple, "matching", "EE");
-  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "loose");
-  //TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "medium");
-  TriPhotons::efficiency(fSherpaNtuple, "selection", "EE", "tight");
-  //FIXME: why can't I run both matching and selection efficiency all at once
-  // Put some title
-
-  // Tests:
-  // TriPhotons::analyzeSinglePhoEff(fSherpaNtuple, "matching", "EB");
-  // TriPhotons::ratioplot1();
-  // TriPhotons::ratioplot2();
+  //singlePhoEff(fSherpaNtuple);
+  TriPhotons::compareDataMggg(fAAA, fAAA, isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataPt(fAAA, fAAA, "1", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataPt(fAAA, fAAA, "2", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataPt(fAAA, fAAA, "3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDPhi(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDPhi(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDPhi(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDEta(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDEta(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
+  TriPhotons::compareDataDEta(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
 }
