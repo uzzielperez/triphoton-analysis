@@ -58,6 +58,14 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
     static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
     void fillGenInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles);
     void fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons);
+    void fillMatchingInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles,
+                          const edm::Handle<edm::View<pat::Photon> >& photons);
+    void fillgenPhoIDInfo( ExoDiPhotons::genParticleInfo_t &genParticleInfo,
+                           const reco::GenParticle *genPho,
+                           double minDeltaR );
+    void fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo,
+                           edm::Ptr<pat::Photon> pho  );
+    void photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons);
 
     private:
       virtual void beginJob() override;
@@ -78,6 +86,7 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
 
       TTree *fTree;
 
+
       ExoDiPhotons::eventInfo_t         fEventInfo;
       ExoDiPhotons::genParticleInfo_t   fGenPhoton1Info;
       ExoDiPhotons::genParticleInfo_t   fGenPhoton2Info;
@@ -94,9 +103,21 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       ExoDiPhotons::diphotonInfo_t      fDiphotonInfo23;
       ExoDiPhotons::triphotonInfo_t     fTriphotonInfo;
 
+      TTree *fSinglePhoTree;
+      ExoDiPhotons::eventInfo_t         fSEventInfo;
+      ExoDiPhotons::genParticleInfo_t   fGenPhotonInfo;
+      ExoDiPhotons::photonInfo_t        fPhotonInfo;
+      int fGenPhotonNumber;
+      int fPhotonNumber;
+
       double xsec_;
       uint32_t nEventsSample_;
       TString outputFile_;
+
+      // bool isLooseTriphotons_ ;
+      // bool isMediumTriphotons_;
+      bool isTightTriphotons_ ;
+      // bool hasTriphotons_;
 
 };
 

@@ -1,71 +1,84 @@
 #ifndef Comparisons_h
 #define Comparisons_h
+#include "Selections.h"
 
 namespace TriPhotons
 {
-  // double lumi2017 = 80.94; // fb-1 for HLT_20_20_20 and HLT_30_30_10
-  // double lumi2018 = 80.94; // fb-1 for HLT 20_20_20 and HLT_30_30_10
-  double lumiTotal            = 80.94; // for HLT Triggers 2017 and 2018
+
+  double lumiTotal            = 80.94;     // for HLT Triggers 2017 and 2018
   double xsec_nlo_15_15_15    = 125.50288; // fb
-  double xsec_lo_15_15_15     = 46.3964; //fb
-  double xsec_sherpa_15_15_15 = 108.607; //fb
-  double sherpa_th_lumi = 165.726; //fb which is greater than 150 fb-1;
+  double xsec_lo_15_15_15     = 46.3964;   // fb
+  double xsec_sherpa_15_15_15 = 108.607;   // fb
+  double sherpa_th_lumi       = 165.726;   // fb which is greater than 150 fb-1;
 
   double xsec_lo     = xsec_lo_15_15_15;
   double xsec_nlo    = xsec_nlo_15_15_15;
   double xsec_sherpa = xsec_sherpa_15_15_15;
 
+  // MCFM
+  // 25_25_25 lo xsec: 8.641 fb
+  // 35_35_15 lo xsec: 15.20 fb
+  //
+  // 25_25_25 nlo xsec: 21.74 fb
+  // 35_35_15 nlo xsec: 36.20 fb
 
-  void convertToDiffXsec(TH1D* hist){
-    float binWidth = ((hist->GetXaxis()->GetXmax())-(hist->GetXaxis()->GetXmin()))/ (hist->GetNbinsX()); // uniform
-    hist->Scale(1.0/hist->GetEntries());
+  void convertToDiffXsec(TH1D* hist, double nSimEvents = 17999){
+    // uniform
+    float binWidth = ((hist->GetXaxis()->GetXmax())-(hist->GetXaxis()->GetXmin()))/ (hist->GetNbinsX());
+
+    // Fraction of simulated Events
+    //hist->Scale(1.0/hist->GetEntries()); // hist->Integral() better if the event weights aren't 1
+    hist->Scale(1.0/nSimEvents);
+    // Normalize to unit Lumi
     hist->Scale(xsec_sherpa);
+    // Turn to differential cross-section (yield per unit lumi)
     hist->Scale(1.0/binWidth);
   }
 
-  void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
-    TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
-    hRatio->SetLineColor(color);
-    hRatio->SetMarkerColor(color);
-    // hRatio->SetMinimum(0.4);
-    // hRatio->SetMaximum(1.1);
-    hRatio->SetStats(0);
-    hRatio->Divide(hDenominator);
-    hRatio->Draw("ep, SAME");
-    hRatio->SetTitle("");
-    hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
-    // hRatio->GetYaxis()->SetTitleSize(25);
-    hRatio->GetYaxis()->SetTitleOffset(0.8);
-    hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
-    hRatio->GetXaxis()->SetTitleSize(25);
-    hRatio->GetXaxis()->SetTitleFont(43);
-    hRatio->GetXaxis()->SetTitleOffset(4.5);
-    hRatio->GetXaxis()->SetLabelFont(43);
-    hRatio->GetXaxis()->SetLabelSize(16);
-    hRatio->SetMinimum(min);
-    hRatio->SetMaximum(max);
-  }
-
-  void createRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
-    TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
-    hRatio->SetLineColor(color);
-    hRatio->SetMarkerColor(color);
-    // hRatio->SetMinimum(0.4);
-    // hRatio->SetMaximum(1.1);
-    hRatio->SetStats(0);
-    hRatio->Divide(hDenominator);
-    hRatio->Draw("ep");
-    hRatio->SetTitle("");
-    hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
-    // hRatio->GetYaxis()->SetTitleSize(25);
-    hRatio->GetYaxis()->SetTitleOffset(0.8);
-    hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
-    hRatio->GetXaxis()->SetTitleSize(25);
-    hRatio->GetXaxis()->SetTitleFont(43);
-    hRatio->GetXaxis()->SetTitleOffset(4.5);
-    hRatio->GetXaxis()->SetLabelFont(43);
-    hRatio->GetXaxis()->SetLabelSize(16);
-  }
+// FIXME Moved to Selections.h
+  // void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
+  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+  //   hRatio->SetLineColor(color);
+  //   hRatio->SetMarkerColor(color);
+  //   // hRatio->SetMinimum(0.4);
+  //   // hRatio->SetMaximum(1.1);
+  //   hRatio->SetStats(0);
+  //   hRatio->Divide(hDenominator);
+  //   hRatio->Draw("ep, SAME");
+  //   hRatio->SetTitle("");
+  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+  //   // hRatio->GetYaxis()->SetTitleSize(25);
+  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
+  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+  //   hRatio->GetXaxis()->SetTitleSize(25);
+  //   hRatio->GetXaxis()->SetTitleFont(43);
+  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
+  //   hRatio->GetXaxis()->SetLabelFont(43);
+  //   hRatio->GetXaxis()->SetLabelSize(16);
+  //   hRatio->SetMinimum(min);
+  //   hRatio->SetMaximum(max);
+  // }
+  //
+  // void createRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
+  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+  //   hRatio->SetLineColor(color);
+  //   hRatio->SetMarkerColor(color);
+  //   // hRatio->SetMinimum(0.4);
+  //   // hRatio->SetMaximum(1.1);
+  //   hRatio->SetStats(0);
+  //   hRatio->Divide(hDenominator);
+  //   hRatio->Draw("ep");
+  //   hRatio->SetTitle("");
+  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+  //   // hRatio->GetYaxis()->SetTitleSize(25);
+  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
+  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+  //   hRatio->GetXaxis()->SetTitleSize(25);
+  //   hRatio->GetXaxis()->SetTitleFont(43);
+  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
+  //   hRatio->GetXaxis()->SetLabelFont(43);
+  //   hRatio->GetXaxis()->SetLabelSize(16);
+  // }
 
   void CompareMggg(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS"){
     /** Make baseline comparisons of Sherpa with MCFM **/
@@ -84,12 +97,12 @@ namespace TriPhotons
     //------- MCFM vs Sherpa
     TCanvas *c = new TCanvas("c","c",600,600);
 
-    if (showRatio) {
-      TPad *padMainPlot = new TPad("padMainPlot", "", 0, 0.3, 1, 1.0);
-      padMainPlot->SetBottomMargin(0.2); // joins upper and lower plot
-      padMainPlot->Draw();
-      padMainPlot->cd();
-    }
+    // if (showRatio) {
+    //   TPad *padMainPlot = new TPad("padMainPlot", "", 0, 0.3, 1, 1.0);
+    //   padMainPlot->SetBottomMargin(0.2); // joins upper and lower plot
+    //   padMainPlot->Draw();
+    //   padMainPlot->cd();
+    // }
 
     h_mAAA_nlo->Draw("E1, SAME");
     h_mAAA->SetLineColor(6);
@@ -115,19 +128,19 @@ namespace TriPhotons
     legsherpavsmcfm->AddEntry(h_mAAA, "GGGJetsSherpa", "l");
     legsherpavsmcfm->Draw();
 
-    //ratio Pad
-    if (showRatio) {
-        c->cd(); // return to main canvas before defining ratio pad.
-        TPad *padRatio = new TPad("padRatio", "", 0, 0.05, 1, 0.3);
-        padRatio->SetTopMargin(0);
-        padRatio->SetBottomMargin(0.4);
-        padRatio->Draw();
-        padRatio->cd();
-        padRatio->SetGrid(0,1);
-
-        // createRatio(h_mAAA_nlo, h_mAAA,kBlue);
-        createRatio(h_mAAA_lo, h_mAAA, kMagenta);
-    }
+    // //ratio Pad
+    // if (showRatio) {
+    //     c->cd(); // return to main canvas before defining ratio pad.
+    //     TPad *padRatio = new TPad("padRatio", "", 0, 0.05, 1, 0.3);
+    //     padRatio->SetTopMargin(0);
+    //     padRatio->SetBottomMargin(0.4);
+    //     padRatio->Draw();
+    //     padRatio->cd();
+    //     padRatio->SetGrid(0,1);
+    //
+    //     // createRatio(h_mAAA_nlo, h_mAAA,kBlue);
+    //     createRatio(h_mAAA_lo, h_mAAA, kMagenta);
+    // }
 
     TString outFile = "triphoton_Minv_sherpaVsMcfm";
     if (isMinPt25) outFile += "_25";
