@@ -63,8 +63,9 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
     void fillgenPhoIDInfo( ExoDiPhotons::genParticleInfo_t &genParticleInfo,
                            const reco::GenParticle *genPho,
                            double minDeltaR );
-    void fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo, const pat::Photon *photon,
+    void fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo,
                            edm::Ptr<pat::Photon> pho  );
+    void photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons);
 
     private:
       virtual void beginJob() override;
@@ -112,6 +113,11 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       double xsec_;
       uint32_t nEventsSample_;
       TString outputFile_;
+
+      // bool isLooseTriphotons_ ;
+      // bool isMediumTriphotons_;
+      bool isTightTriphotons_ ;
+      // bool hasTriphotons_;
 
 };
 
