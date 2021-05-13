@@ -40,7 +40,6 @@ namespace TriPhotons
     std::cout << h_mAAA_nlo->GetEntries() << std::endl;
 
   }
-
   void atlasCompareMggDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
       TString phoPairStr = phoNum1+phoNum2;
       std::cout << "PhotonPair " << phoPairStr <<  std::endl;
@@ -113,9 +112,13 @@ namespace TriPhotons
     TString phoPairStr = phoNum1+phoNum2;
     std::cout << "PhotonPair " << phoNum1 << phoNum2 <<  std::endl;
 
-    TString mcfmHistID = "id20";
-    if (phoPairStr == "13") mcfmHistID = "id24";
-    if (phoPairStr == "23") mcfmHistID = "id27";
+    // TString mcfmHistID = "id20";
+    // if (phoPairStr == "13") mcfmHistID = "id24";
+    // if (phoPairStr == "23") mcfmHistID = "id27";
+
+    TString mcfmHistID = "id4";
+    if (phoPairStr == "13") mcfmHistID = "id5"; //FIXME: call id4, 5, 6 instead
+    if (phoPairStr == "23") mcfmHistID = "id6";
 
     TH1F *h_dAbsEta_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
 

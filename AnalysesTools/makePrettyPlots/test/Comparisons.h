@@ -22,17 +22,27 @@ namespace TriPhotons
   // 25_25_25 nlo xsec: 21.74 fb
   // 35_35_15 nlo xsec: 36.20 fb
 
-  void convertToDiffXsec(TH1D* hist, double nSimEvents = 17999){
-    // uniform
+  void convertToDiffXsec(TH1D* hist, double nSimEvents = 17800){
+    // Each event here has weight 1
+    // If the Event_weightAll is already built-in, you don't have to use this except for the bin-width normalization
+
+    // uniform binning
     float binWidth = ((hist->GetXaxis()->GetXmax())-(hist->GetXaxis()->GetXmin()))/ (hist->GetNbinsX());
 
     // Fraction of simulated Events
     //hist->Scale(1.0/hist->GetEntries()); // hist->Integral() better if the event weights aren't 1
-    hist->Scale(1.0/nSimEvents);
+    hist->Scale(1.0/nSimEvents); // Telling us the fraction of all events
+
     // Normalize to unit Lumi
-    hist->Scale(xsec_sherpa);
+    // N = xsec * Lumi -> Lumi = 1 unit luminosity normalization
+    hist->Scale(xsec_sherpa); // For the same lumi, this is the number of events we expect from the sim
+                              // Compare to a predicted data yield, put in a lumi that's realistic for data
     // Turn to differential cross-section (yield per unit lumi)
-    hist->Scale(1.0/binWidth);
+
+    // FIXME: Bin Width normalization after Event_weightAll when that's fixed
+    hist->Scale(1.0/binWidth); // prediction per unit bin width
+    // FIXME: Loop over bins, set bin content, divide by bin width (get bin width) for that bin for variable binning...
+    std::cout << "nSimEvents: " << nSimEvents << "; Entries:" << hist->GetEntries() << "; histInt xsec: " << hist->Integral()<<std::endl;
   }
 
 // FIXME Moved to Selections.h
@@ -318,10 +328,15 @@ namespace TriPhotons
     if (isMinPt35_35_15) h_dAbsEta = (TH1D*) fSherpaSource->Get("h_pT35_35_15_dAbsEta"+phoNum1+phoNum2);
     convertToDiffXsec(h_dAbsEta);
 
+    // 
+    // TString mcfmHistID = "id20";
+    // if (phoPairStr == "13") mcfmHistID = "id24";
+    // if (phoPairStr == "23") mcfmHistID = "id28";
 
-    TString mcfmHistID = "id20";
-    if (phoPairStr == "13") mcfmHistID = "id24";
-    if (phoPairStr == "23") mcfmHistID = "id27";
+
+    TString mcfmHistID = "id4";
+    if (phoPairStr == "13") mcfmHistID = "id5"; //FIXME: call id4, 5, 6 instead
+    if (phoPairStr == "23") mcfmHistID = "id6";
 
     TH1F *h_dAbsEta_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
     TH1F *h_dAbsEta_lo  = (TH1F*)  fMCFM_lo->Get(mcfmHistID);

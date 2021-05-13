@@ -302,6 +302,12 @@ void Triphoton::Loop()
    h_PAT_pT35_35_15_dAbsEta23->Sumw2();
    h_PAT_pT35_35_15_dAbsEta13->Sumw2();
 
+   //counters
+   int nSimEvents = 0;
+   int n353515gen = 0;
+   int n252525gen = 0;
+   int n353515pat = 0;
+   int n252525pat = 0;
 
    Long64_t nentries = fChain->GetEntriesFast();
 
@@ -312,7 +318,8 @@ void Triphoton::Loop()
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
       double evtwt = Event_weightAll;
-    
+      nSimEvents++;
+
       h_mAAA->Fill(GenTriPhoton_Minv, evtwt);
       h_pT1->Fill(GenPhoton1_pt, evtwt);
       h_pT2->Fill(GenPhoton2_pt, evtwt);
@@ -338,7 +345,8 @@ void Triphoton::Loop()
       h_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, evtwt);
 
       if ( (GenPhoton1_pt > 25) && (GenPhoton2_pt > 25) && (GenPhoton3_pt > 25) ){
-        h_pT25_mAAA->Fill(GenTriPhoton_Minv, Event_weightAll, evtwt);
+        n252525gen++;
+        h_pT25_mAAA->Fill(GenTriPhoton_Minv, evtwt);
         h_pT25_pT1->Fill(GenPhoton1_pt, evtwt);
         h_pT25_pT2->Fill(GenPhoton2_pt, evtwt);
         h_pT25_pT3->Fill(GenPhoton3_pt, evtwt);
@@ -364,6 +372,7 @@ void Triphoton::Loop()
       }
 
       if ( (GenPhoton1_pt > 35) && (GenPhoton2_pt > 35) && (GenPhoton3_pt > 15) ){
+        n353515gen++;
         // subset of 15_15_15 sample
         // MCFM reports in fb, the Event_weightAll is
         // FIXME: Event_weightAll
@@ -394,6 +403,7 @@ void Triphoton::Loop()
 
       // PAT Photons
       if ( (Photon1_pt > 25) && (Photon2_pt > 25) && (Photon3_pt > 25) ){
+        n252525pat++;
         h_PAT_pT25_mAAA->Fill(TriPhoton_Minv, evtwt);
         h_PAT_pT25_pT1->Fill(Photon1_pt, evtwt);
         h_PAT_pT25_pT2->Fill(Photon2_pt, evtwt);
@@ -421,6 +431,7 @@ void Triphoton::Loop()
 
       if ( (Photon1_pt > 35) && (Photon2_pt > 35) && (Photon3_pt > 15) ){
         // MCFM reports in fb, the Event_weightAll is
+        n353515pat++;
         h_PAT_pT35_35_15_mAAA->Fill(TriPhoton_Minv, evtwt);
         h_PAT_pT35_35_15_pT1->Fill(Photon1_pt, evtwt);
         h_PAT_pT35_35_15_pT2->Fill(Photon2_pt, evtwt);
@@ -575,6 +586,12 @@ void Triphoton::Loop()
    h_PAT_pT35_35_15_dAbsEta12->Write();
    h_PAT_pT35_35_15_dAbsEta23->Write();
    h_PAT_pT35_35_15_dAbsEta13->Write();
+
+   std::cout << "nSimEvents: " << nSimEvents << std::endl;
+   std::cout << "n353515gen: " << n353515gen << std::endl;
+   std::cout << "n252525gen: " << n252525gen << std::endl;
+   std::cout << "n353515pat: " << n353515pat << std::endl;
+   std::cout << "n252525pat: " << n252525pat << std::endl;
 
    file_out.ls();
    file_out.Close();
