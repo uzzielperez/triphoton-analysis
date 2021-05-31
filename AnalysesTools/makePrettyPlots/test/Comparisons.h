@@ -28,67 +28,26 @@ namespace TriPhotons
 
     // uniform binning
     float binWidth = ((hist->GetXaxis()->GetXmax())-(hist->GetXaxis()->GetXmin()))/ (hist->GetNbinsX());
-
+    std::cout << "Step0: " << hist->Integral() << std::endl;
     // Fraction of simulated Events
     //hist->Scale(1.0/hist->GetEntries()); // hist->Integral() better if the event weights aren't 1
     hist->Scale(1.0/nSimEvents); // Telling us the fraction of all events
+    std::cout << "Step1: " << hist->Integral() << std::endl;
 
     // Normalize to unit Lumi
     // N = xsec * Lumi -> Lumi = 1 unit luminosity normalization
     hist->Scale(xsec_sherpa); // For the same lumi, this is the number of events we expect from the sim
                               // Compare to a predicted data yield, put in a lumi that's realistic for data
     // Turn to differential cross-section (yield per unit lumi)
+    std::cout << "Step2: " << hist->Integral() << std::endl;
 
     // FIXME: Bin Width normalization after Event_weightAll when that's fixed
     hist->Scale(1.0/binWidth); // prediction per unit bin width
+    std::cout << "Step3 Dividing by Bin width: " << binWidth << "; hist Integral:" << hist->Integral() <<  std::endl;
     // FIXME: Loop over bins, set bin content, divide by bin width (get bin width) for that bin for variable binning...
-    std::cout << "nSimEvents: " << nSimEvents << "; Entries:" << hist->GetEntries() << "; histInt xsec: " << hist->Integral()<<std::endl;
+    //std::cout << "nSimEvents: " << nSimEvents << "; Entries:" << hist->GetEntries() << "; histInt xsec: " << hist->Integral()<<std::endl;
   }
 
-// FIXME Moved to Selections.h
-  // void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
-  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
-  //   hRatio->SetLineColor(color);
-  //   hRatio->SetMarkerColor(color);
-  //   // hRatio->SetMinimum(0.4);
-  //   // hRatio->SetMaximum(1.1);
-  //   hRatio->SetStats(0);
-  //   hRatio->Divide(hDenominator);
-  //   hRatio->Draw("ep, SAME");
-  //   hRatio->SetTitle("");
-  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
-  //   // hRatio->GetYaxis()->SetTitleSize(25);
-  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
-  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
-  //   hRatio->GetXaxis()->SetTitleSize(25);
-  //   hRatio->GetXaxis()->SetTitleFont(43);
-  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
-  //   hRatio->GetXaxis()->SetLabelFont(43);
-  //   hRatio->GetXaxis()->SetLabelSize(16);
-  //   hRatio->SetMinimum(min);
-  //   hRatio->SetMaximum(max);
-  // }
-  //
-  // void createRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
-  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
-  //   hRatio->SetLineColor(color);
-  //   hRatio->SetMarkerColor(color);
-  //   // hRatio->SetMinimum(0.4);
-  //   // hRatio->SetMaximum(1.1);
-  //   hRatio->SetStats(0);
-  //   hRatio->Divide(hDenominator);
-  //   hRatio->Draw("ep");
-  //   hRatio->SetTitle("");
-  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
-  //   // hRatio->GetYaxis()->SetTitleSize(25);
-  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
-  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
-  //   hRatio->GetXaxis()->SetTitleSize(25);
-  //   hRatio->GetXaxis()->SetTitleFont(43);
-  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
-  //   hRatio->GetXaxis()->SetLabelFont(43);
-  //   hRatio->GetXaxis()->SetLabelSize(16);
-  // }
 
   void CompareMggg(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS"){
     /** Make baseline comparisons of Sherpa with MCFM **/
@@ -103,6 +62,8 @@ namespace TriPhotons
     TH1F *h_mAAA_nlo = (TH1F*) fMCFM_nlo->Get("id29");
     TH1F *h_mAAA_lo  = (TH1F*)  fMCFM_lo->Get("id29");
     convertToDiffXsec(h_mAAA);
+    std::cout << "Integral: " << h_mAAA_nlo->Integral() << std::endl;
+
 
     //------- MCFM vs Sherpa
     TCanvas *c = new TCanvas("c","c",600,600);
@@ -158,6 +119,8 @@ namespace TriPhotons
     c->SaveAs("plots/"+outFile+".pdf");
 
     std::cout << h_mAAA->GetEntries() << std::endl;
+    std::cout << "Sherpa integral: " << h_mAAA->Integral()
+              << "; MCFM nlo: "      << h_mAAA_nlo->Integral() << ", lo: " << h_mAAA_lo->Integral() << std::endl;
 
   }
 
@@ -213,6 +176,8 @@ namespace TriPhotons
     c1->SaveAs("plots/"+outFile+".pdf");
 
     std::cout << h_pt->GetEntries() << std::endl;
+    std::cout << "Sherpa integral: " << h_pt->Integral()
+              << "; MCFM nlo: "      << h_pt_nlo->Integral() << ", lo: " << h_pt_lo->Integral() << std::endl;
 
   } // end Pt
 
@@ -265,6 +230,9 @@ namespace TriPhotons
     if (isMinPt35_35_15) outFile += "_35";
     c1->SaveAs("plots/"+outFile+".pdf");
 
+    std::cout << "Sherpa integral: " << h_dPhi->Integral()
+              << "; MCFM nlo: "      << h_dPhi_nlo->Integral() << ", lo: " << h_dPhi_lo->Integral() << std::endl;
+
   } // end dPhi
 
   void CompareMggDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS"){
@@ -313,6 +281,9 @@ namespace TriPhotons
       if (isMinPt25) outFile += "_25";
       if (isMinPt35_35_15) outFile += "_35";
       c1->SaveAs("plots/"+outFile+".pdf");
+
+      std::cout << "Sherpa integral: " << h_mAA->Integral()
+                << "; MCFM nlo: "      << h_mAA_nlo->Integral() << ", lo: " << h_mAA_lo->Integral() << std::endl;
   }
 
   void CompareDAbsEtaDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum1, TString phoNum2, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS")
@@ -328,7 +299,7 @@ namespace TriPhotons
     if (isMinPt35_35_15) h_dAbsEta = (TH1D*) fSherpaSource->Get("h_pT35_35_15_dAbsEta"+phoNum1+phoNum2);
     convertToDiffXsec(h_dAbsEta);
 
-    // 
+    //
     // TString mcfmHistID = "id20";
     // if (phoPairStr == "13") mcfmHistID = "id24";
     // if (phoPairStr == "23") mcfmHistID = "id28";
@@ -349,6 +320,7 @@ namespace TriPhotons
     h_dAbsEta->SetMinimum(0.1);
     h_dAbsEta_lo->SetLineColor(12);
     h_dAbsEta_lo->Draw("E1, SAME");
+    h_dAbsEta_nlo->SetMaximum(1.5*h_dAbsEta->GetMaximum());
 
     TLatex *t_label = new TLatex();
     t_label->SetTextSize(0.03);
@@ -370,9 +342,12 @@ namespace TriPhotons
     if (isMinPt35_35_15) outFile += "_35";
     c1->SaveAs("plots/"+outFile+".pdf");
 
+    std::cout << "Sherpa integral: " << h_dAbsEta->Integral()
+              << "; MCFM nlo: "      << h_dAbsEta_nlo->Integral() << ", lo: " << h_dAbsEta_lo->Integral() << std::endl;
+
   } // end h_dAbsEta
 
-  void CompareEtaDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum, bool showRatio=false, TString experiment="CMS")
+  void CompareEtaDists(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, TString phoNum, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS")
   {
 
     std::cout << "Get Eta for Photon " << phoNum <<  std::endl;
@@ -380,9 +355,9 @@ namespace TriPhotons
     TH1D *h_eta = (TH1D*) fSherpaSource->Get("h_eta"+phoNum);
     convertToDiffXsec(h_eta);
 
-    TString mcfmHistID = "id12";
-    if (phoNum == "2") mcfmHistID = "id14";
-    if (phoNum == "3") mcfmHistID = "id16";
+    TString mcfmHistID = "id1";
+    if (phoNum == "2") mcfmHistID = "id2";
+    if (phoNum == "3") mcfmHistID = "id3";
 
     TH1F *h_eta_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
     TH1F *h_eta_lo  = (TH1F*)  fMCFM_lo->Get(mcfmHistID);
@@ -395,6 +370,7 @@ namespace TriPhotons
     h_eta->SetMinimum(0.1);
     h_eta_lo->SetLineColor(12);
     h_eta_lo->Draw("E1, SAME");
+    h_eta_nlo->SetMaximum(1.5*h_eta->GetMaximum());
 
     TLatex *t_label = new TLatex();
     t_label->SetTextSize(0.03);
@@ -410,8 +386,139 @@ namespace TriPhotons
     l1->AddEntry(h_eta_lo, "GGG mcfm LO", "l");
     l1->AddEntry(h_eta, "GGGJetsSherpa", "l");
     l1->Draw();
-    c1->SaveAs("plots/triphoton_eta"+phoNum+"_sherpaVsMcfm.pdf");
+
+    TString outFile = "triphoton_eta"+phoNum+"_sherpaVsMcfm";
+    if (isMinPt25) outFile += "_25";
+    if (isMinPt35_35_15) outFile += "_35";
+    c1->SaveAs("plots/"+outFile+".pdf");
+
   } // eta
+
+  void CompareQt(TFile *fSherpaSource, TFile *fMCFM_nlo, TFile *fMCFM_lo, bool isMinPt25 = false, bool isMinPt35_35_15 = false, bool showRatio=false, TString experiment="CMS"){
+    /** Make baseline comparisons of Sherpa with MCFM **/
+    /** Compares differential cross section measurements as a function of Mgg**/
+
+    TString hqtstr;
+    if (!isMinPt25 && !isMinPt35_35_15) hqtstr = "h_qt";
+    if (isMinPt25)       hqtstr = "h_pT25_qt";
+    if (isMinPt35_35_15) hqtstr = "h_pT35_35_15_qt";
+
+    TH1D *h_qt = (TH1D*) fSherpaSource->Get(hqtstr); // Hist cross section as y-axis
+    TH1F *h_qt_nlo = (TH1F*) fMCFM_nlo->Get("id30");
+    TH1F *h_qt_lo  = (TH1F*)  fMCFM_lo->Get("id30");
+    convertToDiffXsec(h_qt);
+    std::cout << "Integral: " << h_qt_nlo->Integral() << std::endl;
+
+
+    //------- MCFM vs Sherpa
+    TCanvas *c = new TCanvas("c","c",600,600);
+
+    // if (showRatio) {
+    //   TPad *padMainPlot = new TPad("padMainPlot", "", 0, 0.3, 1, 1.0);
+    //   padMainPlot->SetBottomMargin(0.2); // joins upper and lower plot
+    //   padMainPlot->Draw();
+    //   padMainPlot->cd();
+    // }
+
+    gPad->SetLogy();
+
+    h_qt_nlo->Draw("E1, SAME");
+    h_qt->SetLineColor(6);
+    h_qt->Draw("E1, SAME");
+    h_qt->SetMinimum(0.1);
+
+    h_qt_lo->SetLineColor(12);
+    h_qt_lo->Draw("E1, SAME");
+    h_qt_nlo->SetMaximum(1.5*h_qt->GetMaximum());
+
+
+    TLatex *t_label = new TLatex();
+    t_label->SetTextSize(0.03);
+    t_label->SetTextAlign(12);
+    t_label->SetTextAlign(12);
+    t_label->DrawLatexNDC(0.4,0.52, experiment);
+    t_label->DrawLatexNDC(0.4,0.48, "#sqrt{s}= 13 TeV, 80.94 fb^{-1}");
+    t_label->SetTextFont(42);
+
+    auto legsherpavsmcfm = new TLegend(0.4,0.35,0.6,0.45);
+    legsherpavsmcfm->SetBorderSize(0);
+    legsherpavsmcfm->AddEntry(h_qt_nlo, "GGG mcfm NLO", "l");
+    legsherpavsmcfm->AddEntry(h_qt_lo, "GGG mcfm LO", "l");
+    legsherpavsmcfm->AddEntry(h_qt, "GGGJetsSherpa", "l");
+    legsherpavsmcfm->Draw();
+
+    // //ratio Pad
+    // if (showRatio) {
+    //     c->cd(); // return to main canvas before defining ratio pad.
+    //     TPad *padRatio = new TPad("padRatio", "", 0, 0.05, 1, 0.3);
+    //     padRatio->SetTopMargin(0);
+    //     padRatio->SetBottomMargin(0.4);
+    //     padRatio->Draw();
+    //     padRatio->cd();
+    //     padRatio->SetGrid(0,1);
+    //
+    //     // createRatio(h_qt_nlo, h_qt,kBlue);
+    //     createRatio(h_qt_lo, h_qt, kMagenta);
+    // }
+
+    TString outFile = "triphoton_qt_sherpaVsMcfm";
+    if (isMinPt25) outFile += "_25";
+    if (isMinPt35_35_15) outFile += "_35";
+    c->SaveAs("plots/"+outFile+".pdf");
+
+    std::cout << h_qt->GetEntries() << std::endl;
+    std::cout << "Sherpa integral: " << h_qt->Integral()
+              << "; MCFM nlo: "      << h_qt_nlo->Integral() << ", lo: " << h_qt_lo->Integral() << std::endl;
+
+  }
 } // end namespace
+
+
+
+// FIXME Moved to Selections.h
+  // void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
+  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+  //   hRatio->SetLineColor(color);
+  //   hRatio->SetMarkerColor(color);
+  //   // hRatio->SetMinimum(0.4);
+  //   // hRatio->SetMaximum(1.1);
+  //   hRatio->SetStats(0);
+  //   hRatio->Divide(hDenominator);
+  //   hRatio->Draw("ep, SAME");
+  //   hRatio->SetTitle("");
+  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+  //   // hRatio->GetYaxis()->SetTitleSize(25);
+  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
+  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+  //   hRatio->GetXaxis()->SetTitleSize(25);
+  //   hRatio->GetXaxis()->SetTitleFont(43);
+  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
+  //   hRatio->GetXaxis()->SetLabelFont(43);
+  //   hRatio->GetXaxis()->SetLabelSize(16);
+  //   hRatio->SetMinimum(min);
+  //   hRatio->SetMaximum(max);
+  // }
+  //
+  // void createRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
+  //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
+  //   hRatio->SetLineColor(color);
+  //   hRatio->SetMarkerColor(color);
+  //   // hRatio->SetMinimum(0.4);
+  //   // hRatio->SetMaximum(1.1);
+  //   hRatio->SetStats(0);
+  //   hRatio->Divide(hDenominator);
+  //   hRatio->Draw("ep");
+  //   hRatio->SetTitle("");
+  //   hRatio->GetYaxis()->SetTitle("Pred./Data (LO)");
+  //   // hRatio->GetYaxis()->SetTitleSize(25);
+  //   hRatio->GetYaxis()->SetTitleOffset(0.8);
+  //   hRatio->GetXaxis()->SetTitle("m_{#gamma #gamma #gamma} (GeV)");
+  //   hRatio->GetXaxis()->SetTitleSize(25);
+  //   hRatio->GetXaxis()->SetTitleFont(43);
+  //   hRatio->GetXaxis()->SetTitleOffset(4.5);
+  //   hRatio->GetXaxis()->SetLabelFont(43);
+  //   hRatio->GetXaxis()->SetLabelSize(16);
+  // }
+
 
 #endif

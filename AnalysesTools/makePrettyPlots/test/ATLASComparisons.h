@@ -7,7 +7,203 @@ namespace TriPhotons
   double atlasXsecPaperMCFM8TeV  = 31.5;    // fb -1
   double atlasXsecMCFMnlo8TeV    = 28.36;   // FIXME(?) low priority m345 cut in src/User/gencuts.f and isolation or ask MCFM authors
 
-  void atlasCompareMggg(TFile *fMCFM_nlo, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
+// overlay
+void atlasCompareMggg(TFile *fMCFM_nlo, TFile *fMCFM_nlo13TeV, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
+
+  //------- MCFM NLO vs LO
+  TH1F *h_mAAA_nlo = (TH1F*) fMCFM_nlo->Get("id29");
+  TH1F *h_mAAA_nlo13TeV = (TH1F*) fMCFM_nlo13TeV->Get("id29");
+
+  //------- MCFM vs Sherpa
+  TCanvas *c = new TCanvas("c","c",500,500);
+
+  // h_mAAA_nlo->Scale(lumi_nlo*atlasXsecMCFMnlo8TeV/h_mAAA_nlo->GetEntries());
+  double Xmax = 600;
+  h_mAAA_nlo13TeV->Draw("E1, SAME");
+  h_mAAA_nlo13TeV->SetAxisRange(50, Xmax,"X");
+  h_mAAA_nlo13TeV->SetAxisRange(0.001, 10.,"Y");
+  h_mAAA_nlo->SetLineColor(6);
+  h_mAAA_nlo->Draw("E1, SAME");
+  gPad->SetLogy();
+
+  TLatex *t_label = new TLatex();
+  t_label->SetTextSize(0.03);
+  t_label->SetTextAlign(12);
+  t_label->SetTextAlign(12);
+  t_label->DrawLatexNDC(0.45,0.72, "ATLAS Three-photons Settings");
+  t_label->DrawLatexNDC(0.45,0.68, "pT#gamma_{1},#gamma_{2},#gamma_{3}, < 27, 22, 15 GeV"); //FIXME add option to pickup right numbers
+  t_label->SetTextFont(42);
+
+  auto legsherpavsmcfm = new TLegend(0.6,0.55,0.8,0.65);
+  legsherpavsmcfm->SetBorderSize(0);
+  legsherpavsmcfm->AddEntry(h_mAAA_nlo13TeV, "13 TeV", "l");
+  legsherpavsmcfm->AddEntry(h_mAAA_nlo, "8 TeV", "l");
+  legsherpavsmcfm->Draw();
+
+  c->SaveAs("plots/atlasTriphotonMinv.pdf");
+
+  std::cout << h_mAAA_nlo->GetEntries() << std::endl;
+
+}
+void atlasCompareMggDists(TFile *fMCFM_nlo, TFile *fMCFM_nlo13TeV, TString phoNum1, TString phoNum2, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
+    TString phoPairStr = phoNum1+phoNum2;
+    std::cout << "PhotonPair " << phoPairStr <<  std::endl;
+
+    TString mcfmHistID = "id17";
+    double Xmax = 600;
+    if (phoPairStr == "13") mcfmHistID = "id21"; Xmax = 300;
+    if (phoPairStr == "23") mcfmHistID = "id25"; Xmax = 200;
+
+    TH1F *h_mAA_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
+    TH1F *h_mAA_nlo13TeV = (TH1F*) fMCFM_nlo13TeV->Get(mcfmHistID);
+
+    TCanvas *c1 = new TCanvas("c1","c1",500,500);
+    gPad->SetLogy();
+
+    h_mAA_nlo13TeV->SetAxisRange(50, Xmax,"X");
+    h_mAA_nlo13TeV->SetAxisRange(0.001, 10.,"Y");
+    h_mAA_nlo13TeV->Draw("E1, SAME");
+    h_mAA_nlo->SetLineColor(6);
+    h_mAA_nlo->Draw("E1, SAME");
+
+    TLatex *t_label = new TLatex();
+    t_label->SetTextSize(0.03);
+    t_label->SetTextAlign(12);
+    t_label->SetTextAlign(12);
+    t_label->DrawLatexNDC(0.65,0.78, experiment);
+    t_label->DrawLatexNDC(0.65,0.74, "#sqrt{s}= 8 TeV, 20.2 fb^{-1}");
+    t_label->SetTextFont(42);
+
+    auto l1 = new TLegend(0.65,0.61,0.85,0.71);
+    l1->SetBorderSize(0);
+    l1->AddEntry(h_mAA_nlo13TeV, "13 TeV", "l");
+    l1->AddEntry(h_mAA_nlo, "8 TeV", "l");
+    l1->Draw();
+    c1->SaveAs("plots/atlasDiphoton"+phoPairStr+".pdf");
+}
+
+void atlasComparePtDists(TFile *fMCFM_nlo, TFile *fMCFM_nlo13TeV, TString phoNumStr, bool showRatio=false, TString experiment="ATLAS",  double lumi_nlo = atlasLumi8TeV){
+
+  std::cout << "Get Pt for Photon " << phoNumStr <<  std::endl;
+  int phoNum = phoNumStr.Atoi();
+
+  TString mcfmHistID = "id11";
+  double Xmax = 300;
+  if (phoNum == 2) mcfmHistID = "id13"; Xmax = 200;
+  if (phoNum == 3) mcfmHistID = "id15"; Xmax = 100;
+
+  TH1F *h_pt_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
+  TH1F *h_pt_nlo13TeV = (TH1F*) fMCFM_nlo13TeV->Get(mcfmHistID);
+
+  TCanvas *c1 = new TCanvas("c1","c1",500,500);
+  gPad->SetLogy();
+
+  h_pt_nlo13TeV->SetAxisRange(0, Xmax,"X");
+  h_pt_nlo13TeV->SetAxisRange(0.001, 10.,"Y");
+  h_pt_nlo13TeV->Draw("E1, SAME");
+  h_pt_nlo->SetLineColor(6);
+  h_pt_nlo->Draw("E1, SAME");
+
+  TLatex *t_label = new TLatex();
+  t_label->SetTextSize(0.03);
+  t_label->SetTextAlign(12);
+  t_label->SetTextAlign(12);
+  t_label->DrawLatexNDC(0.65,0.78, experiment);
+  t_label->DrawLatexNDC(0.65,0.74, "#sqrt{s}= 8 TeV, 20.2 fb^{-1}");
+  t_label->SetTextFont(42);
+
+  auto l1 = new TLegend(0.65,0.61,0.85,0.71);
+  l1->SetBorderSize(0);
+  l1->AddEntry(h_pt_nlo13TeV, "13 TeV", "l");
+  l1->AddEntry(h_pt_nlo, "8 TeV", "l");
+  l1->Draw();
+  c1->SaveAs("plots/atlasPt"+phoNumStr+".pdf");
+} // end Pt
+
+void atlasCompareDAbsEtaDists(TFile *fMCFM_nlo, TFile *fMCFM_nlo13TeV, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
+{
+  TString phoPairStr = phoNum1+phoNum2;
+  std::cout << "PhotonPair " << phoNum1 << phoNum2 <<  std::endl;
+
+  // TString mcfmHistID = "id20";
+  // if (phoPairStr == "13") mcfmHistID = "id24";
+  // if (phoPairStr == "23") mcfmHistID = "id27";
+
+  TString mcfmHistID = "id4";
+  if (phoPairStr == "13") mcfmHistID = "id5"; //FIXME: call id4, 5, 6 instead
+  if (phoPairStr == "23") mcfmHistID = "id6";
+
+  TH1F *h_dAbsEta_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
+  TH1F *h_dAbsEta_nlo13TeV = (TH1F*) fMCFM_nlo13TeV->Get(mcfmHistID);
+
+  TCanvas *c1 = new TCanvas("c1","c1",500,500);
+  gPad->SetLogy();
+
+  h_dAbsEta_nlo13TeV->SetAxisRange(0.0, 5,"X");
+  h_dAbsEta_nlo13TeV->SetAxisRange(0.1, 1000.,"Y");
+  h_dAbsEta_nlo13TeV->Draw("E1, SAME");
+  h_dAbsEta_nlo->SetLineColor(6);
+  h_dAbsEta_nlo->Draw("E1, SAME");
+
+  TLatex *t_label = new TLatex();
+  t_label->SetTextSize(0.03);
+  t_label->SetTextAlign(12);
+  t_label->SetTextAlign(12);
+  t_label->DrawLatexNDC(0.65,0.78, experiment);
+  t_label->DrawLatexNDC(0.65,0.74, "#sqrt{s}= 8 TeV, 20.2 fb^{-1}");
+  t_label->SetTextFont(42);
+
+  auto l1 = new TLegend(0.65,0.61,0.85,0.71);
+  l1->SetBorderSize(0);
+  l1->AddEntry(h_dAbsEta_nlo13TeV, "13 TeV", "l");
+  l1->AddEntry(h_dAbsEta_nlo, "8 TeV", "l");
+  l1->Draw();
+  c1->SaveAs("plots/atlasDAbsEta"+phoPairStr+".pdf");
+} // end DAbsEta
+
+void atlasCompareDPhiDists(TFile *fMCFM_nlo, TFile *fMCFM_nlo13TeV, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
+{
+
+  TString phoPairStr = phoNum1+phoNum2;
+  std::cout << "PhotonPair " << phoNum1 << phoNum2 <<  std::endl;
+
+  TString mcfmHistID = "id7";
+  if (phoPairStr == "13") mcfmHistID = "id8";
+  if (phoPairStr == "23") mcfmHistID = "id9";
+
+
+  TH1F *h_dPhi_nlo = (TH1F*) fMCFM_nlo->Get(mcfmHistID);
+  TH1F *h_dPhi_nlo13TeV = (TH1F*) fMCFM_nlo13TeV->Get(mcfmHistID);
+
+  TCanvas *c1 = new TCanvas("c1","c1",500,500);
+
+  h_dPhi_nlo13TeV->SetAxisRange(0.0, 3.5,"X");
+  h_dPhi_nlo13TeV->SetAxisRange(0.0, 70,"Y");
+  h_dPhi_nlo13TeV->Draw("E1, SAME");
+  h_dPhi_nlo->SetLineColor(6);
+  h_dPhi_nlo->Draw("E1, SAME");
+
+  TLatex *t_label = new TLatex();
+  t_label->SetTextSize(0.03);
+  t_label->SetTextAlign(12);
+  t_label->SetTextAlign(12);
+  t_label->DrawLatexNDC(0.15,0.78, experiment);
+  t_label->DrawLatexNDC(0.15,0.74, "#sqrt{s}= 8 TeV, 20.2 fb^{-1}");
+  t_label->SetTextFont(42);
+
+  auto l1 = new TLegend(0.15,0.61,0.35,0.71);
+  l1->SetBorderSize(0);
+  l1->AddEntry(h_dPhi_nlo13TeV, "13 TeV", "l");
+  l1->AddEntry(h_dPhi_nlo, "8 TeV", "l");
+  l1->Draw();
+  c1->SaveAs("plots/atlasDPhi"+phoPairStr+".pdf");
+} // end Pt
+
+
+
+// Single Plots
+
+  void atlasMggg(TFile *fMCFM_nlo, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
 
     //------- MCFM NLO vs LO
     TH1F *h_mAAA_nlo = (TH1F*) fMCFM_nlo->Get("id29");
@@ -35,12 +231,12 @@ namespace TriPhotons
     legsherpavsmcfm->AddEntry(h_mAAA_nlo, "GGG mcfm NLO", "l");
     legsherpavsmcfm->Draw();
 
-    c->SaveAs("plots/atlasTriphotonMinv.pdf");
+    c->SaveAs("plots/atlasTriphotonMinv0.pdf");
 
     std::cout << h_mAAA_nlo->GetEntries() << std::endl;
 
   }
-  void atlasCompareMggDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
+  void atlasMggDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS", double lumi_nlo = atlasLumi8TeV){
       TString phoPairStr = phoNum1+phoNum2;
       std::cout << "PhotonPair " << phoPairStr <<  std::endl;
 
@@ -70,10 +266,10 @@ namespace TriPhotons
       l1->SetBorderSize(0);
       l1->AddEntry(h_mAA_nlo, "MCFM NLO", "l");
       l1->Draw();
-      c1->SaveAs("plots/atlasDiphoton"+phoPairStr+".pdf");
+      c1->SaveAs("plots/atlasDiphoton"+phoPairStr+"0.pdf");
   }
 
-  void atlasComparePtDists(TFile *fMCFM_nlo, TString phoNumStr, bool showRatio=false, TString experiment="ATLAS",  double lumi_nlo = atlasLumi8TeV){
+  void atlasPtDists(TFile *fMCFM_nlo, TString phoNumStr, bool showRatio=false, TString experiment="ATLAS",  double lumi_nlo = atlasLumi8TeV){
 
     std::cout << "Get Pt for Photon " << phoNumStr <<  std::endl;
     int phoNum = phoNumStr.Atoi();
@@ -104,10 +300,10 @@ namespace TriPhotons
     l1->SetBorderSize(0);
     l1->AddEntry(h_pt_nlo, "MCFM NLO", "l");
     l1->Draw();
-    c1->SaveAs("plots/atlasPt"+phoNumStr+".pdf");
+    c1->SaveAs("plots/atlasPt"+phoNumStr+"0.pdf");
   } // end Pt
 
-  void atlasCompareDAbsEtaDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
+  void atlasDAbsEtaDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
   {
     TString phoPairStr = phoNum1+phoNum2;
     std::cout << "PhotonPair " << phoNum1 << phoNum2 <<  std::endl;
@@ -141,10 +337,10 @@ namespace TriPhotons
     l1->SetBorderSize(0);
     l1->AddEntry(h_dAbsEta_nlo, "MCFM NLO", "l");
     l1->Draw();
-    c1->SaveAs("plots/atlasDAbsEta"+phoPairStr+".pdf");
+    c1->SaveAs("plots/atlasDAbsEta"+phoPairStr+"0.pdf");
   } // end DAbsEta
 
-  void atlasCompareDPhiDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
+  void atlasDPhiDists(TFile *fMCFM_nlo, TString phoNum1, TString phoNum2, TString experiment="ATLAS")
   {
 
     TString phoPairStr = phoNum1+phoNum2;
@@ -175,9 +371,8 @@ namespace TriPhotons
     l1->SetBorderSize(0);
     l1->AddEntry(h_dPhi_nlo, "GGG mcfm NLO", "l");
     l1->Draw();
-    c1->SaveAs("plots/atlasDPhi"+phoPairStr+".pdf");
+    c1->SaveAs("plots/atlasDPhi"+phoPairStr+"0.pdf");
   } // end Pt
-
 
 
   // void atlascreateRatio(TH1F* hNumerator, TH1D* hDenominator, Color_t color, float min=-1, float max=3.5, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
