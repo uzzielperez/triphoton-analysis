@@ -5,21 +5,21 @@
 
 // Run as 'plot.C(true)' for local
 // FIXME: Clean by putting in separate Actions header file
-void compareATLAS(TFile *fNLO_atlas){
+void compareATLAS(TFile *fNLO_atlas, TFile *fNLO_atlas13TeV){
   // ATLAS Comparisons
-  TriPhotons::atlasCompareMggg(fNLO_atlas);
-  TriPhotons::atlasCompareMggDists(fNLO_atlas, "1", "2");
-  TriPhotons::atlasCompareMggDists(fNLO_atlas, "1", "3");
-  TriPhotons::atlasCompareMggDists(fNLO_atlas, "2", "3");
-  TriPhotons::atlasComparePtDists(fNLO_atlas, "1");
-  TriPhotons::atlasComparePtDists(fNLO_atlas, "2");
-  TriPhotons::atlasComparePtDists(fNLO_atlas, "3");
-  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, "1", "2");
-  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, "1", "3");
-  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, "2", "3");
-  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, "1", "2");
-  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, "1", "3");
-  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, "2", "3");
+  TriPhotons::atlasCompareMggg(fNLO_atlas, fNLO_atlas13TeV);
+  TriPhotons::atlasCompareMggDists(fNLO_atlas, fNLO_atlas13TeV, "1", "2");
+  TriPhotons::atlasCompareMggDists(fNLO_atlas, fNLO_atlas13TeV, "1", "3");
+  TriPhotons::atlasCompareMggDists(fNLO_atlas, fNLO_atlas13TeV, "2", "3");
+  TriPhotons::atlasComparePtDists(fNLO_atlas, fNLO_atlas13TeV, "1");
+  TriPhotons::atlasComparePtDists(fNLO_atlas, fNLO_atlas13TeV, "2");
+  TriPhotons::atlasComparePtDists(fNLO_atlas, fNLO_atlas13TeV, "3");
+  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, fNLO_atlas13TeV, "1", "2");
+  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, fNLO_atlas13TeV, "1", "3");
+  TriPhotons::atlasCompareDAbsEtaDists(fNLO_atlas, fNLO_atlas13TeV, "2", "3");
+  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, fNLO_atlas13TeV, "1", "2");
+  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, fNLO_atlas13TeV, "1", "3");
+  TriPhotons::atlasCompareDPhiDists(fNLO_atlas, fNLO_atlas13TeV, "2", "3");
 }
 
 void compareMCFMSherpa(TFile *fAAA, TFile *fNLO, TFile *fLO,  bool isHLT20 = false, bool isHLT30_30_15 = false){
@@ -38,6 +38,16 @@ void compareMCFMSherpa(TFile *fAAA, TFile *fNLO, TFile *fLO,  bool isHLT20 = fal
   TriPhotons::CompareDAbsEtaDists(fAAA, fNLO, fLO, "1", "2", isHLT20, isHLT30_30_15);
   TriPhotons::CompareDAbsEtaDists(fAAA, fNLO, fLO, "1", "3", isHLT20, isHLT30_30_15);
   TriPhotons::CompareDAbsEtaDists(fAAA, fNLO, fLO, "2", "3", isHLT20, isHLT30_30_15);
+
+  // FIXME: Only works for isHLT30_30_15
+  TriPhotons::CompareEtaDists(fAAA, fNLO, fLO, "1", isHLT20, isHLT30_30_15);
+  TriPhotons::CompareEtaDists(fAAA, fNLO, fLO, "2", isHLT20, isHLT30_30_15);
+  TriPhotons::CompareEtaDists(fAAA, fNLO, fLO, "3", isHLT20, isHLT30_30_15);
+  TriPhotons::CompareQt(fAAA, fNLO, fLO, "1", isHLT20, isHLT30_30_15);
+  TriPhotons::CompareQt(fAAA, fNLO, fLO, "2", isHLT20, isHLT30_30_15);
+  TriPhotons::CompareQt(fAAA, fNLO, fLO, "3", isHLT20, isHLT30_30_15);
+
+
 }
 
 void singlePhoEff(TString fSherpaNtuple){
@@ -59,15 +69,33 @@ void singlePhoEff(TString fSherpaNtuple){
   // TriPhotons::ratioplot2();
 }
 
-void plot(bool local=true, bool isHLT20=true, bool isHLT30_30_15=false){
+void compareData(TFile *fSim, TFile *fData, bool isHLT20=true, bool isHLT30_30_15=false, bool isGenVsPat = true, TString simLegLabel = "GGGJets", TString dataLegLabel = "GGJets"){
+  TriPhotons::compareDataMggg(fSim, fData, isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataPt(fSim, fData, "1", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataPt(fSim, fData, "2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataPt(fSim, fData, "3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDPhi(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDPhi(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDPhi(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDEta(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDEta(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  // TriPhotons::compareDataDEta(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+}
+
+void plot(bool local=true, bool isHLT20=false, bool isHLT30_30_15=true){
     // Run as 'plot.C(true)' for local
     // Set local to default so we work with ntuples in local computer
     // FIXME more intuitive local, HLT20, 30
   gROOT->SetStyle("Plain");
+
   gStyle->SetOptTitle(0);
   gStyle->SetPalette(1,0);
   gStyle->SetNdivisions(505);
-  gStyle->SetOptStat("ourme");
+  //gStyle->SetOptStat("ourme");
+  gStyle->SetOptStat(0); // no stat box
   gROOT->SetBatch();
 
   // FIXME: do this as input in CLI
@@ -83,25 +111,17 @@ void plot(bool local=true, bool isHLT20=true, bool isHLT30_30_15=false){
   std::cout << fNLOstr << std::endl;
 
   TFile *fAAA       = TFile::Open(makeClass_path+"makeClass/EventLooper/data/AAA_histograms.root");
+  TFile *fGGJets    = TFile::Open(makeClass_path+"makeClass/EventLooper/data/GGJets_histograms.root");
   TFile *fNLO       = TFile::Open(mcfm_path+"rootfiles/"+fLOstr+".root");
   TFile *fLO        = TFile::Open(mcfm_path+"rootfiles/"+fNLOstr+".root");
-  TFile *fNLO_atlas = TFile::Open(mcfm_path+"ATLASrootfiles/trigam_nlo_CT10.00_1.00_1.00_8TeV.root");
+  TFile *fNLO_atlas      = TFile::Open(mcfm_path+"ATLASrootfiles/trigam_nlo_CT10.00_1.00_1.00_8TeV.root");
+  TFile *fNLO_atlas13TeV = TFile::Open(mcfm_path+"ATLASrootfiles/trigam_nlo_CT10.00_1.00_1.00_13TeVATLAS.root");
 
   // ACTIONS:
-  //compareATLAS(fNLO_atlas);
-  //compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
+  // compareATLAS(fNLO_atlas, fNLO_atlas13TeV);
+  // compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
   //singlePhoEff(fSherpaNtuple);
-  TriPhotons::compareDataMggg(fAAA, fAAA, isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataPt(fAAA, fAAA, "1", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataPt(fAAA, fAAA, "2", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataPt(fAAA, fAAA, "3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDiphotonMinv(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDPhi(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDPhi(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDPhi(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDEta(fAAA, fAAA, "1","2", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDEta(fAAA, fAAA, "1","3", isHLT20, isHLT30_30_15);
-  TriPhotons::compareDataDEta(fAAA, fAAA, "2","3", isHLT20, isHLT30_30_15);
+  // compareData(fAAA, fAAA, isHLT20, isHLT30_30_15);
+  compareData(fAAA, fGGJets, isHLT20, isHLT30_30_15, false);
+
 }

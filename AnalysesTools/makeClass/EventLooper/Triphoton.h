@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Wed Mar  3 11:11:22 2021 by ROOT version 6.14/09
+// Tue Apr 27 15:12:27 2021 by ROOT version 6.22/04
 // from TChain demo/fTree/
 //////////////////////////////////////////////////////////
 
@@ -160,6 +160,228 @@ public :
    Bool_t          GenDiPhoton23_isEEEE;
    Double_t        GenTriPhoton_Minv;
    Double_t        GenTriPhoton_qt;
+   Double_t        Photon1_pt;
+   Double_t        Photon1_eta;
+   Double_t        Photon1_phi;
+   Double_t        Photon1_scEta;
+   Double_t        Photon1_scPhi;
+   Double_t        Photon1_rho;
+   Double_t        Photon1_chargedHadIso03;
+   Double_t        Photon1_neutralHadIso03;
+   Double_t        Photon1_photonIso03;
+   Double_t        Photon1_rhoCorChargedHadIso03;
+   Double_t        Photon1_rhoCorNeutralHadIso03;
+   Double_t        Photon1_rhoCorPhotonIso03;
+   Double_t        Photon1_corPhotonIso03;
+   Double_t        Photon1_hadTowerOverEm;
+   Double_t        Photon1_hadronicOverEm;
+   Double_t        Photon1_r9;
+   Double_t        Photon1_r9_5x5;
+   Double_t        Photon1_sigmaIetaIeta;
+   Double_t        Photon1_sigmaIetaIeta5x5;
+   Double_t        Photon1_sigmaEtaEta;
+   Double_t        Photon1_sigmaIphiIphi;
+   Double_t        Photon1_sigmaIphiIphi5x5;
+   Double_t        Photon1_sigmaIetaIphi;
+   Double_t        Photon1_sigmaIetaIphi5x5;
+   Double_t        Photon1_maxEnergyXtal;
+   Double_t        Photon1_iEta;
+   Double_t        Photon1_iPhi;
+   Double_t        Photon1_alphaHighPtID;
+   Double_t        Photon1_kappaHighPtID;
+   Double_t        Photon1_phoEAHighPtID;
+   Double_t        Photon1_chEAegmID;
+   Double_t        Photon1_nhEAegmID;
+   Double_t        Photon1_phoEAegmID;
+   Bool_t          Photon1_passEGMLooseID;
+   Bool_t          Photon1_passEGMMediumID;
+   Bool_t          Photon1_passEGMTightID;
+   Bool_t          Photon1_isEB;
+   Bool_t          Photon1_isEE;
+   Bool_t          Photon1_isEBEtaGap;
+   Bool_t          Photon1_isEBPhiGap;
+   Bool_t          Photon1_isEERingGap;
+   Bool_t          Photon1_isEEDeeGap;
+   Bool_t          Photon1_isEBEEGap;
+   Bool_t          Photon1_passElectronVeto;
+   Bool_t          Photon1_passHTowOverE;
+   Bool_t          Photon1_passChIso;
+   Bool_t          Photon1_passCorPhoIso;
+   Bool_t          Photon1_passSieie;
+   Bool_t          Photon1_passHighPtID;
+   Bool_t          Photon1_passChIsoDenom;
+   Bool_t          Photon1_passCorPhoIsoDenom;
+   Bool_t          Photon1_isFakeable;
+   Bool_t          Photon1_isNumeratorObjCand;
+   Bool_t          Photon1_isDenominatorObj;
+   Bool_t          Photon1_isSaturated;
+   Bool_t          Photon1_isMCTruthFake;
+   Bool_t          Photon1_passSieieLowpTID;
+   Bool_t          Photon1_passCorPhoIsoLowPTID;
+   Bool_t          Photon1_passLowPtID;
+   Bool_t          Photon1_hasConversionTracks;
+   Double_t        Photon2_pt;
+   Double_t        Photon2_eta;
+   Double_t        Photon2_phi;
+   Double_t        Photon2_scEta;
+   Double_t        Photon2_scPhi;
+   Double_t        Photon2_rho;
+   Double_t        Photon2_chargedHadIso03;
+   Double_t        Photon2_neutralHadIso03;
+   Double_t        Photon2_photonIso03;
+   Double_t        Photon2_rhoCorChargedHadIso03;
+   Double_t        Photon2_rhoCorNeutralHadIso03;
+   Double_t        Photon2_rhoCorPhotonIso03;
+   Double_t        Photon2_corPhotonIso03;
+   Double_t        Photon2_hadTowerOverEm;
+   Double_t        Photon2_hadronicOverEm;
+   Double_t        Photon2_r9;
+   Double_t        Photon2_r9_5x5;
+   Double_t        Photon2_sigmaIetaIeta;
+   Double_t        Photon2_sigmaIetaIeta5x5;
+   Double_t        Photon2_sigmaEtaEta;
+   Double_t        Photon2_sigmaIphiIphi;
+   Double_t        Photon2_sigmaIphiIphi5x5;
+   Double_t        Photon2_sigmaIetaIphi;
+   Double_t        Photon2_sigmaIetaIphi5x5;
+   Double_t        Photon2_maxEnergyXtal;
+   Double_t        Photon2_iEta;
+   Double_t        Photon2_iPhi;
+   Double_t        Photon2_alphaHighPtID;
+   Double_t        Photon2_kappaHighPtID;
+   Double_t        Photon2_phoEAHighPtID;
+   Double_t        Photon2_chEAegmID;
+   Double_t        Photon2_nhEAegmID;
+   Double_t        Photon2_phoEAegmID;
+   Bool_t          Photon2_passEGMLooseID;
+   Bool_t          Photon2_passEGMMediumID;
+   Bool_t          Photon2_passEGMTightID;
+   Bool_t          Photon2_isEB;
+   Bool_t          Photon2_isEE;
+   Bool_t          Photon2_isEBEtaGap;
+   Bool_t          Photon2_isEBPhiGap;
+   Bool_t          Photon2_isEERingGap;
+   Bool_t          Photon2_isEEDeeGap;
+   Bool_t          Photon2_isEBEEGap;
+   Bool_t          Photon2_passElectronVeto;
+   Bool_t          Photon2_passHTowOverE;
+   Bool_t          Photon2_passChIso;
+   Bool_t          Photon2_passCorPhoIso;
+   Bool_t          Photon2_passSieie;
+   Bool_t          Photon2_passHighPtID;
+   Bool_t          Photon2_passChIsoDenom;
+   Bool_t          Photon2_passCorPhoIsoDenom;
+   Bool_t          Photon2_isFakeable;
+   Bool_t          Photon2_isNumeratorObjCand;
+   Bool_t          Photon2_isDenominatorObj;
+   Bool_t          Photon2_isSaturated;
+   Bool_t          Photon2_isMCTruthFake;
+   Bool_t          Photon2_passSieieLowpTID;
+   Bool_t          Photon2_passCorPhoIsoLowPTID;
+   Bool_t          Photon2_passLowPtID;
+   Bool_t          Photon2_hasConversionTracks;
+   Double_t        Photon3_pt;
+   Double_t        Photon3_eta;
+   Double_t        Photon3_phi;
+   Double_t        Photon3_scEta;
+   Double_t        Photon3_scPhi;
+   Double_t        Photon3_rho;
+   Double_t        Photon3_chargedHadIso03;
+   Double_t        Photon3_neutralHadIso03;
+   Double_t        Photon3_photonIso03;
+   Double_t        Photon3_rhoCorChargedHadIso03;
+   Double_t        Photon3_rhoCorNeutralHadIso03;
+   Double_t        Photon3_rhoCorPhotonIso03;
+   Double_t        Photon3_corPhotonIso03;
+   Double_t        Photon3_hadTowerOverEm;
+   Double_t        Photon3_hadronicOverEm;
+   Double_t        Photon3_r9;
+   Double_t        Photon3_r9_5x5;
+   Double_t        Photon3_sigmaIetaIeta;
+   Double_t        Photon3_sigmaIetaIeta5x5;
+   Double_t        Photon3_sigmaEtaEta;
+   Double_t        Photon3_sigmaIphiIphi;
+   Double_t        Photon3_sigmaIphiIphi5x5;
+   Double_t        Photon3_sigmaIetaIphi;
+   Double_t        Photon3_sigmaIetaIphi5x5;
+   Double_t        Photon3_maxEnergyXtal;
+   Double_t        Photon3_iEta;
+   Double_t        Photon3_iPhi;
+   Double_t        Photon3_alphaHighPtID;
+   Double_t        Photon3_kappaHighPtID;
+   Double_t        Photon3_phoEAHighPtID;
+   Double_t        Photon3_chEAegmID;
+   Double_t        Photon3_nhEAegmID;
+   Double_t        Photon3_phoEAegmID;
+   Bool_t          Photon3_passEGMLooseID;
+   Bool_t          Photon3_passEGMMediumID;
+   Bool_t          Photon3_passEGMTightID;
+   Bool_t          Photon3_isEB;
+   Bool_t          Photon3_isEE;
+   Bool_t          Photon3_isEBEtaGap;
+   Bool_t          Photon3_isEBPhiGap;
+   Bool_t          Photon3_isEERingGap;
+   Bool_t          Photon3_isEEDeeGap;
+   Bool_t          Photon3_isEBEEGap;
+   Bool_t          Photon3_passElectronVeto;
+   Bool_t          Photon3_passHTowOverE;
+   Bool_t          Photon3_passChIso;
+   Bool_t          Photon3_passCorPhoIso;
+   Bool_t          Photon3_passSieie;
+   Bool_t          Photon3_passHighPtID;
+   Bool_t          Photon3_passChIsoDenom;
+   Bool_t          Photon3_passCorPhoIsoDenom;
+   Bool_t          Photon3_isFakeable;
+   Bool_t          Photon3_isNumeratorObjCand;
+   Bool_t          Photon3_isDenominatorObj;
+   Bool_t          Photon3_isSaturated;
+   Bool_t          Photon3_isMCTruthFake;
+   Bool_t          Photon3_passSieieLowpTID;
+   Bool_t          Photon3_passCorPhoIsoLowPTID;
+   Bool_t          Photon3_passLowPtID;
+   Bool_t          Photon3_hasConversionTracks;
+   Double_t        DiPhoton12_Minv;
+   Double_t        DiPhoton12_qt;
+   Double_t        DiPhoton12_deltaPhi;
+   Double_t        DiPhoton12_deltaEta;
+   Double_t        DiPhoton12_deltaAbsEta;
+   Double_t        DiPhoton12_deltaR;
+   Double_t        DiPhoton12_cosThetaStar;
+   Double_t        DiPhoton12_cosThetaStar_old;
+   Double_t        DiPhoton12_chiDiphoton;
+   Bool_t          DiPhoton12_isEBEB;
+   Bool_t          DiPhoton12_isEBEE;
+   Bool_t          DiPhoton12_isEEEB;
+   Bool_t          DiPhoton12_isEEEE;
+   Double_t        DiPhoton13_Minv;
+   Double_t        DiPhoton13_qt;
+   Double_t        DiPhoton13_deltaPhi;
+   Double_t        DiPhoton13_deltaEta;
+   Double_t        DiPhoton13_deltaAbsEta;
+   Double_t        DiPhoton13_deltaR;
+   Double_t        DiPhoton13_cosThetaStar;
+   Double_t        DiPhoton13_cosThetaStar_old;
+   Double_t        DiPhoton13_chiDiphoton;
+   Bool_t          DiPhoton13_isEBEB;
+   Bool_t          DiPhoton13_isEBEE;
+   Bool_t          DiPhoton13_isEEEB;
+   Bool_t          DiPhoton13_isEEEE;
+   Double_t        DiPhoton23_Minv;
+   Double_t        DiPhoton23_qt;
+   Double_t        DiPhoton23_deltaPhi;
+   Double_t        DiPhoton23_deltaEta;
+   Double_t        DiPhoton23_deltaAbsEta;
+   Double_t        DiPhoton23_deltaR;
+   Double_t        DiPhoton23_cosThetaStar;
+   Double_t        DiPhoton23_cosThetaStar_old;
+   Double_t        DiPhoton23_chiDiphoton;
+   Bool_t          DiPhoton23_isEBEB;
+   Bool_t          DiPhoton23_isEBEE;
+   Bool_t          DiPhoton23_isEEEB;
+   Bool_t          DiPhoton23_isEEEE;
+   Double_t        TriPhoton_Minv;
+   Double_t        TriPhoton_qt;
+   Bool_t          isTightTriphotons;
 
    // List of branches
    TBranch        *b_Event;   //!
@@ -170,6 +392,14 @@ public :
    TBranch        *b_GenDiPhoton13;   //!
    TBranch        *b_GenDiPhoton23;   //!
    TBranch        *b_GenTriPhoton;   //!
+   TBranch        *b_Photon1;   //!
+   TBranch        *b_Photon2;   //!
+   TBranch        *b_Photon3;   //!
+   TBranch        *b_DiPhoton12;   //!
+   TBranch        *b_DiPhoton13;   //!
+   TBranch        *b_DiPhoton23;   //!
+   TBranch        *b_TriPhoton;   //!
+   TBranch        *b_isTightTriphotons;   //!
 
    Triphoton(TTree *tree=0);
    virtual ~Triphoton();
@@ -205,7 +435,8 @@ Triphoton::Triphoton(TTree *tree) : fChain(0)
       // The following code should be used if you want this class to access a chain
       // of trees.
       TChain * chain = new TChain("demo/fTree","");
-      chain->Add("/uscms/home/cuperez/nobackup/tribosons/Triphoton-Dev/CMSSW_10_2_15/src/out_GGGJets_Pt-15_13TeV-sherpa_evt17800.root/demo/fTree");
+      chain->Add("../../../data/out_GGGJets_Pt-15_13TeV-sherpa_evt17800.root/demo/fTree");
+      //chain->Add("../../../data/out_GGJets_Pt-15_13TeV-sherpa_evt18600.root/demo/fTree");
       tree = chain;
 #endif // SINGLE_TREE
 
@@ -262,6 +493,14 @@ void Triphoton::Init(TTree *tree)
    fChain->SetBranchAddress("GenDiPhoton13", &GenDiPhoton13_Minv, &b_GenDiPhoton13);
    fChain->SetBranchAddress("GenDiPhoton23", &GenDiPhoton23_Minv, &b_GenDiPhoton23);
    fChain->SetBranchAddress("GenTriPhoton", &GenTriPhoton_Minv, &b_GenTriPhoton);
+   fChain->SetBranchAddress("Photon1", &Photon1_pt, &b_Photon1);
+   fChain->SetBranchAddress("Photon2", &Photon2_pt, &b_Photon2);
+   fChain->SetBranchAddress("Photon3", &Photon3_pt, &b_Photon3);
+   fChain->SetBranchAddress("DiPhoton12", &DiPhoton12_Minv, &b_DiPhoton12);
+   fChain->SetBranchAddress("DiPhoton13", &DiPhoton13_Minv, &b_DiPhoton13);
+   fChain->SetBranchAddress("DiPhoton23", &DiPhoton23_Minv, &b_DiPhoton23);
+   fChain->SetBranchAddress("TriPhoton", &TriPhoton_Minv, &b_TriPhoton);
+   fChain->SetBranchAddress("isTightTriphotons", &isTightTriphotons, &b_isTightTriphotons);
    Notify();
 }
 
