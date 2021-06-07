@@ -27,7 +27,7 @@ namespace TriPhotons
     TriPhotons::convertToDiffXsec(h_gen_mAAA);
 
     //------- MCFM vs Sherpa
-    TCanvas *c = new TCanvas("c","c",600,600);
+    TCanvas *c = new TCanvas("c","c",700,600);
 
     //h_gen_mAAA->Draw("E1, SAME");
     TH1D *hGenErr = (TH1D*) h_gen_mAAA->Clone();

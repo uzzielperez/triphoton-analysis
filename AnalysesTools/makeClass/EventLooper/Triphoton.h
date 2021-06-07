@@ -436,7 +436,7 @@ Triphoton::Triphoton(TTree *tree) : fChain(0)
       // of trees.
       TChain * chain = new TChain("demo/fTree","");
       chain->Add("../../../data/out_GGGJets_Pt-15_13TeV-sherpa_evt17800.root/demo/fTree");
-      //chain->Add("../../../data/out_GGJets_Pt-15_13TeV-sherpa_evt18600.root/demo/fTree");
+      //chain->Add("../../../data/out_GGJets_Pt-15_13TeV-sherpa_evt71999.root/demo/fTree");
       tree = chain;
 #endif // SINGLE_TREE
 

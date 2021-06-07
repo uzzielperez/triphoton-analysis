@@ -1,0 +1,3333 @@
+// Cross-section is:             36.5489     +/-            0.205835    )
+
+ // Contribution from parton sub-processes:
+//        GG     |        0.0000        0.00%
+//        GQ     |        0.0000        0.00%
+//        GQB    |        0.0000        0.00%
+//        QG     |        0.0000        0.00%
+//        QBG    |        0.0000        0.00%
+//        QQ     |        0.0000        0.00%
+//        QBQB   |        0.0000        0.00%
+//        QQB    |        18.220       49.85%
+//        QBQ    |        18.329       50.15%
+
+ // Run corresponds to this input file)
+
+ // [Flags to specify the mode in which MCFM is run] )
+//                  -1            [nevtrequested]
+//                   F            [creatent]
+//                   F            [dswhisto]
+//                   T            [writerefs]
+//                   T            [writetop]
+//                   F            [writedat]
+//                   F            [writegnu]
+//                   T            [writeroot]
+//                   F            [writepwg]
+//                   F            [writetxt]
+
+ // [General options to specify the process and execution] )
+//                 287            [nproc]
+//                  lo            [part]
+//13TeV                           [runstring]
+//          13000.0000            [sqrts]
+//                   1            [ih1]
+//                   1            [ih2]
+//            125.0000            [hmass]
+//              1.0000            [scale]
+//              1.0000            [facscale]
+//m(345)                          [dynamicscale]
+//                   F            [zerowidth]
+//                   F            [removebr]
+//                   4            [itmx1]
+//               20000            [ncall1]
+//                  10            [itmx2]
+//               20000            [ncall2]
+//            1.00E-01            [taucut]
+//                   0            [ij]
+//                   F            [dryrun]
+//                   T            [Qflag]
+//                   T            [Gflag]
+//none                            [ewcorr]
+
+ // [Heavy quark masses] )
+//            173.2000            [top mass]
+//              4.6600            [bottom mass]
+//              1.2750            [charm mass]
+
+ // [Pdf selection] )
+//             cteq6l1            [pdlabel]
+//MSTW2008nlo90cl.LHgr            [LHAPDF group]
+//                  -1            [LHAPDF set]
+
+ // [Jet definition and event cuts] )
+//              0.0000            [m34min]
+//          12998.7000            [m34max]
+//              0.0000            [m56min]
+//          12998.7000            [m56max]
+//              0.0000            [m3456min]
+//          13000.0000            [m3456max]
+//                   T            [inclusive]
+//                ankt            [algorithm]
+//       30.00, 1000000.00        [ptjet range]
+//        0.00,       2.40        [etajet range]
+//              0.5000            [Rcut]
+//                   F            [makecuts]
+//       20.00, 1000000.00        [leptpt range]
+//        0.00,       2.40        [leptrap range]
+//        0.00,       0.00        [leptveto]
+//             30.0000            [misspt]
+//       20.00, 1000000.00        [leptpt2 range]
+//        0.00,       2.40        [leptrap2 range]
+//        0.00,       0.00        [leptveto2]
+//              0.0000            [mtrans34cut]
+//              0.0000            [Rjlmin]
+//              0.0000            [Rllmin]
+//              0.0000            [delyjjmin]
+//                   F            [jetsopphem]
+//                   0            [lbjscheme]
+//        0.00, 1000000.00        [ptbjet range]
+//        0.00,      99.00        [etabjet range]
+
+ // [Settings for photon processes] )
+//                   F            [frag]
+//            GdRG__LO            [fragset]
+//            148.4870            [frag_scale]
+//       15.00, 1000000.00        [gammpt range]
+//        0.00,       2.50        [gammrap range]
+//             15.0000            [gammpt2]
+//             15.0000            [gammpt3]
+//              0.0000            [Rgalmin]
+//              0.4000            [Rgagamin]
+//              0.0000            [Rgajetmin]
+//              0.4000            [cone_ang]
+//              0.5000            [epsilon_h]
+//              1.0000            [n_pow]
+
+ // [Anomalous couplings of the W and Z] )
+//              0.0000            [delg1_z]
+//              0.0000            [delk_z]
+//              0.0000            [delk_g]
+//              0.0000            [lambda_z]
+//              0.0000            [lambda_g]
+//              0.0000            [h1Z]
+//              0.0000            [h1gam]
+//              0.0000            [h2Z]
+//              0.0000            [h2gam]
+//              0.0000            [h3Z]
+//              0.0000            [h3gam]
+//              0.0000            [h4Z]
+//              0.0000            [h4gam]
+//              2.0000            [tevscale]
+//              1.0000            [cttH]
+//              1.0000            [cWWH]
+//              1.0000            [Gamma_H/Gamma_H(SM)]
+
+ // [Single top anomalous couplings, nproc=169]
+//              0.0000            [C_phiq]
+//     (0.0000,0.0000)            [C_phiphi]
+//     (0.0000,0.0000)            [C_tW]
+//     (0.0000,0.0000)            [C_bW]
+//     (0.0000,0.0000)            [C_tG]
+//     (0.0000,0.0000)            [C_bG]
+//              0.0000            [C_4L]
+//              0.0000            [C_4R]
+//           1000.0000            [lambda]
+//                   F            [enable 1/lambda^4]
+//                   F            [disable standard model]
+//                   F            [anomalous couplings mode, only LO!]
+
+ // [Technical parameters that should not normally be changed]
+//                   F            [debug]
+//                   T            [verbose]
+//                   T            [new_pspace]
+//                   T            [spira]
+//                   F            [noglue]
+//                   F            [ggonly]
+//                   F            [gqonly]
+//                   F            [omitgg]
+//                   T            [clustering]
+//                   F            [realwt]
+//                   0            [colourchoice]
+//            1.00E-08            [rtsmin]
+//            4.23E-08            [cutoff]
+//            1.00E-03            [cutoff_s]
+//              1.0000            [aii]
+//              1.0000            [aif]
+//              1.0000            [afi]
+//              1.0000            [aff]
+//              1.0000            [bfi]
+//              1.0000            [bff]
+
+/************** Frixione Isolation    ***************
+ *                                                  *
+ *  eps_phot = 0.500, delta_0 = 0.400               *
+ *  n =  1.00                                       *
+ ****************************************************
+
+ ****************** Photon cuts *********************
+ *                                                  *
+ *   pt(photon 1)         >    15.00                *
+ *   pt(photon 2)         >    15.00                *
+ *   pt(photon 3)         >    15.00                *
+ *      0.000 <    |eta(photon)|   <     2.500      *
+ *   R(photon,lepton)     >     0.00                *
+ *   R(photon,photon)     >     0.40                *
+ *   R(photon,jet)        >     0.00                *
+ *   excluding rapidity window 1.37 < eta < 1.56    *
+ *                                                  *
+ ****************************************************
+
+ ****************** Basic mass cuts *****************
+ *                                                  *
+ *              0.00  <   m34  < 12998.70           *
+ *              0.00  <   m56  < 12998.70           *
+ *              0.00  <  m3456 < 13000.00           *
+ ****************************************************
+
+ ************** Dynamic scale choice ****************
+ *                                                  *
+ *                 RENORMALIZATION                  *
+ *       mu_ren  =  1.00 x m(345)                   *
+ *                                                  *
+ *                  FACTORIZATION                   *
+ *       mu_fac  =  1.00 x m(345)                   *
+ *                                                  *
+ ****************************************************/
+
+
+  {
+  mcfmhisto = new TFile("trigam_lo_cteq6l1_1.00_1.00_13TeV.root", "recreate");
+  mcfmhisto -> cd();
+  int xbin;
+
+
+  mcfmhisto -> cd();
+  TH1F *hist1 = new TH1F( "id1", "eta3", 80,      -4.0000,       4.0000);
+
+  id1 -> GetXaxis() -> SetTitle("eta3");
+  id1 -> GetYaxis() -> SetTitle(" d#sigma/deta3 [fb]");
+
+  id1 -> GetYaxis() -> SetTitleOffset(1.2);
+  id1 -> SetStats(false);
+   xbin = id1->FindBin(  -2.4500000000000002      );
+  id1 -> SetBinContent( xbin,    4.8113807975025802      );
+  id1 -> SetBinError( xbin,   0.39152246944777708      );
+   xbin = id1->FindBin(  -2.3499999999999996      );
+  id1 -> SetBinContent( xbin,    4.9770147894205978      );
+  id1 -> SetBinError( xbin,   0.35614230989467227      );
+   xbin = id1->FindBin(  -2.2500000000000000      );
+  id1 -> SetBinContent( xbin,    5.1524889054636711      );
+  id1 -> SetBinError( xbin,   0.34531830713466316      );
+   xbin = id1->FindBin(  -2.1499999999999999      );
+  id1 -> SetBinContent( xbin,    5.2397662120234330      );
+  id1 -> SetBinError( xbin,   0.30712344772406358      );
+   xbin = id1->FindBin(  -2.0499999999999998      );
+  id1 -> SetBinContent( xbin,    6.1889266725688357      );
+  id1 -> SetBinError( xbin,   0.32733692479169157      );
+   xbin = id1->FindBin(  -1.9499999999999997      );
+  id1 -> SetBinContent( xbin,    6.4305325981763994      );
+  id1 -> SetBinError( xbin,   0.31263253046038536      );
+   xbin = id1->FindBin(  -1.8500000000000001      );
+  id1 -> SetBinContent( xbin,    6.1731155948277614      );
+  id1 -> SetBinError( xbin,   0.29689194106557976      );
+   xbin = id1->FindBin(  -1.7500000000000000      );
+  id1 -> SetBinContent( xbin,    6.9573065581834665      );
+  id1 -> SetBinError( xbin,   0.30571187478213208      );
+   xbin = id1->FindBin(  -1.6499999999999999      );
+  id1 -> SetBinContent( xbin,    7.2705702673655983      );
+  id1 -> SetBinError( xbin,   0.29827411413439248      );
+   xbin = id1->FindBin(  -1.5499999999999998      );
+  id1 -> SetBinContent( xbin,    2.6987377512548343      );
+  id1 -> SetBinError( xbin,   0.17658910818357973      );
+   xbin = id1->FindBin(  -1.3499999999999996      );
+  id1 -> SetBinContent( xbin,    5.2577386342750581      );
+  id1 -> SetBinError( xbin,   0.23511594020654880      );
+   xbin = id1->FindBin(  -1.2500000000000000      );
+  id1 -> SetBinContent( xbin,    8.3448091863802816      );
+  id1 -> SetBinError( xbin,   0.30529267585711845      );
+   xbin = id1->FindBin(  -1.1499999999999999      );
+  id1 -> SetBinContent( xbin,    8.2914005633388133      );
+  id1 -> SetBinError( xbin,   0.29908285734666540      );
+   xbin = id1->FindBin(  -1.0499999999999998      );
+  id1 -> SetBinContent( xbin,    8.5641211818344427      );
+  id1 -> SetBinError( xbin,   0.28900928259682801      );
+   xbin = id1->FindBin( -0.94999999999999973      );
+  id1 -> SetBinContent( xbin,    8.0676475229970190      );
+  id1 -> SetBinError( xbin,   0.27978807805258399      );
+   xbin = id1->FindBin( -0.84999999999999964      );
+  id1 -> SetBinContent( xbin,    8.8081268110118351      );
+  id1 -> SetBinError( xbin,   0.28490254065186510      );
+   xbin = id1->FindBin( -0.75000000000000000      );
+  id1 -> SetBinContent( xbin,    9.4073406543457310      );
+  id1 -> SetBinError( xbin,   0.31353007438918579      );
+   xbin = id1->FindBin( -0.64999999999999991      );
+  id1 -> SetBinContent( xbin,    9.4043243245822268      );
+  id1 -> SetBinError( xbin,   0.31047011010263770      );
+   xbin = id1->FindBin( -0.54999999999999982      );
+  id1 -> SetBinContent( xbin,    9.3443575681504640      );
+  id1 -> SetBinError( xbin,   0.30565651163924690      );
+   xbin = id1->FindBin( -0.44999999999999973      );
+  id1 -> SetBinContent( xbin,    9.3430896924148108      );
+  id1 -> SetBinError( xbin,   0.29862701594972535      );
+   xbin = id1->FindBin( -0.34999999999999964      );
+  id1 -> SetBinContent( xbin,    9.5159720675861443      );
+  id1 -> SetBinError( xbin,   0.29464887964688241      );
+   xbin = id1->FindBin( -0.25000000000000000      );
+  id1 -> SetBinContent( xbin,    9.5228270141391835      );
+  id1 -> SetBinError( xbin,   0.29156918784259722      );
+   xbin = id1->FindBin( -0.14999999999999991      );
+  id1 -> SetBinContent( xbin,    9.7579513825140172      );
+  id1 -> SetBinError( xbin,   0.29471319525129469      );
+   xbin = id1->FindBin(  -4.9999999999999822E-002 );
+  id1 -> SetBinContent( xbin,    9.4933380654633712      );
+  id1 -> SetBinError( xbin,   0.28594572502861298      );
+   xbin = id1->FindBin(   4.9999999999999822E-002 );
+  id1 -> SetBinContent( xbin,    10.031264253306134      );
+  id1 -> SetBinError( xbin,   0.31021282403050660      );
+   xbin = id1->FindBin(  0.15000000000000036      );
+  id1 -> SetBinContent( xbin,    9.4884986430255882      );
+  id1 -> SetBinError( xbin,   0.29437121442892689      );
+   xbin = id1->FindBin(  0.25000000000000000      );
+  id1 -> SetBinContent( xbin,    10.038224213775564      );
+  id1 -> SetBinError( xbin,   0.32194619704009020      );
+   xbin = id1->FindBin(  0.35000000000000053      );
+  id1 -> SetBinContent( xbin,    10.033151749693566      );
+  id1 -> SetBinError( xbin,   0.31226049500635245      );
+   xbin = id1->FindBin(  0.45000000000000018      );
+  id1 -> SetBinContent( xbin,    9.3611281558876129      );
+  id1 -> SetBinError( xbin,   0.29430778775830568      );
+   xbin = id1->FindBin(  0.54999999999999982      );
+  id1 -> SetBinContent( xbin,    9.7774140796970670      );
+  id1 -> SetBinError( xbin,   0.31340699739295225      );
+   xbin = id1->FindBin(  0.65000000000000036      );
+  id1 -> SetBinContent( xbin,    9.0168400755013813      );
+  id1 -> SetBinError( xbin,   0.30918960756712338      );
+   xbin = id1->FindBin(  0.75000000000000000      );
+  id1 -> SetBinContent( xbin,    8.6740107156912618      );
+  id1 -> SetBinError( xbin,   0.29874491449051188      );
+   xbin = id1->FindBin(  0.85000000000000053      );
+  id1 -> SetBinContent( xbin,    9.1384522659769090      );
+  id1 -> SetBinError( xbin,   0.31226979428072738      );
+   xbin = id1->FindBin(  0.95000000000000018      );
+  id1 -> SetBinContent( xbin,    8.7033606564010615      );
+  id1 -> SetBinError( xbin,   0.29686270583247804      );
+   xbin = id1->FindBin(   1.0500000000000007      );
+  id1 -> SetBinContent( xbin,    8.5459965885810956      );
+  id1 -> SetBinError( xbin,   0.30390587854865636      );
+   xbin = id1->FindBin(   1.1500000000000004      );
+  id1 -> SetBinContent( xbin,    7.8450322177020189      );
+  id1 -> SetBinError( xbin,   0.29718434382600151      );
+   xbin = id1->FindBin(   1.2500000000000000      );
+  id1 -> SetBinContent( xbin,    7.8496994619910279      );
+  id1 -> SetBinError( xbin,   0.29212732435144639      );
+   xbin = id1->FindBin(   1.3500000000000005      );
+  id1 -> SetBinContent( xbin,    5.4219152734917246      );
+  id1 -> SetBinError( xbin,   0.23887167674337292      );
+   xbin = id1->FindBin(   1.5500000000000007      );
+  id1 -> SetBinContent( xbin,    2.5843517445827877      );
+  id1 -> SetBinError( xbin,   0.17426769737261039      );
+   xbin = id1->FindBin(   1.6500000000000004      );
+  id1 -> SetBinContent( xbin,    6.5525860213820364      );
+  id1 -> SetBinError( xbin,   0.28994577655245551      );
+   xbin = id1->FindBin(   1.7500000000000000      );
+  id1 -> SetBinContent( xbin,    6.6691805548218470      );
+  id1 -> SetBinError( xbin,   0.31147544752081663      );
+   xbin = id1->FindBin(   1.8500000000000005      );
+  id1 -> SetBinContent( xbin,    6.4592702396937591      );
+  id1 -> SetBinError( xbin,   0.31866596738011127      );
+   xbin = id1->FindBin(   1.9500000000000002      );
+  id1 -> SetBinContent( xbin,    6.2301664148732305      );
+  id1 -> SetBinError( xbin,   0.32153550419598986      );
+   xbin = id1->FindBin(   2.0500000000000007      );
+  id1 -> SetBinContent( xbin,    5.4717362880273210      );
+  id1 -> SetBinError( xbin,   0.29198443432670895      );
+   xbin = id1->FindBin(   2.1500000000000004      );
+  id1 -> SetBinContent( xbin,    5.0069855697600962      );
+  id1 -> SetBinError( xbin,   0.29240100772114413      );
+   xbin = id1->FindBin(   2.2500000000000000      );
+  id1 -> SetBinContent( xbin,    4.9915021297527735      );
+  id1 -> SetBinError( xbin,   0.32325627331606022      );
+   xbin = id1->FindBin(   2.3500000000000005      );
+  id1 -> SetBinContent( xbin,    5.1995579021599010      );
+  id1 -> SetBinError( xbin,   0.36225257782594483      );
+   xbin = id1->FindBin(   2.4500000000000002      );
+  id1 -> SetBinContent( xbin,    4.0578865137545366      );
+  id1 -> SetBinError( xbin,   0.31261302026858118      );
+//  hist1 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist2 = new TH1F( "id2", "eta4", 80,      -4.0000,       4.0000);
+
+  id2 -> GetXaxis() -> SetTitle("eta4");
+  id2 -> GetYaxis() -> SetTitle(" d#sigma/deta4 [fb]");
+
+  id2 -> GetYaxis() -> SetTitleOffset(1.2);
+  id2 -> SetStats(false);
+   xbin = id2->FindBin(  -2.4500000000000002      );
+  id2 -> SetBinContent( xbin,    4.5259751540360940      );
+  id2 -> SetBinError( xbin,   0.32776916309427595      );
+   xbin = id2->FindBin(  -2.3499999999999996      );
+  id2 -> SetBinContent( xbin,    4.9618037412772473      );
+  id2 -> SetBinError( xbin,   0.30772378205316619      );
+   xbin = id2->FindBin(  -2.2500000000000000      );
+  id2 -> SetBinContent( xbin,    4.9944133077030575      );
+  id2 -> SetBinError( xbin,   0.30932634056183994      );
+   xbin = id2->FindBin(  -2.1499999999999999      );
+  id2 -> SetBinContent( xbin,    5.0101865245488746      );
+  id2 -> SetBinError( xbin,   0.29325810822354187      );
+   xbin = id2->FindBin(  -2.0499999999999998      );
+  id2 -> SetBinContent( xbin,    5.0027289141548481      );
+  id2 -> SetBinError( xbin,   0.28227348473096897      );
+   xbin = id2->FindBin(  -1.9499999999999997      );
+  id2 -> SetBinContent( xbin,    5.6766543838072208      );
+  id2 -> SetBinError( xbin,   0.29986648508465108      );
+   xbin = id2->FindBin(  -1.8500000000000001      );
+  id2 -> SetBinContent( xbin,    6.4162447066521828      );
+  id2 -> SetBinError( xbin,   0.30223417871129754      );
+   xbin = id2->FindBin(  -1.7500000000000000      );
+  id2 -> SetBinContent( xbin,    6.4255521368308575      );
+  id2 -> SetBinError( xbin,   0.28679074840988283      );
+   xbin = id2->FindBin(  -1.6499999999999999      );
+  id2 -> SetBinContent( xbin,    7.3701210271169240      );
+  id2 -> SetBinError( xbin,   0.31849669954436016      );
+   xbin = id2->FindBin(  -1.5499999999999998      );
+  id2 -> SetBinContent( xbin,    2.4521123413008197      );
+  id2 -> SetBinError( xbin,   0.16600795688131986      );
+   xbin = id2->FindBin(  -1.3499999999999996      );
+  id2 -> SetBinContent( xbin,    5.4380441466221976      );
+  id2 -> SetBinError( xbin,   0.24089019971116729      );
+   xbin = id2->FindBin(  -1.2500000000000000      );
+  id2 -> SetBinContent( xbin,    8.6667280628957997      );
+  id2 -> SetBinError( xbin,   0.31450201579652359      );
+   xbin = id2->FindBin(  -1.1499999999999999      );
+  id2 -> SetBinContent( xbin,    7.5679108107654276      );
+  id2 -> SetBinError( xbin,   0.27314043505124530      );
+   xbin = id2->FindBin(  -1.0499999999999998      );
+  id2 -> SetBinContent( xbin,    8.6923557362129049      );
+  id2 -> SetBinError( xbin,   0.29434499587328133      );
+   xbin = id2->FindBin( -0.94999999999999973      );
+  id2 -> SetBinContent( xbin,    7.9190680729799512      );
+  id2 -> SetBinError( xbin,   0.27625463080641294      );
+   xbin = id2->FindBin( -0.84999999999999964      );
+  id2 -> SetBinContent( xbin,    9.2754110504838767      );
+  id2 -> SetBinError( xbin,   0.32565124759703212      );
+   xbin = id2->FindBin( -0.75000000000000000      );
+  id2 -> SetBinContent( xbin,    8.8575900806524306      );
+  id2 -> SetBinError( xbin,   0.29488234296550753      );
+   xbin = id2->FindBin( -0.64999999999999991      );
+  id2 -> SetBinContent( xbin,    9.7295793574171849      );
+  id2 -> SetBinError( xbin,   0.31527322482346415      );
+   xbin = id2->FindBin( -0.54999999999999982      );
+  id2 -> SetBinContent( xbin,    9.3952946813780471      );
+  id2 -> SetBinError( xbin,   0.31013044564299574      );
+   xbin = id2->FindBin( -0.44999999999999973      );
+  id2 -> SetBinContent( xbin,    9.1896670654056258      );
+  id2 -> SetBinError( xbin,   0.29595428417823633      );
+   xbin = id2->FindBin( -0.34999999999999964      );
+  id2 -> SetBinContent( xbin,    10.016558333518665      );
+  id2 -> SetBinError( xbin,   0.32264601598626841      );
+   xbin = id2->FindBin( -0.25000000000000000      );
+  id2 -> SetBinContent( xbin,    10.284817830294879      );
+  id2 -> SetBinError( xbin,   0.33219507872218845      );
+   xbin = id2->FindBin( -0.14999999999999991      );
+  id2 -> SetBinContent( xbin,    9.6426125092015820      );
+  id2 -> SetBinError( xbin,   0.31202765910112351      );
+   xbin = id2->FindBin(  -4.9999999999999822E-002 );
+  id2 -> SetBinContent( xbin,    9.4796263876452436      );
+  id2 -> SetBinError( xbin,   0.31107874836298338      );
+   xbin = id2->FindBin(   4.9999999999999822E-002 );
+  id2 -> SetBinContent( xbin,    10.004029605635250      );
+  id2 -> SetBinError( xbin,   0.30624213630227631      );
+   xbin = id2->FindBin(  0.15000000000000036      );
+  id2 -> SetBinContent( xbin,    9.8661217480438861      );
+  id2 -> SetBinError( xbin,   0.30240973468522808      );
+   xbin = id2->FindBin(  0.25000000000000000      );
+  id2 -> SetBinContent( xbin,    9.6089442871936193      );
+  id2 -> SetBinError( xbin,   0.29838346513023900      );
+   xbin = id2->FindBin(  0.35000000000000053      );
+  id2 -> SetBinContent( xbin,    9.8762216456056997      );
+  id2 -> SetBinError( xbin,   0.31486693230841761      );
+   xbin = id2->FindBin(  0.45000000000000018      );
+  id2 -> SetBinContent( xbin,    9.3121908848761326      );
+  id2 -> SetBinError( xbin,   0.30003517159014020      );
+   xbin = id2->FindBin(  0.54999999999999982      );
+  id2 -> SetBinContent( xbin,    9.2220991354900832      );
+  id2 -> SetBinError( xbin,   0.30448422728606234      );
+   xbin = id2->FindBin(  0.65000000000000036      );
+  id2 -> SetBinContent( xbin,    9.2096166153560333      );
+  id2 -> SetBinError( xbin,   0.30332456730349244      );
+   xbin = id2->FindBin(  0.75000000000000000      );
+  id2 -> SetBinContent( xbin,    8.9075042959327551      );
+  id2 -> SetBinError( xbin,   0.31056813598618482      );
+   xbin = id2->FindBin(  0.85000000000000053      );
+  id2 -> SetBinContent( xbin,    8.6453104493361881      );
+  id2 -> SetBinError( xbin,   0.31898111534822515      );
+   xbin = id2->FindBin(  0.95000000000000018      );
+  id2 -> SetBinContent( xbin,    8.9667491345095289      );
+  id2 -> SetBinError( xbin,   0.31664782910471190      );
+   xbin = id2->FindBin(   1.0500000000000007      );
+  id2 -> SetBinContent( xbin,    8.7751197341745737      );
+  id2 -> SetBinError( xbin,   0.31420491404511303      );
+   xbin = id2->FindBin(   1.1500000000000004      );
+  id2 -> SetBinContent( xbin,    8.5010889961753335      );
+  id2 -> SetBinError( xbin,   0.30635005289981176      );
+   xbin = id2->FindBin(   1.2500000000000000      );
+  id2 -> SetBinContent( xbin,    7.5869822535489542      );
+  id2 -> SetBinError( xbin,   0.28583324937806104      );
+   xbin = id2->FindBin(   1.3500000000000005      );
+  id2 -> SetBinContent( xbin,    5.4233971134336310      );
+  id2 -> SetBinError( xbin,   0.25177453400931460      );
+   xbin = id2->FindBin(   1.5500000000000007      );
+  id2 -> SetBinContent( xbin,    2.6419483835537636      );
+  id2 -> SetBinError( xbin,   0.18036287616061822      );
+   xbin = id2->FindBin(   1.6500000000000004      );
+  id2 -> SetBinContent( xbin,    7.3406628912310792      );
+  id2 -> SetBinError( xbin,   0.33419453264118226      );
+   xbin = id2->FindBin(   1.7500000000000000      );
+  id2 -> SetBinContent( xbin,    6.5994716624629248      );
+  id2 -> SetBinError( xbin,   0.30643353182868110      );
+   xbin = id2->FindBin(   1.8500000000000005      );
+  id2 -> SetBinContent( xbin,    6.6844950224672148      );
+  id2 -> SetBinError( xbin,   0.32556670715719643      );
+   xbin = id2->FindBin(   1.9500000000000002      );
+  id2 -> SetBinContent( xbin,    5.6167778621029552      );
+  id2 -> SetBinError( xbin,   0.29976832668871850      );
+   xbin = id2->FindBin(   2.0500000000000007      );
+  id2 -> SetBinContent( xbin,    5.5126987205142663      );
+  id2 -> SetBinError( xbin,   0.29266200443460283      );
+   xbin = id2->FindBin(   2.1500000000000004      );
+  id2 -> SetBinContent( xbin,    5.5434523815539976      );
+  id2 -> SetBinError( xbin,   0.31645849432885442      );
+   xbin = id2->FindBin(   2.2500000000000000      );
+  id2 -> SetBinContent( xbin,    4.6130299010098481      );
+  id2 -> SetBinError( xbin,   0.30365571184027207      );
+   xbin = id2->FindBin(   2.3500000000000005      );
+  id2 -> SetBinContent( xbin,    4.7904651303956607      );
+  id2 -> SetBinError( xbin,   0.30425848794895943      );
+   xbin = id2->FindBin(   2.4500000000000002      );
+  id2 -> SetBinContent( xbin,    3.8685327537142964      );
+  id2 -> SetBinError( xbin,   0.30234679005803522      );
+//  hist2 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist3 = new TH1F( "id3", "eta5", 80,      -4.0000,       4.0000);
+
+  id3 -> GetXaxis() -> SetTitle("eta5");
+  id3 -> GetYaxis() -> SetTitle(" d#sigma/deta5 [fb]");
+
+  id3 -> GetYaxis() -> SetTitleOffset(1.2);
+  id3 -> SetStats(false);
+   xbin = id3->FindBin(  -2.4500000000000002      );
+  id3 -> SetBinContent( xbin,    4.0620706912593061      );
+  id3 -> SetBinError( xbin,   0.25528685645067362      );
+   xbin = id3->FindBin(  -2.3499999999999996      );
+  id3 -> SetBinContent( xbin,    4.2306412231260024      );
+  id3 -> SetBinError( xbin,   0.24820145599910720      );
+   xbin = id3->FindBin(  -2.2500000000000000      );
+  id3 -> SetBinContent( xbin,    5.6843029258655706      );
+  id3 -> SetBinError( xbin,   0.33173142515571907      );
+   xbin = id3->FindBin(  -2.1499999999999999      );
+  id3 -> SetBinContent( xbin,    5.7844309367447995      );
+  id3 -> SetBinError( xbin,   0.30586644383348793      );
+   xbin = id3->FindBin(  -2.0499999999999998      );
+  id3 -> SetBinContent( xbin,    5.4863559173644934      );
+  id3 -> SetBinError( xbin,   0.27051493693669265      );
+   xbin = id3->FindBin(  -1.9499999999999997      );
+  id3 -> SetBinContent( xbin,    6.2625739763089268      );
+  id3 -> SetBinError( xbin,   0.30248966219276402      );
+   xbin = id3->FindBin(  -1.8500000000000001      );
+  id3 -> SetBinContent( xbin,    6.2454745881256919      );
+  id3 -> SetBinError( xbin,   0.30444203981063123      );
+   xbin = id3->FindBin(  -1.7500000000000000      );
+  id3 -> SetBinContent( xbin,    7.2653686486588676      );
+  id3 -> SetBinError( xbin,   0.31015745560413893      );
+   xbin = id3->FindBin(  -1.6499999999999999      );
+  id3 -> SetBinContent( xbin,    6.4041622965576970      );
+  id3 -> SetBinError( xbin,   0.28411845863592389      );
+   xbin = id3->FindBin(  -1.5499999999999998      );
+  id3 -> SetBinContent( xbin,    3.0263285047257438      );
+  id3 -> SetBinError( xbin,   0.19559990682342474      );
+   xbin = id3->FindBin(  -1.3499999999999996      );
+  id3 -> SetBinContent( xbin,    5.2273442017103218      );
+  id3 -> SetBinError( xbin,   0.25171987260148149      );
+   xbin = id3->FindBin(  -1.2500000000000000      );
+  id3 -> SetBinContent( xbin,    8.6170167118518961      );
+  id3 -> SetBinError( xbin,   0.32735781869511332      );
+   xbin = id3->FindBin(  -1.1499999999999999      );
+  id3 -> SetBinContent( xbin,    8.0521892265019908      );
+  id3 -> SetBinError( xbin,   0.30376161445232830      );
+   xbin = id3->FindBin(  -1.0499999999999998      );
+  id3 -> SetBinContent( xbin,    8.6805315078761218      );
+  id3 -> SetBinError( xbin,   0.31216759324777038      );
+   xbin = id3->FindBin( -0.94999999999999973      );
+  id3 -> SetBinContent( xbin,    8.7510693272217353      );
+  id3 -> SetBinError( xbin,   0.31832197387839983      );
+   xbin = id3->FindBin( -0.84999999999999964      );
+  id3 -> SetBinContent( xbin,    8.7022899122619659      );
+  id3 -> SetBinError( xbin,   0.30590974539948435      );
+   xbin = id3->FindBin( -0.75000000000000000      );
+  id3 -> SetBinContent( xbin,    9.2242173065529158      );
+  id3 -> SetBinError( xbin,   0.32185281399414079      );
+   xbin = id3->FindBin( -0.64999999999999991      );
+  id3 -> SetBinContent( xbin,    9.3869714364068297      );
+  id3 -> SetBinError( xbin,   0.31305354709795624      );
+   xbin = id3->FindBin( -0.54999999999999982      );
+  id3 -> SetBinContent( xbin,    10.131015237310892      );
+  id3 -> SetBinError( xbin,   0.34168579480512551      );
+   xbin = id3->FindBin( -0.44999999999999973      );
+  id3 -> SetBinContent( xbin,    9.7477324886413648      );
+  id3 -> SetBinError( xbin,   0.31727417507413824      );
+   xbin = id3->FindBin( -0.34999999999999964      );
+  id3 -> SetBinContent( xbin,    9.2188453614586070      );
+  id3 -> SetBinError( xbin,   0.30371980992947134      );
+   xbin = id3->FindBin( -0.25000000000000000      );
+  id3 -> SetBinContent( xbin,    9.9554424934933188      );
+  id3 -> SetBinError( xbin,   0.32399170805433364      );
+   xbin = id3->FindBin( -0.14999999999999991      );
+  id3 -> SetBinContent( xbin,    9.8238725770711497      );
+  id3 -> SetBinError( xbin,   0.32017661639440448      );
+   xbin = id3->FindBin(  -4.9999999999999822E-002 );
+  id3 -> SetBinContent( xbin,    9.7321959277777665      );
+  id3 -> SetBinError( xbin,   0.32109957818330087      );
+   xbin = id3->FindBin(   4.9999999999999822E-002 );
+  id3 -> SetBinContent( xbin,    9.8778680642198928      );
+  id3 -> SetBinError( xbin,   0.32268646692768882      );
+   xbin = id3->FindBin(  0.15000000000000036      );
+  id3 -> SetBinContent( xbin,    9.8775069428458977      );
+  id3 -> SetBinError( xbin,   0.32063357394719344      );
+   xbin = id3->FindBin(  0.25000000000000000      );
+  id3 -> SetBinContent( xbin,    9.0266690558944731      );
+  id3 -> SetBinError( xbin,   0.31546810911640749      );
+   xbin = id3->FindBin(  0.35000000000000053      );
+  id3 -> SetBinContent( xbin,    9.1499138294378977      );
+  id3 -> SetBinError( xbin,   0.30574011330691336      );
+   xbin = id3->FindBin(  0.45000000000000018      );
+  id3 -> SetBinContent( xbin,    9.1703929342570909      );
+  id3 -> SetBinError( xbin,   0.30086728934673457      );
+   xbin = id3->FindBin(  0.54999999999999982      );
+  id3 -> SetBinContent( xbin,    9.4175283831080012      );
+  id3 -> SetBinError( xbin,   0.31831243023371558      );
+   xbin = id3->FindBin(  0.65000000000000036      );
+  id3 -> SetBinContent( xbin,    9.0733394970129133      );
+  id3 -> SetBinError( xbin,   0.29687394156704261      );
+   xbin = id3->FindBin(  0.75000000000000000      );
+  id3 -> SetBinContent( xbin,    8.5516968567616676      );
+  id3 -> SetBinError( xbin,   0.28950382277277042      );
+   xbin = id3->FindBin(  0.85000000000000053      );
+  id3 -> SetBinContent( xbin,    9.0299032525879870      );
+  id3 -> SetBinError( xbin,   0.31908601306027512      );
+   xbin = id3->FindBin(  0.95000000000000018      );
+  id3 -> SetBinContent( xbin,    8.5556029410974954      );
+  id3 -> SetBinError( xbin,   0.31254852182277654      );
+   xbin = id3->FindBin(   1.0500000000000007      );
+  id3 -> SetBinContent( xbin,    7.9929133895011688      );
+  id3 -> SetBinError( xbin,   0.30122176124186406      );
+   xbin = id3->FindBin(   1.1500000000000004      );
+  id3 -> SetBinContent( xbin,    8.3305501701417040      );
+  id3 -> SetBinError( xbin,   0.31679093112187018      );
+   xbin = id3->FindBin(   1.2500000000000000      );
+  id3 -> SetBinContent( xbin,    7.5475824192580010      );
+  id3 -> SetBinError( xbin,   0.28890582756042027      );
+   xbin = id3->FindBin(   1.3500000000000005      );
+  id3 -> SetBinContent( xbin,    5.0650120948151001      );
+  id3 -> SetBinError( xbin,   0.24591069219321626      );
+   xbin = id3->FindBin(   1.5500000000000007      );
+  id3 -> SetBinContent( xbin,    3.2021259860760414      );
+  id3 -> SetBinError( xbin,   0.21155141255123744      );
+   xbin = id3->FindBin(   1.6500000000000004      );
+  id3 -> SetBinContent( xbin,    7.3155100791026335      );
+  id3 -> SetBinError( xbin,   0.31242513795685922      );
+   xbin = id3->FindBin(   1.7500000000000000      );
+  id3 -> SetBinContent( xbin,    6.6502689906311829      );
+  id3 -> SetBinError( xbin,   0.30659683788892844      );
+   xbin = id3->FindBin(   1.8500000000000005      );
+  id3 -> SetBinContent( xbin,    6.3645447630772525      );
+  id3 -> SetBinError( xbin,   0.31494325096096087      );
+   xbin = id3->FindBin(   1.9500000000000002      );
+  id3 -> SetBinContent( xbin,    5.6794078617085519      );
+  id3 -> SetBinError( xbin,   0.26515827053148777      );
+   xbin = id3->FindBin(   2.0500000000000007      );
+  id3 -> SetBinContent( xbin,    5.9570741631363653      );
+  id3 -> SetBinError( xbin,   0.30557501756051292      );
+   xbin = id3->FindBin(   2.1500000000000004      );
+  id3 -> SetBinContent( xbin,    5.1291400952773687      );
+  id3 -> SetBinError( xbin,   0.28749165598955895      );
+   xbin = id3->FindBin(   2.2500000000000000      );
+  id3 -> SetBinContent( xbin,    5.4281450099079942      );
+  id3 -> SetBinError( xbin,   0.34259337939538465      );
+   xbin = id3->FindBin(   2.3500000000000005      );
+  id3 -> SetBinContent( xbin,    4.2548476880659480      );
+  id3 -> SetBinError( xbin,   0.27394335488338306      );
+   xbin = id3->FindBin(   2.4500000000000002      );
+  id3 -> SetBinContent( xbin,    4.1168692921843242      );
+  id3 -> SetBinError( xbin,   0.25259764182309252      );
+//  hist3 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist4 = new TH1F( "id4", "|Deta(3,4)|", 40,       0.0000,       4.0000);
+
+  id4 -> GetXaxis() -> SetTitle("|Deta(3,4)|");
+  id4 -> GetYaxis() -> SetTitle(" d#sigma/d|Deta(3,4)| [fb]");
+
+  id4 -> GetYaxis() -> SetTitleOffset(1.2);
+  id4 -> SetStats(false);
+   xbin = id4->FindBin(   5.0000000000000003E-002 );
+  id4 -> SetBinContent( xbin,    19.963809350530074      );
+  id4 -> SetBinError( xbin,   0.46946496337831872      );
+   xbin = id4->FindBin(  0.15000000000000002      );
+  id4 -> SetBinContent( xbin,    18.625012358418154      );
+  id4 -> SetBinError( xbin,   0.45641512816505020      );
+   xbin = id4->FindBin(  0.25000000000000000      );
+  id4 -> SetBinContent( xbin,    17.500154074245007      );
+  id4 -> SetBinError( xbin,   0.40692301238743134      );
+   xbin = id4->FindBin(  0.35000000000000003      );
+  id4 -> SetBinContent( xbin,    18.220665972615656      );
+  id4 -> SetBinError( xbin,   0.43124301715478258      );
+   xbin = id4->FindBin(  0.45000000000000001      );
+  id4 -> SetBinContent( xbin,    17.172491836461095      );
+  id4 -> SetBinError( xbin,   0.40152671008773544      );
+   xbin = id4->FindBin(  0.55000000000000004      );
+  id4 -> SetBinContent( xbin,    17.149362215603865      );
+  id4 -> SetBinError( xbin,   0.40167661155762602      );
+   xbin = id4->FindBin(  0.65000000000000002      );
+  id4 -> SetBinContent( xbin,    17.061189194977235      );
+  id4 -> SetBinError( xbin,   0.42975798772266954      );
+   xbin = id4->FindBin(  0.75000000000000000      );
+  id4 -> SetBinContent( xbin,    16.233658832254601      );
+  id4 -> SetBinError( xbin,   0.40384461419731421      );
+   xbin = id4->FindBin(  0.85000000000000009      );
+  id4 -> SetBinContent( xbin,    15.325400568878385      );
+  id4 -> SetBinError( xbin,   0.39142649407802554      );
+   xbin = id4->FindBin(  0.95000000000000007      );
+  id4 -> SetBinContent( xbin,    16.417307966836496      );
+  id4 -> SetBinError( xbin,   0.41009599457976820      );
+   xbin = id4->FindBin(   1.0500000000000000      );
+  id4 -> SetBinContent( xbin,    15.203599841179798      );
+  id4 -> SetBinError( xbin,   0.38900799585163021      );
+   xbin = id4->FindBin(   1.1500000000000001      );
+  id4 -> SetBinContent( xbin,    15.224662344706461      );
+  id4 -> SetBinError( xbin,   0.40851410177084851      );
+   xbin = id4->FindBin(   1.2500000000000000      );
+  id4 -> SetBinContent( xbin,    14.652197809408614      );
+  id4 -> SetBinError( xbin,   0.40885412513053737      );
+   xbin = id4->FindBin(   1.3500000000000001      );
+  id4 -> SetBinContent( xbin,    13.307977749333066      );
+  id4 -> SetBinError( xbin,   0.38197450966387703      );
+   xbin = id4->FindBin(   1.4500000000000002      );
+  id4 -> SetBinContent( xbin,    12.551477627534284      );
+  id4 -> SetBinError( xbin,   0.39073024720615135      );
+   xbin = id4->FindBin(   1.5500000000000000      );
+  id4 -> SetBinContent( xbin,    12.101898824518949      );
+  id4 -> SetBinError( xbin,   0.38562106178278099      );
+   xbin = id4->FindBin(   1.6500000000000001      );
+  id4 -> SetBinContent( xbin,    11.005790247774216      );
+  id4 -> SetBinError( xbin,   0.37697425256009470      );
+   xbin = id4->FindBin(   1.7500000000000000      );
+  id4 -> SetBinContent( xbin,    10.414238558571062      );
+  id4 -> SetBinError( xbin,   0.35478420669289162      );
+   xbin = id4->FindBin(   1.8500000000000001      );
+  id4 -> SetBinContent( xbin,    9.2862171463105323      );
+  id4 -> SetBinError( xbin,   0.34459518443437986      );
+   xbin = id4->FindBin(   1.9500000000000002      );
+  id4 -> SetBinContent( xbin,    8.1498424469779920      );
+  id4 -> SetBinError( xbin,   0.32326929459037529      );
+   xbin = id4->FindBin(   2.0500000000000003      );
+  id4 -> SetBinContent( xbin,    7.8845761989426011      );
+  id4 -> SetBinError( xbin,   0.32614522187302408      );
+   xbin = id4->FindBin(   2.1499999999999999      );
+  id4 -> SetBinContent( xbin,    7.5289522181600397      );
+  id4 -> SetBinError( xbin,   0.33849793191793892      );
+   xbin = id4->FindBin(   2.2500000000000000      );
+  id4 -> SetBinContent( xbin,    6.2781389168492341      );
+  id4 -> SetBinError( xbin,   0.30732552281534709      );
+   xbin = id4->FindBin(   2.3500000000000001      );
+  id4 -> SetBinContent( xbin,    5.8240817221611341      );
+  id4 -> SetBinError( xbin,   0.30181639498214885      );
+   xbin = id4->FindBin(   2.4500000000000002      );
+  id4 -> SetBinContent( xbin,    4.7085212404075723      );
+  id4 -> SetBinError( xbin,   0.28125988378765726      );
+   xbin = id4->FindBin(   2.5500000000000003      );
+  id4 -> SetBinContent( xbin,    4.7399219544961646      );
+  id4 -> SetBinError( xbin,   0.28237632990283712      );
+   xbin = id4->FindBin(   2.6500000000000004      );
+  id4 -> SetBinContent( xbin,    4.0471946438041408      );
+  id4 -> SetBinError( xbin,   0.28565609026380673      );
+   xbin = id4->FindBin(   2.7500000000000000      );
+  id4 -> SetBinContent( xbin,    3.5237820478914434      );
+  id4 -> SetBinError( xbin,   0.25989323098713374      );
+   xbin = id4->FindBin(   2.8500000000000001      );
+  id4 -> SetBinContent( xbin,    3.1955160588771041      );
+  id4 -> SetBinError( xbin,   0.25454573976636080      );
+   xbin = id4->FindBin(   2.9500000000000002      );
+  id4 -> SetBinContent( xbin,    2.6249879446463180      );
+  id4 -> SetBinError( xbin,   0.23913106847898449      );
+   xbin = id4->FindBin(   3.0500000000000003      );
+  id4 -> SetBinContent( xbin,    1.8866602932390382      );
+  id4 -> SetBinError( xbin,   0.20879211545791732      );
+   xbin = id4->FindBin(   3.1500000000000004      );
+  id4 -> SetBinContent( xbin,    1.5983592845245569      );
+  id4 -> SetBinError( xbin,   0.19864374404461216      );
+   xbin = id4->FindBin(   3.2500000000000000      );
+  id4 -> SetBinContent( xbin,    1.2461804786120927      );
+  id4 -> SetBinError( xbin,   0.16345623612102514      );
+   xbin = id4->FindBin(   3.3500000000000001      );
+  id4 -> SetBinContent( xbin,    1.1642779578387192      );
+  id4 -> SetBinError( xbin,   0.17037811003277450      );
+   xbin = id4->FindBin(   3.4500000000000002      );
+  id4 -> SetBinContent( xbin,   0.50069032357251608      );
+  id4 -> SetBinError( xbin,   0.11563301701842921      );
+   xbin = id4->FindBin(   3.5500000000000003      );
+  id4 -> SetBinContent( xbin,   0.35277811308949403      );
+  id4 -> SetBinError( xbin,    9.4957129215041042E-002 );
+   xbin = id4->FindBin(   3.6500000000000004      );
+  id4 -> SetBinContent( xbin,   0.55227512484217645      );
+  id4 -> SetBinError( xbin,   0.12951157097931704      );
+   xbin = id4->FindBin(   3.7500000000000000      );
+  id4 -> SetBinContent( xbin,   0.42118713042662526      );
+  id4 -> SetBinError( xbin,   0.12177627408647634      );
+   xbin = id4->FindBin(   3.8500000000000001      );
+  id4 -> SetBinContent( xbin,   0.32592402863459680      );
+  id4 -> SetBinError( xbin,   0.11971270406758242      );
+   xbin = id4->FindBin(   3.9500000000000002      );
+  id4 -> SetBinContent( xbin,    3.9511057231696820E-003 );
+  id4 -> SetBinError( xbin,    3.6309246932420170E-003 );
+//  hist4 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist5 = new TH1F( "id5", "|Deta(3,5)|", 40,       0.0000,       4.0000);
+
+  id5 -> GetXaxis() -> SetTitle("|Deta(3,5)|");
+  id5 -> GetYaxis() -> SetTitle(" d#sigma/d|Deta(3,5)| [fb]");
+
+  id5 -> GetYaxis() -> SetTitleOffset(1.2);
+  id5 -> SetStats(false);
+   xbin = id5->FindBin(   5.0000000000000003E-002 );
+  id5 -> SetBinContent( xbin,    21.270973115503718      );
+  id5 -> SetBinError( xbin,   0.51234171176627263      );
+   xbin = id5->FindBin(  0.15000000000000002      );
+  id5 -> SetBinContent( xbin,    19.288205703217926      );
+  id5 -> SetBinError( xbin,   0.49470530536269086      );
+   xbin = id5->FindBin(  0.25000000000000000      );
+  id5 -> SetBinContent( xbin,    19.431844010940562      );
+  id5 -> SetBinError( xbin,   0.49832171035495726      );
+   xbin = id5->FindBin(  0.35000000000000003      );
+  id5 -> SetBinContent( xbin,    18.424988064160775      );
+  id5 -> SetBinError( xbin,   0.47550255425950111      );
+   xbin = id5->FindBin(  0.45000000000000001      );
+  id5 -> SetBinContent( xbin,    18.234555068549287      );
+  id5 -> SetBinError( xbin,   0.46057406675181917      );
+   xbin = id5->FindBin(  0.55000000000000004      );
+  id5 -> SetBinContent( xbin,    17.736518960637444      );
+  id5 -> SetBinError( xbin,   0.42859270516476128      );
+   xbin = id5->FindBin(  0.65000000000000002      );
+  id5 -> SetBinContent( xbin,    17.232549829223753      );
+  id5 -> SetBinError( xbin,   0.45164358078245193      );
+   xbin = id5->FindBin(  0.75000000000000000      );
+  id5 -> SetBinContent( xbin,    16.494321240297264      );
+  id5 -> SetBinError( xbin,   0.44075008207350952      );
+   xbin = id5->FindBin(  0.85000000000000009      );
+  id5 -> SetBinContent( xbin,    15.495007006859479      );
+  id5 -> SetBinError( xbin,   0.40735444919609443      );
+   xbin = id5->FindBin(  0.95000000000000007      );
+  id5 -> SetBinContent( xbin,    14.696600512590820      );
+  id5 -> SetBinError( xbin,   0.39653250810922203      );
+   xbin = id5->FindBin(   1.0500000000000000      );
+  id5 -> SetBinContent( xbin,    14.971846799189013      );
+  id5 -> SetBinError( xbin,   0.40387126416792357      );
+   xbin = id5->FindBin(   1.1500000000000001      );
+  id5 -> SetBinContent( xbin,    14.106490715045460      );
+  id5 -> SetBinError( xbin,   0.39273225027582453      );
+   xbin = id5->FindBin(   1.2500000000000000      );
+  id5 -> SetBinContent( xbin,    13.691901522214666      );
+  id5 -> SetBinError( xbin,   0.39366838649358699      );
+   xbin = id5->FindBin(   1.3500000000000001      );
+  id5 -> SetBinContent( xbin,    14.041679295991841      );
+  id5 -> SetBinError( xbin,   0.42129567655835953      );
+   xbin = id5->FindBin(   1.4500000000000002      );
+  id5 -> SetBinContent( xbin,    12.125541710062270      );
+  id5 -> SetBinError( xbin,   0.38335353814755829      );
+   xbin = id5->FindBin(   1.5500000000000000      );
+  id5 -> SetBinContent( xbin,    11.196591607605676      );
+  id5 -> SetBinError( xbin,   0.36585617970453604      );
+   xbin = id5->FindBin(   1.6500000000000001      );
+  id5 -> SetBinContent( xbin,    10.202503075946618      );
+  id5 -> SetBinError( xbin,   0.34155627986813591      );
+   xbin = id5->FindBin(   1.7500000000000000      );
+  id5 -> SetBinContent( xbin,    9.9054691982281842      );
+  id5 -> SetBinError( xbin,   0.34738792313410199      );
+   xbin = id5->FindBin(   1.8500000000000001      );
+  id5 -> SetBinContent( xbin,    9.0661879907257301      );
+  id5 -> SetBinError( xbin,   0.33242755414184139      );
+   xbin = id5->FindBin(   1.9500000000000002      );
+  id5 -> SetBinContent( xbin,    8.1445266837945134      );
+  id5 -> SetBinError( xbin,   0.29738784978215060      );
+   xbin = id5->FindBin(   2.0500000000000003      );
+  id5 -> SetBinContent( xbin,    7.5978561631424268      );
+  id5 -> SetBinError( xbin,   0.31299682255622929      );
+   xbin = id5->FindBin(   2.1499999999999999      );
+  id5 -> SetBinContent( xbin,    7.3332937189593217      );
+  id5 -> SetBinError( xbin,   0.31859975429285048      );
+   xbin = id5->FindBin(   2.2500000000000000      );
+  id5 -> SetBinContent( xbin,    5.9096518942371610      );
+  id5 -> SetBinError( xbin,   0.27594403602231282      );
+   xbin = id5->FindBin(   2.3500000000000001      );
+  id5 -> SetBinContent( xbin,    5.3906725256624961      );
+  id5 -> SetBinError( xbin,   0.26921088609428306      );
+   xbin = id5->FindBin(   2.4500000000000002      );
+  id5 -> SetBinContent( xbin,    4.8798539893784714      );
+  id5 -> SetBinError( xbin,   0.25150045008728833      );
+   xbin = id5->FindBin(   2.5500000000000003      );
+  id5 -> SetBinContent( xbin,    4.9483907814937931      );
+  id5 -> SetBinError( xbin,   0.26878572114444055      );
+   xbin = id5->FindBin(   2.6500000000000004      );
+  id5 -> SetBinContent( xbin,    3.8409807182097584      );
+  id5 -> SetBinError( xbin,   0.24006058071033784      );
+   xbin = id5->FindBin(   2.7500000000000000      );
+  id5 -> SetBinContent( xbin,    3.2885139594572959      );
+  id5 -> SetBinError( xbin,   0.21755230466821765      );
+   xbin = id5->FindBin(   2.8500000000000001      );
+  id5 -> SetBinContent( xbin,    3.0492493823158635      );
+  id5 -> SetBinError( xbin,   0.20970196644480535      );
+   xbin = id5->FindBin(   2.9500000000000002      );
+  id5 -> SetBinContent( xbin,    2.4486797771053133      );
+  id5 -> SetBinError( xbin,   0.19779202153234368      );
+   xbin = id5->FindBin(   3.0500000000000003      );
+  id5 -> SetBinContent( xbin,    2.7126165742919008      );
+  id5 -> SetBinError( xbin,   0.21251105217661090      );
+   xbin = id5->FindBin(   3.1500000000000004      );
+  id5 -> SetBinContent( xbin,    1.5647195335793052      );
+  id5 -> SetBinError( xbin,   0.16370753990544273      );
+   xbin = id5->FindBin(   3.2500000000000000      );
+  id5 -> SetBinContent( xbin,    1.3917769429549174      );
+  id5 -> SetBinError( xbin,   0.14687563328681505      );
+   xbin = id5->FindBin(   3.3500000000000001      );
+  id5 -> SetBinContent( xbin,    1.2070466785618343      );
+  id5 -> SetBinError( xbin,   0.14843238062269157      );
+   xbin = id5->FindBin(   3.4500000000000002      );
+  id5 -> SetBinContent( xbin,   0.67098976716517977      );
+  id5 -> SetBinError( xbin,   0.10681335031510564      );
+   xbin = id5->FindBin(   3.5500000000000003      );
+  id5 -> SetBinContent( xbin,   0.90034951469840929      );
+  id5 -> SetBinError( xbin,   0.13331223071017828      );
+   xbin = id5->FindBin(   3.6500000000000004      );
+  id5 -> SetBinContent( xbin,   0.35283857845305877      );
+  id5 -> SetBinError( xbin,    7.3168960518552678E-002 );
+   xbin = id5->FindBin(   3.7500000000000000      );
+  id5 -> SetBinContent( xbin,   0.21494141450968676      );
+  id5 -> SetBinError( xbin,    6.0570836883372559E-002 );
+   xbin = id5->FindBin(   3.8500000000000001      );
+  id5 -> SetBinContent( xbin,   0.27006153811637107      );
+  id5 -> SetBinError( xbin,    7.9318532109717690E-002 );
+   xbin = id5->FindBin(   3.9500000000000002      );
+  id5 -> SetBinContent( xbin,    9.0142926478519445E-002 );
+  id5 -> SetBinError( xbin,    3.7373685094151433E-002 );
+//  hist5 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist6 = new TH1F( "id6", "|Deta(4,5)|", 40,       0.0000,       4.0000);
+
+  id6 -> GetXaxis() -> SetTitle("|Deta(4,5)|");
+  id6 -> GetYaxis() -> SetTitle(" d#sigma/d|Deta(4,5)| [fb]");
+
+  id6 -> GetYaxis() -> SetTitleOffset(1.2);
+  id6 -> SetStats(false);
+   xbin = id6->FindBin(   5.0000000000000003E-002 );
+  id6 -> SetBinContent( xbin,    19.041463536720958      );
+  id6 -> SetBinError( xbin,   0.48904654487973626      );
+   xbin = id6->FindBin(  0.15000000000000002      );
+  id6 -> SetBinContent( xbin,    18.289295093631139      );
+  id6 -> SetBinError( xbin,   0.49462712340638798      );
+   xbin = id6->FindBin(  0.25000000000000000      );
+  id6 -> SetBinContent( xbin,    19.139459011421838      );
+  id6 -> SetBinError( xbin,   0.51349215363320777      );
+   xbin = id6->FindBin(  0.35000000000000003      );
+  id6 -> SetBinContent( xbin,    18.309585500890126      );
+  id6 -> SetBinError( xbin,   0.49941636690709335      );
+   xbin = id6->FindBin(  0.45000000000000001      );
+  id6 -> SetBinContent( xbin,    19.845712939087878      );
+  id6 -> SetBinError( xbin,   0.50749257638691148      );
+   xbin = id6->FindBin(  0.55000000000000004      );
+  id6 -> SetBinContent( xbin,    19.153523215841840      );
+  id6 -> SetBinError( xbin,   0.50128449487912163      );
+   xbin = id6->FindBin(  0.65000000000000002      );
+  id6 -> SetBinContent( xbin,    19.042260299711174      );
+  id6 -> SetBinError( xbin,   0.48032909941011726      );
+   xbin = id6->FindBin(  0.75000000000000000      );
+  id6 -> SetBinContent( xbin,    16.164683472570193      );
+  id6 -> SetBinError( xbin,   0.40230562087171884      );
+   xbin = id6->FindBin(  0.85000000000000009      );
+  id6 -> SetBinContent( xbin,    17.350052297887768      );
+  id6 -> SetBinError( xbin,   0.46953957542482633      );
+   xbin = id6->FindBin(  0.95000000000000007      );
+  id6 -> SetBinContent( xbin,    15.645075353130865      );
+  id6 -> SetBinError( xbin,   0.42336364637382196      );
+   xbin = id6->FindBin(   1.0500000000000000      );
+  id6 -> SetBinContent( xbin,    15.635479613955299      );
+  id6 -> SetBinError( xbin,   0.42310561332580671      );
+   xbin = id6->FindBin(   1.1500000000000001      );
+  id6 -> SetBinContent( xbin,    15.519149240206710      );
+  id6 -> SetBinError( xbin,   0.42782141700436005      );
+   xbin = id6->FindBin(   1.2500000000000000      );
+  id6 -> SetBinContent( xbin,    14.113907137435586      );
+  id6 -> SetBinError( xbin,   0.39549919355363838      );
+   xbin = id6->FindBin(   1.3500000000000001      );
+  id6 -> SetBinContent( xbin,    12.506022613069531      );
+  id6 -> SetBinError( xbin,   0.36694659307460298      );
+   xbin = id6->FindBin(   1.4500000000000002      );
+  id6 -> SetBinContent( xbin,    12.347128696422336      );
+  id6 -> SetBinError( xbin,   0.38389387678473175      );
+   xbin = id6->FindBin(   1.5500000000000000      );
+  id6 -> SetBinContent( xbin,    11.107470254374951      );
+  id6 -> SetBinError( xbin,   0.34687432603139801      );
+   xbin = id6->FindBin(   1.6500000000000001      );
+  id6 -> SetBinContent( xbin,    11.227983924889401      );
+  id6 -> SetBinError( xbin,   0.35456645701652106      );
+   xbin = id6->FindBin(   1.7500000000000000      );
+  id6 -> SetBinContent( xbin,    9.8739211430622245      );
+  id6 -> SetBinError( xbin,   0.34171108091002739      );
+   xbin = id6->FindBin(   1.8500000000000001      );
+  id6 -> SetBinContent( xbin,    8.9090439117839733      );
+  id6 -> SetBinError( xbin,   0.33375394767586991      );
+   xbin = id6->FindBin(   1.9500000000000002      );
+  id6 -> SetBinContent( xbin,    7.9764925094891073      );
+  id6 -> SetBinError( xbin,   0.30513772793421290      );
+   xbin = id6->FindBin(   2.0500000000000003      );
+  id6 -> SetBinContent( xbin,    6.3479856503742589      );
+  id6 -> SetBinError( xbin,   0.25421481008189944      );
+   xbin = id6->FindBin(   2.1499999999999999      );
+  id6 -> SetBinContent( xbin,    6.1405211679245699      );
+  id6 -> SetBinError( xbin,   0.27010669541377552      );
+   xbin = id6->FindBin(   2.2500000000000000      );
+  id6 -> SetBinContent( xbin,    5.7209061530182739      );
+  id6 -> SetBinError( xbin,   0.27013320636507598      );
+   xbin = id6->FindBin(   2.3500000000000001      );
+  id6 -> SetBinContent( xbin,    4.9051440936751938      );
+  id6 -> SetBinError( xbin,   0.22889872297678532      );
+   xbin = id6->FindBin(   2.4500000000000002      );
+  id6 -> SetBinContent( xbin,    4.2530019981766749      );
+  id6 -> SetBinError( xbin,   0.22409189226411938      );
+   xbin = id6->FindBin(   2.5500000000000003      );
+  id6 -> SetBinContent( xbin,    4.2146603383457268      );
+  id6 -> SetBinError( xbin,   0.23714426340549058      );
+   xbin = id6->FindBin(   2.6500000000000004      );
+  id6 -> SetBinContent( xbin,    3.3586494972620522      );
+  id6 -> SetBinError( xbin,   0.21383983303371501      );
+   xbin = id6->FindBin(   2.7500000000000000      );
+  id6 -> SetBinContent( xbin,    3.1907634114047871      );
+  id6 -> SetBinError( xbin,   0.21832052182982956      );
+   xbin = id6->FindBin(   2.8500000000000001      );
+  id6 -> SetBinContent( xbin,    2.7653480226955334      );
+  id6 -> SetBinError( xbin,   0.18014093004096959      );
+   xbin = id6->FindBin(   2.9500000000000002      );
+  id6 -> SetBinContent( xbin,    2.3375144126462746      );
+  id6 -> SetBinError( xbin,   0.16728983557284602      );
+   xbin = id6->FindBin(   3.0500000000000003      );
+  id6 -> SetBinContent( xbin,    2.0294995021380950      );
+  id6 -> SetBinError( xbin,   0.16824627035531586      );
+   xbin = id6->FindBin(   3.1500000000000004      );
+  id6 -> SetBinContent( xbin,    1.7513294528201693      );
+  id6 -> SetBinError( xbin,   0.15425083478540771      );
+   xbin = id6->FindBin(   3.2500000000000000      );
+  id6 -> SetBinContent( xbin,    1.5023060804120367      );
+  id6 -> SetBinError( xbin,   0.14312970378296039      );
+   xbin = id6->FindBin(   3.3500000000000001      );
+  id6 -> SetBinContent( xbin,   0.96395076799032742      );
+  id6 -> SetBinError( xbin,   0.12099097231127172      );
+   xbin = id6->FindBin(   3.4500000000000002      );
+  id6 -> SetBinContent( xbin,   0.31960996546809384      );
+  id6 -> SetBinError( xbin,    5.7099397223000656E-002 );
+   xbin = id6->FindBin(   3.5500000000000003      );
+  id6 -> SetBinContent( xbin,   0.43348404961651027      );
+  id6 -> SetBinError( xbin,    7.7963522044396230E-002 );
+   xbin = id6->FindBin(   3.6500000000000004      );
+  id6 -> SetBinContent( xbin,   0.31374838068347211      );
+  id6 -> SetBinError( xbin,    6.5792370272611075E-002 );
+   xbin = id6->FindBin(   3.7500000000000000      );
+  id6 -> SetBinContent( xbin,   0.58030768670516220      );
+  id6 -> SetBinError( xbin,   0.10373980387801909      );
+   xbin = id6->FindBin(   3.8500000000000001      );
+  id6 -> SetBinContent( xbin,   0.20931891695095789      );
+  id6 -> SetBinError( xbin,    5.2040417868416781E-002 );
+   xbin = id6->FindBin(   3.9500000000000002      );
+  id6 -> SetBinContent( xbin,    3.5958414477364635E-002 );
+  id6 -> SetBinError( xbin,    1.6345939268411623E-002 );
+//  hist6 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist7 = new TH1F( "id7", "Delta Phi(3,4)", 40,       0.0000,       4.0000);
+
+  id7 -> GetXaxis() -> SetTitle("Delta Phi(3,4)");
+  id7 -> GetYaxis() -> SetTitle(" d#sigma/dDelta Phi(3,4) [fb]");
+
+  id7 -> GetYaxis() -> SetTitleOffset(1.2);
+  id7 -> SetStats(false);
+   xbin = id7->FindBin(   2.0500000000000003      );
+  id7 -> SetBinContent( xbin,    2.2509572349337235E-002 );
+  id7 -> SetBinError( xbin,    1.1606677780944154E-002 );
+   xbin = id7->FindBin(   2.1499999999999999      );
+  id7 -> SetBinContent( xbin,    5.2139510711091477      );
+  id7 -> SetBinError( xbin,   0.30798162090079595      );
+   xbin = id7->FindBin(   2.2500000000000000      );
+  id7 -> SetBinContent( xbin,    16.088846253100272      );
+  id7 -> SetBinError( xbin,   0.51811015033455288      );
+   xbin = id7->FindBin(   2.3500000000000001      );
+  id7 -> SetBinContent( xbin,    24.335014144104587      );
+  id7 -> SetBinError( xbin,   0.59921117043768679      );
+   xbin = id7->FindBin(   2.4500000000000002      );
+  id7 -> SetBinContent( xbin,    31.569295936773575      );
+  id7 -> SetBinError( xbin,   0.66334279791027673      );
+   xbin = id7->FindBin(   2.5500000000000003      );
+  id7 -> SetBinContent( xbin,    38.464922936327696      );
+  id7 -> SetBinError( xbin,   0.69500618944348969      );
+   xbin = id7->FindBin(   2.6500000000000004      );
+  id7 -> SetBinContent( xbin,    43.643399709071069      );
+  id7 -> SetBinError( xbin,   0.69414808294878561      );
+   xbin = id7->FindBin(   2.7500000000000000      );
+  id7 -> SetBinContent( xbin,    47.038293346973731      );
+  id7 -> SetBinError( xbin,   0.74108052022681170      );
+   xbin = id7->FindBin(   2.8500000000000001      );
+  id7 -> SetBinContent( xbin,    48.953248313514386      );
+  id7 -> SetBinError( xbin,   0.74194988438622222      );
+   xbin = id7->FindBin(   2.9500000000000002      );
+  id7 -> SetBinContent( xbin,    50.892111596444792      );
+  id7 -> SetBinError( xbin,   0.79990250840050425      );
+   xbin = id7->FindBin(   3.0500000000000003      );
+  id7 -> SetBinContent( xbin,    41.743255496563840      );
+  id7 -> SetBinError( xbin,   0.74943632016977568      );
+   xbin = id7->FindBin(   3.1500000000000004      );
+  id7 -> SetBinContent( xbin,    14.566524836821664      );
+  id7 -> SetBinError( xbin,   0.44500376849399642      );
+//  hist7 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist8 = new TH1F( "id8", "Delta Phi(3,5)", 40,       0.0000,       4.0000);
+
+  id8 -> GetXaxis() -> SetTitle("Delta Phi(3,5)");
+  id8 -> GetYaxis() -> SetTitle(" d#sigma/dDelta Phi(3,5) [fb]");
+
+  id8 -> GetYaxis() -> SetTitleOffset(1.2);
+  id8 -> SetStats(false);
+   xbin = id8->FindBin(   1.6500000000000001      );
+  id8 -> SetBinContent( xbin,   0.29313825186459425      );
+  id8 -> SetBinError( xbin,    4.9475889556876221E-002 );
+   xbin = id8->FindBin(   1.7500000000000000      );
+  id8 -> SetBinContent( xbin,    3.6006525159646636      );
+  id8 -> SetBinError( xbin,   0.19707601328253427      );
+   xbin = id8->FindBin(   1.8500000000000001      );
+  id8 -> SetBinContent( xbin,    10.784724641321541      );
+  id8 -> SetBinError( xbin,   0.33073941321265138      );
+   xbin = id8->FindBin(   1.9500000000000002      );
+  id8 -> SetBinContent( xbin,    20.485502578013225      );
+  id8 -> SetBinError( xbin,   0.48740188165980530      );
+   xbin = id8->FindBin(   2.0500000000000003      );
+  id8 -> SetBinContent( xbin,    34.780108189656843      );
+  id8 -> SetBinError( xbin,   0.68398682420807977      );
+   xbin = id8->FindBin(   2.1499999999999999      );
+  id8 -> SetBinContent( xbin,    38.358950588450313      );
+  id8 -> SetBinError( xbin,   0.71950966925726989      );
+   xbin = id8->FindBin(   2.2500000000000000      );
+  id8 -> SetBinContent( xbin,    34.946179867522254      );
+  id8 -> SetBinError( xbin,   0.67690686139551148      );
+   xbin = id8->FindBin(   2.3500000000000001      );
+  id8 -> SetBinContent( xbin,    32.140036427918425      );
+  id8 -> SetBinError( xbin,   0.63940126230533612      );
+   xbin = id8->FindBin(   2.4500000000000002      );
+  id8 -> SetBinContent( xbin,    28.825967528672290      );
+  id8 -> SetBinError( xbin,   0.60119766787082918      );
+   xbin = id8->FindBin(   2.5500000000000003      );
+  id8 -> SetBinContent( xbin,    28.287446949733415      );
+  id8 -> SetBinError( xbin,   0.57508859823199865      );
+   xbin = id8->FindBin(   2.6500000000000004      );
+  id8 -> SetBinContent( xbin,    27.901858373433395      );
+  id8 -> SetBinError( xbin,   0.58912976204803624      );
+   xbin = id8->FindBin(   2.7500000000000000      );
+  id8 -> SetBinContent( xbin,    26.418220903912999      );
+  id8 -> SetBinError( xbin,   0.56986671017288149      );
+   xbin = id8->FindBin(   2.8500000000000001      );
+  id8 -> SetBinContent( xbin,    24.663043743170995      );
+  id8 -> SetBinError( xbin,   0.54102762040443553      );
+   xbin = id8->FindBin(   2.9500000000000002      );
+  id8 -> SetBinContent( xbin,    22.503572255488759      );
+  id8 -> SetBinError( xbin,   0.55942604573052090      );
+   xbin = id8->FindBin(   3.0500000000000003      );
+  id8 -> SetBinContent( xbin,    20.013860647694099      );
+  id8 -> SetBinError( xbin,   0.55084005717547502      );
+   xbin = id8->FindBin(   3.1500000000000004      );
+  id8 -> SetBinContent( xbin,    7.5527281376142072      );
+  id8 -> SetBinError( xbin,   0.28512133837223230      );
+//  hist8 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist9 = new TH1F( "id9", "Delta Phi(4,5)", 40,       0.0000,       4.0000);
+
+  id9 -> GetXaxis() -> SetTitle("Delta Phi(4,5)");
+  id9 -> GetYaxis() -> SetTitle(" d#sigma/dDelta Phi(4,5) [fb]");
+
+  id9 -> GetYaxis() -> SetTitleOffset(1.2);
+  id9 -> SetStats(false);
+   xbin = id9->FindBin(   5.0000000000000003E-002 );
+  id9 -> SetBinContent( xbin,    11.276705460798285      );
+  id9 -> SetBinError( xbin,   0.34877348365288746      );
+   xbin = id9->FindBin(  0.15000000000000002      );
+  id9 -> SetBinContent( xbin,    12.212198381292541      );
+  id9 -> SetBinError( xbin,   0.40866334776172247      );
+   xbin = id9->FindBin(  0.25000000000000000      );
+  id9 -> SetBinContent( xbin,    12.069167358926929      );
+  id9 -> SetBinError( xbin,   0.41711678145242198      );
+   xbin = id9->FindBin(  0.35000000000000003      );
+  id9 -> SetBinContent( xbin,    13.511073452633989      );
+  id9 -> SetBinError( xbin,   0.39570337243283610      );
+   xbin = id9->FindBin(  0.45000000000000001      );
+  id9 -> SetBinContent( xbin,    16.032962561247317      );
+  id9 -> SetBinError( xbin,   0.45322635518038329      );
+   xbin = id9->FindBin(  0.55000000000000004      );
+  id9 -> SetBinContent( xbin,    15.998891730527390      );
+  id9 -> SetBinError( xbin,   0.44300697002664524      );
+   xbin = id9->FindBin(  0.65000000000000002      );
+  id9 -> SetBinContent( xbin,    16.130305179265097      );
+  id9 -> SetBinError( xbin,   0.43959606386777261      );
+   xbin = id9->FindBin(  0.75000000000000000      );
+  id9 -> SetBinContent( xbin,    16.388219744814471      );
+  id9 -> SetBinError( xbin,   0.44008091358992502      );
+   xbin = id9->FindBin(  0.85000000000000009      );
+  id9 -> SetBinContent( xbin,    17.201640269364333      );
+  id9 -> SetBinError( xbin,   0.43894737996292837      );
+   xbin = id9->FindBin(  0.95000000000000007      );
+  id9 -> SetBinContent( xbin,    16.951408547294708      );
+  id9 -> SetBinError( xbin,   0.43767365544811804      );
+   xbin = id9->FindBin(   1.0500000000000000      );
+  id9 -> SetBinContent( xbin,    18.447948051391972      );
+  id9 -> SetBinError( xbin,   0.49375745204182209      );
+   xbin = id9->FindBin(   1.1500000000000001      );
+  id9 -> SetBinContent( xbin,    18.631271131128809      );
+  id9 -> SetBinError( xbin,   0.46713922287507292      );
+   xbin = id9->FindBin(   1.2500000000000000      );
+  id9 -> SetBinContent( xbin,    20.335216171012057      );
+  id9 -> SetBinError( xbin,   0.49740666369380454      );
+   xbin = id9->FindBin(   1.3500000000000001      );
+  id9 -> SetBinContent( xbin,    20.716717279784195      );
+  id9 -> SetBinError( xbin,   0.51648637764329786      );
+   xbin = id9->FindBin(   1.4500000000000002      );
+  id9 -> SetBinContent( xbin,    22.431594878229259      );
+  id9 -> SetBinError( xbin,   0.52628624869941742      );
+   xbin = id9->FindBin(   1.5500000000000000      );
+  id9 -> SetBinContent( xbin,    24.295798897418237      );
+  id9 -> SetBinError( xbin,   0.55747767709544138      );
+   xbin = id9->FindBin(   1.6500000000000001      );
+  id9 -> SetBinContent( xbin,    24.971807360336122      );
+  id9 -> SetBinError( xbin,   0.55857982113611993      );
+   xbin = id9->FindBin(   1.7500000000000000      );
+  id9 -> SetBinContent( xbin,    23.596788666039497      );
+  id9 -> SetBinError( xbin,   0.53824356696482778      );
+   xbin = id9->FindBin(   1.8500000000000001      );
+  id9 -> SetBinContent( xbin,    20.131020775703050      );
+  id9 -> SetBinError( xbin,   0.51513994391466966      );
+   xbin = id9->FindBin(   1.9500000000000002      );
+  id9 -> SetBinContent( xbin,    13.441414195866402      );
+  id9 -> SetBinError( xbin,   0.44845148275676566      );
+   xbin = id9->FindBin(   2.0500000000000003      );
+  id9 -> SetBinContent( xbin,    4.6169898865440668      );
+  id9 -> SetBinError( xbin,   0.30257430575924632      );
+//  hist9 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist10 = new TH1F( "id10", "cms phi 1", 3,       0.0000,       0.6000);
+
+  id10 -> GetXaxis() -> SetTitle("cms phi 1");
+  id10 -> GetYaxis() -> SetTitle(" d#sigma/dcms phi 1 [fb]");
+
+  id10 -> GetYaxis() -> SetTitleOffset(1.2);
+  id10 -> SetStats(false);
+   xbin = id10->FindBin(  0.10000000000000001      );
+  id10 -> SetBinContent( xbin,    14.753630518374749      );
+  id10 -> SetBinError( xbin,   0.29194819941296341      );
+   xbin = id10->FindBin(  0.30000000000000004      );
+  id10 -> SetBinContent( xbin,    18.834069354838039      );
+  id10 -> SetBinError( xbin,   0.33621767251585150      );
+   xbin = id10->FindBin(  0.50000000000000000      );
+  id10 -> SetBinContent( xbin,    26.098635690331125      );
+  id10 -> SetBinError( xbin,   0.40684338789691266      );
+//  hist10 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist11 = new TH1F( "id11", "pt(3)", 40,       0.0000,     200.0000);
+
+  id11 -> GetXaxis() -> SetTitle("pt(3)");
+  id11 -> GetYaxis() -> SetTitle(" d#sigma/dpt(3) [fb]");
+
+  id11 -> GetYaxis() -> SetTitleOffset(1.2);
+  id11 -> SetStats(false);
+   xbin = id11->FindBin(   17.500000000000000      );
+  id11 -> SetBinContent( xbin,    8.9767068520263768E-002 );
+  id11 -> SetBinError( xbin,    7.9401945216845612E-003 );
+   xbin = id11->FindBin(   22.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.45664821383417825      );
+  id11 -> SetBinError( xbin,    1.4224635650957143E-002 );
+   xbin = id11->FindBin(   27.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.71820479441189711      );
+  id11 -> SetBinError( xbin,    1.6023705410640496E-002 );
+   xbin = id11->FindBin(   32.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.96970600871974344      );
+  id11 -> SetBinError( xbin,    1.7781495460812213E-002 );
+   xbin = id11->FindBin(   37.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.89655564148586453      );
+  id11 -> SetBinError( xbin,    1.5333095195627313E-002 );
+   xbin = id11->FindBin(   42.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.73436095040280580      );
+  id11 -> SetBinError( xbin,    1.3027210216369644E-002 );
+   xbin = id11->FindBin(   47.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.58853277149019978      );
+  id11 -> SetBinError( xbin,    1.0395765427209191E-002 );
+   xbin = id11->FindBin(   52.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.46745777585270104      );
+  id11 -> SetBinError( xbin,    9.1797642978355409E-003 );
+   xbin = id11->FindBin(   57.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.35815020074324838      );
+  id11 -> SetBinError( xbin,    7.4303315556062850E-003 );
+   xbin = id11->FindBin(   62.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.29753507388991685      );
+  id11 -> SetBinError( xbin,    7.0457119769932941E-003 );
+   xbin = id11->FindBin(   67.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.23582421960430114      );
+  id11 -> SetBinError( xbin,    5.6719116392676822E-003 );
+   xbin = id11->FindBin(   72.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.19806810101507510      );
+  id11 -> SetBinError( xbin,    5.5508305581136062E-003 );
+   xbin = id11->FindBin(   77.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.15974596556146214      );
+  id11 -> SetBinError( xbin,    4.8733478738570120E-003 );
+   xbin = id11->FindBin(   82.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.13458444745519829      );
+  id11 -> SetBinError( xbin,    4.4115887064401114E-003 );
+   xbin = id11->FindBin(   87.500000000000000      );
+  id11 -> SetBinContent( xbin,   0.11172496272889966      );
+  id11 -> SetBinError( xbin,    3.7471300644097909E-003 );
+   xbin = id11->FindBin(   92.500000000000000      );
+  id11 -> SetBinContent( xbin,    9.4390426721746482E-002 );
+  id11 -> SetBinError( xbin,    3.4327497282526545E-003 );
+   xbin = id11->FindBin(   97.500000000000000      );
+  id11 -> SetBinContent( xbin,    7.2848180085668263E-002 );
+  id11 -> SetBinError( xbin,    3.0420381722969596E-003 );
+   xbin = id11->FindBin(   102.50000000000000      );
+  id11 -> SetBinContent( xbin,    6.5813809463411990E-002 );
+  id11 -> SetBinError( xbin,    2.9454660011160806E-003 );
+   xbin = id11->FindBin(   107.50000000000000      );
+  id11 -> SetBinContent( xbin,    5.6410191817298831E-002 );
+  id11 -> SetBinError( xbin,    2.6414776828902285E-003 );
+   xbin = id11->FindBin(   112.50000000000000      );
+  id11 -> SetBinContent( xbin,    5.9979192859170846E-002 );
+  id11 -> SetBinError( xbin,    3.3085474985166930E-003 );
+   xbin = id11->FindBin(   117.50000000000000      );
+  id11 -> SetBinContent( xbin,    4.1653218712332088E-002 );
+  id11 -> SetBinError( xbin,    2.1367211685598070E-003 );
+   xbin = id11->FindBin(   122.50000000000000      );
+  id11 -> SetBinContent( xbin,    3.7789057391378111E-002 );
+  id11 -> SetBinError( xbin,    2.2994350539328754E-003 );
+   xbin = id11->FindBin(   127.50000000000000      );
+  id11 -> SetBinContent( xbin,    2.9969886774194949E-002 );
+  id11 -> SetBinError( xbin,    1.9819792014089312E-003 );
+   xbin = id11->FindBin(   132.50000000000000      );
+  id11 -> SetBinContent( xbin,    2.7478466376979854E-002 );
+  id11 -> SetBinError( xbin,    2.0510386802178007E-003 );
+   xbin = id11->FindBin(   137.50000000000000      );
+  id11 -> SetBinContent( xbin,    2.7418940826137588E-002 );
+  id11 -> SetBinError( xbin,    2.0929330570121675E-003 );
+   xbin = id11->FindBin(   142.50000000000000      );
+  id11 -> SetBinContent( xbin,    2.2337487127660215E-002 );
+  id11 -> SetBinError( xbin,    1.8481580796836535E-003 );
+   xbin = id11->FindBin(   147.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.8507611608867131E-002 );
+  id11 -> SetBinError( xbin,    1.4329056927531963E-003 );
+   xbin = id11->FindBin(   152.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.6964575243178286E-002 );
+  id11 -> SetBinError( xbin,    1.3423033036685176E-003 );
+   xbin = id11->FindBin(   157.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.4177802192090761E-002 );
+  id11 -> SetBinError( xbin,    1.1788792613708721E-003 );
+   xbin = id11->FindBin(   162.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.3954241419229161E-002 );
+  id11 -> SetBinError( xbin,    1.2207046660129581E-003 );
+   xbin = id11->FindBin(   167.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.1437786520653335E-002 );
+  id11 -> SetBinError( xbin,    1.0367791731493584E-003 );
+   xbin = id11->FindBin(   172.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.0478323353567402E-002 );
+  id11 -> SetBinError( xbin,    1.0970180574492205E-003 );
+   xbin = id11->FindBin(   177.50000000000000      );
+  id11 -> SetBinContent( xbin,    1.0234957082948061E-002 );
+  id11 -> SetBinError( xbin,    9.9242463110779319E-004 );
+   xbin = id11->FindBin(   182.50000000000000      );
+  id11 -> SetBinContent( xbin,    5.9697239614933915E-003 );
+  id11 -> SetBinError( xbin,    6.1794047666960644E-004 );
+   xbin = id11->FindBin(   187.50000000000000      );
+  id11 -> SetBinContent( xbin,    5.3671614161779034E-003 );
+  id11 -> SetBinError( xbin,    5.5657063696058643E-004 );
+   xbin = id11->FindBin(   192.50000000000000      );
+  id11 -> SetBinContent( xbin,    7.6599790778658977E-003 );
+  id11 -> SetBinError( xbin,    9.4747024897779070E-004 );
+   xbin = id11->FindBin(   197.50000000000000      );
+  id11 -> SetBinContent( xbin,    4.1461516574652201E-003 );
+  id11 -> SetBinError( xbin,    4.5992490383150601E-004 );
+//  hist11 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist12 = new TH1F( "id12", "y(3)", 20,      -2.4000,       2.4000);
+
+  id12 -> GetXaxis() -> SetTitle("y(3)");
+  id12 -> GetYaxis() -> SetTitle(" d#sigma/dy(3) [fb]");
+
+  id12 -> GetYaxis() -> SetTitleOffset(1.2);
+  id12 -> SetStats(false);
+   xbin = id12->FindBin(  -2.2799999999999998      );
+  id12 -> SetBinContent( xbin,    5.4243750247561193      );
+  id12 -> SetBinError( xbin,   0.23580189938985852      );
+   xbin = id12->FindBin(  -2.0400000000000000      );
+  id12 -> SetBinContent( xbin,    6.0901572722851860      );
+  id12 -> SetBinError( xbin,   0.20940914721767334      );
+   xbin = id12->FindBin(  -1.7999999999999998      );
+  id12 -> SetBinContent( xbin,    6.7567081476758339      );
+  id12 -> SetBinError( xbin,   0.20044242754740366      );
+   xbin = id12->FindBin(  -1.5600000000000001      );
+  id12 -> SetBinContent( xbin,    3.7014298588591439      );
+  id12 -> SetBinError( xbin,   0.13841801943301324      );
+   xbin = id12->FindBin(  -1.3199999999999998      );
+  id12 -> SetBinContent( xbin,    5.7119443251553337      );
+  id12 -> SetBinError( xbin,   0.16182470811501865      );
+   xbin = id12->FindBin(  -1.0800000000000001      );
+  id12 -> SetBinContent( xbin,    8.4470210429213974      );
+  id12 -> SetBinError( xbin,   0.19082030267346406      );
+   xbin = id12->FindBin( -0.83999999999999986      );
+  id12 -> SetBinContent( xbin,    8.9841291348024157      );
+  id12 -> SetBinError( xbin,   0.19213483551619082      );
+   xbin = id12->FindBin( -0.60000000000000009      );
+  id12 -> SetBinContent( xbin,    9.6603925968745550      );
+  id12 -> SetBinError( xbin,   0.20525076587907942      );
+   xbin = id12->FindBin( -0.35999999999999988      );
+  id12 -> SetBinContent( xbin,    9.3854807167744347      );
+  id12 -> SetBinError( xbin,   0.19067050163267318      );
+   xbin = id12->FindBin( -0.12000000000000011      );
+  id12 -> SetBinContent( xbin,    9.6390606665533536      );
+  id12 -> SetBinError( xbin,   0.18784738678106311      );
+   xbin = id12->FindBin(  0.12000000000000011      );
+  id12 -> SetBinContent( xbin,    9.8376787499776466      );
+  id12 -> SetBinError( xbin,   0.19626396821449599      );
+   xbin = id12->FindBin(  0.35999999999999988      );
+  id12 -> SetBinContent( xbin,    9.8842445232936882      );
+  id12 -> SetBinError( xbin,   0.20865632557668337      );
+   xbin = id12->FindBin(  0.60000000000000009      );
+  id12 -> SetBinContent( xbin,    9.3872855197526164      );
+  id12 -> SetBinError( xbin,   0.20094540198550664      );
+   xbin = id12->FindBin(  0.83999999999999986      );
+  id12 -> SetBinContent( xbin,    9.0449832539586605      );
+  id12 -> SetBinError( xbin,   0.19987469270697431      );
+   xbin = id12->FindBin(   1.0800000000000001      );
+  id12 -> SetBinContent( xbin,    8.3628063351403110      );
+  id12 -> SetBinError( xbin,   0.19634590076198435      );
+   xbin = id12->FindBin(   1.3199999999999998      );
+  id12 -> SetBinContent( xbin,    5.6744122036983295      );
+  id12 -> SetBinError( xbin,   0.16123904662657881      );
+   xbin = id12->FindBin(   1.5600000000000001      );
+  id12 -> SetBinContent( xbin,    3.3451437200169667      );
+  id12 -> SetBinError( xbin,   0.13250407843128620      );
+   xbin = id12->FindBin(   1.8000000000000003      );
+  id12 -> SetBinContent( xbin,    6.8631836170428624      );
+  id12 -> SetBinError( xbin,   0.21316946698155825      );
+   xbin = id12->FindBin(   2.0399999999999996      );
+  id12 -> SetBinContent( xbin,    5.6368480570687227      );
+  id12 -> SetBinError( xbin,   0.19846755368420815      );
+   xbin = id12->FindBin(   2.2799999999999998      );
+  id12 -> SetBinContent( xbin,    5.2918133528805642      );
+  id12 -> SetBinError( xbin,   0.22546523753217121      );
+//  hist12 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist13 = new TH1F( "id13", "pt(4)", 40,       0.0000,     200.0000);
+
+  id13 -> GetXaxis() -> SetTitle("pt(4)");
+  id13 -> GetYaxis() -> SetTitle(" d#sigma/dpt(4) [fb]");
+
+  id13 -> GetYaxis() -> SetTitleOffset(1.2);
+  id13 -> SetStats(false);
+   xbin = id13->FindBin(   17.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.98319806723107528      );
+  id13 -> SetBinError( xbin,    2.2132513363252154E-002 );
+   xbin = id13->FindBin(   22.500000000000000      );
+  id13 -> SetBinContent( xbin,    1.3723541828046932      );
+  id13 -> SetBinError( xbin,    2.0732413089158127E-002 );
+   xbin = id13->FindBin(   27.500000000000000      );
+  id13 -> SetBinContent( xbin,    1.1095671568572203      );
+  id13 -> SetBinError( xbin,    1.5977527553846588E-002 );
+   xbin = id13->FindBin(   32.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.81049543176981176      );
+  id13 -> SetBinError( xbin,    1.2331196853605233E-002 );
+   xbin = id13->FindBin(   37.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.58711284791795737      );
+  id13 -> SetBinError( xbin,    1.0293217756774029E-002 );
+   xbin = id13->FindBin(   42.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.42973828407089759      );
+  id13 -> SetBinError( xbin,    7.9922005420569996E-003 );
+   xbin = id13->FindBin(   47.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.32797641448313919      );
+  id13 -> SetBinError( xbin,    6.9960356121422668E-003 );
+   xbin = id13->FindBin(   52.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.25822618451451124      );
+  id13 -> SetBinError( xbin,    6.0962439518343617E-003 );
+   xbin = id13->FindBin(   57.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.22015515488282994      );
+  id13 -> SetBinError( xbin,    6.0711748593658705E-003 );
+   xbin = id13->FindBin(   62.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.15839213118913231      );
+  id13 -> SetBinError( xbin,    4.7192559656470835E-003 );
+   xbin = id13->FindBin(   67.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.13430126199645204      );
+  id13 -> SetBinError( xbin,    4.1756550423399054E-003 );
+   xbin = id13->FindBin(   72.500000000000000      );
+  id13 -> SetBinContent( xbin,   0.11601775265412623      );
+  id13 -> SetBinError( xbin,    4.2884996450097560E-003 );
+   xbin = id13->FindBin(   77.500000000000000      );
+  id13 -> SetBinContent( xbin,    9.8756217237728219E-002 );
+  id13 -> SetBinError( xbin,    3.7355778141253330E-003 );
+   xbin = id13->FindBin(   82.500000000000000      );
+  id13 -> SetBinContent( xbin,    7.4448427983517654E-002 );
+  id13 -> SetBinError( xbin,    3.1379980331728377E-003 );
+   xbin = id13->FindBin(   87.500000000000000      );
+  id13 -> SetBinContent( xbin,    6.2217946548580712E-002 );
+  id13 -> SetBinError( xbin,    2.9185667418096172E-003 );
+   xbin = id13->FindBin(   92.500000000000000      );
+  id13 -> SetBinContent( xbin,    5.1669894776060252E-002 );
+  id13 -> SetBinError( xbin,    2.5438020390935426E-003 );
+   xbin = id13->FindBin(   97.500000000000000      );
+  id13 -> SetBinContent( xbin,    4.0516863498458573E-002 );
+  id13 -> SetBinError( xbin,    2.3372051316582370E-003 );
+   xbin = id13->FindBin(   102.50000000000000      );
+  id13 -> SetBinContent( xbin,    4.0552303724948828E-002 );
+  id13 -> SetBinError( xbin,    2.3752311245062332E-003 );
+   xbin = id13->FindBin(   107.50000000000000      );
+  id13 -> SetBinContent( xbin,    3.3209609200775689E-002 );
+  id13 -> SetBinError( xbin,    2.0660700592844495E-003 );
+   xbin = id13->FindBin(   112.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.7751922570718398E-002 );
+  id13 -> SetBinError( xbin,    2.0066114418467521E-003 );
+   xbin = id13->FindBin(   117.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.5877342314364320E-002 );
+  id13 -> SetBinError( xbin,    2.1992820560777209E-003 );
+   xbin = id13->FindBin(   122.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.2373135647978507E-002 );
+  id13 -> SetBinError( xbin,    1.8048589993719154E-003 );
+   xbin = id13->FindBin(   127.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.0682305777595885E-002 );
+  id13 -> SetBinError( xbin,    2.0223817820803954E-003 );
+   xbin = id13->FindBin(   132.50000000000000      );
+  id13 -> SetBinContent( xbin,    1.3461132345694975E-002 );
+  id13 -> SetBinError( xbin,    1.2489946041738746E-003 );
+   xbin = id13->FindBin(   137.50000000000000      );
+  id13 -> SetBinContent( xbin,    1.1899327493372700E-002 );
+  id13 -> SetBinError( xbin,    1.0514197002106100E-003 );
+   xbin = id13->FindBin(   142.50000000000000      );
+  id13 -> SetBinContent( xbin,    1.0443255551982581E-002 );
+  id13 -> SetBinError( xbin,    1.0160249873016074E-003 );
+   xbin = id13->FindBin(   147.50000000000000      );
+  id13 -> SetBinContent( xbin,    9.9918627483435440E-003 );
+  id13 -> SetBinError( xbin,    1.1587639255195147E-003 );
+   xbin = id13->FindBin(   152.50000000000000      );
+  id13 -> SetBinContent( xbin,    9.7814746796664742E-003 );
+  id13 -> SetBinError( xbin,    1.0242253218478610E-003 );
+   xbin = id13->FindBin(   157.50000000000000      );
+  id13 -> SetBinContent( xbin,    8.2719526934902764E-003 );
+  id13 -> SetBinError( xbin,    8.5453843186346292E-004 );
+   xbin = id13->FindBin(   162.50000000000000      );
+  id13 -> SetBinContent( xbin,    5.2103819779359753E-003 );
+  id13 -> SetBinError( xbin,    6.2904512670977348E-004 );
+   xbin = id13->FindBin(   167.50000000000000      );
+  id13 -> SetBinContent( xbin,    6.8754713869831835E-003 );
+  id13 -> SetBinError( xbin,    9.4897545499929975E-004 );
+   xbin = id13->FindBin(   172.50000000000000      );
+  id13 -> SetBinContent( xbin,    3.2227305188033367E-003 );
+  id13 -> SetBinError( xbin,    4.5030930137916297E-004 );
+   xbin = id13->FindBin(   177.50000000000000      );
+  id13 -> SetBinContent( xbin,    4.1922700805390031E-003 );
+  id13 -> SetBinError( xbin,    5.3570613603490475E-004 );
+   xbin = id13->FindBin(   182.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.5339272639802535E-003 );
+  id13 -> SetBinError( xbin,    3.9587601936999012E-004 );
+   xbin = id13->FindBin(   187.50000000000000      );
+  id13 -> SetBinContent( xbin,    3.4521674730977167E-003 );
+  id13 -> SetBinError( xbin,    4.7724313637670553E-004 );
+   xbin = id13->FindBin(   192.50000000000000      );
+  id13 -> SetBinContent( xbin,    3.3050485251029135E-003 );
+  id13 -> SetBinError( xbin,    5.9597116010436958E-004 );
+   xbin = id13->FindBin(   197.50000000000000      );
+  id13 -> SetBinContent( xbin,    2.2670940703193271E-003 );
+  id13 -> SetBinError( xbin,    4.1578764063823027E-004 );
+//  hist13 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist14 = new TH1F( "id14", "y(4)", 20,      -2.4000,       2.4000);
+
+  id14 -> GetXaxis() -> SetTitle("y(4)");
+  id14 -> GetYaxis() -> SetTitle(" d#sigma/dy(4) [fb]");
+
+  id14 -> GetYaxis() -> SetTitleOffset(1.2);
+  id14 -> SetStats(false);
+   xbin = id14->FindBin(  -2.2799999999999998      );
+  id14 -> SetBinContent( xbin,    5.0034650546007686      );
+  id14 -> SetBinError( xbin,   0.20428284305264072      );
+   xbin = id14->FindBin(  -2.0400000000000000      );
+  id14 -> SetBinContent( xbin,    5.4835035597584438      );
+  id14 -> SetBinError( xbin,   0.19866057087364675      );
+   xbin = id14->FindBin(  -1.7999999999999998      );
+  id14 -> SetBinContent( xbin,    6.6657813311124166      );
+  id14 -> SetBinError( xbin,   0.19857952950387822      );
+   xbin = id14->FindBin(  -1.5600000000000001      );
+  id14 -> SetBinContent( xbin,    3.4827141442471241      );
+  id14 -> SetBinError( xbin,   0.13885088011215516      );
+   xbin = id14->FindBin(  -1.3199999999999998      );
+  id14 -> SetBinContent( xbin,    5.9154276863839410      );
+  id14 -> SetBinError( xbin,   0.16622366339718975      );
+   xbin = id14->FindBin(  -1.0800000000000001      );
+  id14 -> SetBinContent( xbin,    8.1960463871783986      );
+  id14 -> SetBinError( xbin,   0.18402874799935912      );
+   xbin = id14->FindBin( -0.83999999999999986      );
+  id14 -> SetBinContent( xbin,    8.9593937207488104      );
+  id14 -> SetBinError( xbin,   0.19938853867670184      );
+   xbin = id14->FindBin( -0.60000000000000009      );
+  id14 -> SetBinContent( xbin,    9.5299041679348200      );
+  id14 -> SetBinError( xbin,   0.20137187528123124      );
+   xbin = id14->FindBin( -0.35999999999999988      );
+  id14 -> SetBinContent( xbin,    9.8126430604748691      );
+  id14 -> SetBinError( xbin,   0.20663835414951431      );
+   xbin = id14->FindBin( -0.12000000000000011      );
+  id14 -> SetBinContent( xbin,    9.8190031009470680      );
+  id14 -> SetBinError( xbin,   0.20479724126156407      );
+   xbin = id14->FindBin(  0.12000000000000011      );
+  id14 -> SetBinContent( xbin,    9.9319192716330438      );
+  id14 -> SetBinError( xbin,   0.19565957515846610      );
+   xbin = id14->FindBin(  0.35999999999999988      );
+  id14 -> SetBinContent( xbin,    9.7930807442312862      );
+  id14 -> SetBinError( xbin,   0.20221777680374051      );
+   xbin = id14->FindBin(  0.60000000000000009      );
+  id14 -> SetBinContent( xbin,    9.0655341512279755      );
+  id14 -> SetBinError( xbin,   0.19443544768157320      );
+   xbin = id14->FindBin(  0.83999999999999986      );
+  id14 -> SetBinContent( xbin,    8.9086344217580322      );
+  id14 -> SetBinError( xbin,   0.20786519867600342      );
+   xbin = id14->FindBin(   1.0800000000000001      );
+  id14 -> SetBinContent( xbin,    8.8765330113453977      );
+  id14 -> SetBinError( xbin,   0.20562078940695677      );
+   xbin = id14->FindBin(   1.3199999999999998      );
+  id14 -> SetBinContent( xbin,    5.5189391586764902      );
+  id14 -> SetBinError( xbin,   0.16188475914175834      );
+   xbin = id14->FindBin(   1.5600000000000001      );
+  id14 -> SetBinContent( xbin,    3.6115077026341740      );
+  id14 -> SetBinError( xbin,   0.14961948192005156      );
+   xbin = id14->FindBin(   1.8000000000000003      );
+  id14 -> SetBinContent( xbin,    7.1463711968836856      );
+  id14 -> SetBinError( xbin,   0.22186505085736971      );
+   xbin = id14->FindBin(   2.0399999999999996      );
+  id14 -> SetBinContent( xbin,    5.5174199395311794      );
+  id14 -> SetBinError( xbin,   0.19496528666845001      );
+   xbin = id14->FindBin(   2.2799999999999998      );
+  id14 -> SetBinContent( xbin,    5.0105929716186255      );
+  id14 -> SetBinError( xbin,   0.20416378153006878      );
+//  hist14 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist15 = new TH1F( "id15", "pt(5)", 40,       0.0000,     200.0000);
+
+  id15 -> GetXaxis() -> SetTitle("pt(5)");
+  id15 -> GetYaxis() -> SetTitle(" d#sigma/dpt(5) [fb]");
+
+  id15 -> GetYaxis() -> SetTitleOffset(1.2);
+  id15 -> SetStats(false);
+   xbin = id15->FindBin(   17.500000000000000      );
+  id15 -> SetBinContent( xbin,    4.0210424513411418      );
+  id15 -> SetBinError( xbin,    3.6378584251413236E-002 );
+   xbin = id15->FindBin(   22.500000000000000      );
+  id15 -> SetBinContent( xbin,    1.5585616763279728      );
+  id15 -> SetBinError( xbin,    1.7547975163260000E-002 );
+   xbin = id15->FindBin(   27.500000000000000      );
+  id15 -> SetBinContent( xbin,   0.70116086453204418      );
+  id15 -> SetBinError( xbin,    9.5828088936609577E-003 );
+   xbin = id15->FindBin(   32.500000000000000      );
+  id15 -> SetBinContent( xbin,   0.37963536744393955      );
+  id15 -> SetBinError( xbin,    6.9630424224272442E-003 );
+   xbin = id15->FindBin(   37.500000000000000      );
+  id15 -> SetBinContent( xbin,   0.20755361505252254      );
+  id15 -> SetBinError( xbin,    4.4791589609958814E-003 );
+   xbin = id15->FindBin(   42.500000000000000      );
+  id15 -> SetBinContent( xbin,   0.12639173362676129      );
+  id15 -> SetBinError( xbin,    3.3772318759310153E-003 );
+   xbin = id15->FindBin(   47.500000000000000      );
+  id15 -> SetBinContent( xbin,    8.4775302775145833E-002 );
+  id15 -> SetBinError( xbin,    2.6688603660265896E-003 );
+   xbin = id15->FindBin(   52.500000000000000      );
+  id15 -> SetBinContent( xbin,    5.4032833467824809E-002 );
+  id15 -> SetBinError( xbin,    1.6417647496195118E-003 );
+   xbin = id15->FindBin(   57.500000000000000      );
+  id15 -> SetBinContent( xbin,    3.5815397185827547E-002 );
+  id15 -> SetBinError( xbin,    1.3659918552095327E-003 );
+   xbin = id15->FindBin(   62.500000000000000      );
+  id15 -> SetBinContent( xbin,    2.8408242084367413E-002 );
+  id15 -> SetBinError( xbin,    1.2928361743339198E-003 );
+   xbin = id15->FindBin(   67.500000000000000      );
+  id15 -> SetBinContent( xbin,    1.9342247612417846E-002 );
+  id15 -> SetBinError( xbin,    9.5344159971142437E-004 );
+   xbin = id15->FindBin(   72.500000000000000      );
+  id15 -> SetBinContent( xbin,    1.3138115064086291E-002 );
+  id15 -> SetBinError( xbin,    7.7871482779037554E-004 );
+   xbin = id15->FindBin(   77.500000000000000      );
+  id15 -> SetBinContent( xbin,    1.1978450690583869E-002 );
+  id15 -> SetBinError( xbin,    6.5514173081704830E-004 );
+   xbin = id15->FindBin(   82.500000000000000      );
+  id15 -> SetBinContent( xbin,    6.8091686707953680E-003 );
+  id15 -> SetBinError( xbin,    4.4572602296185526E-004 );
+   xbin = id15->FindBin(   87.500000000000000      );
+  id15 -> SetBinContent( xbin,    5.3704179249406681E-003 );
+  id15 -> SetBinError( xbin,    3.9843145829460158E-004 );
+   xbin = id15->FindBin(   92.500000000000000      );
+  id15 -> SetBinContent( xbin,    4.6047227981620784E-003 );
+  id15 -> SetBinError( xbin,    3.6172595188459710E-004 );
+   xbin = id15->FindBin(   97.500000000000000      );
+  id15 -> SetBinContent( xbin,    3.3305927541380548E-003 );
+  id15 -> SetBinError( xbin,    2.6369162723353159E-004 );
+   xbin = id15->FindBin(   102.50000000000000      );
+  id15 -> SetBinContent( xbin,    3.2424252869630121E-003 );
+  id15 -> SetBinError( xbin,    3.2411212406970941E-004 );
+   xbin = id15->FindBin(   107.50000000000000      );
+  id15 -> SetBinContent( xbin,    2.2673674228237406E-003 );
+  id15 -> SetBinError( xbin,    2.0379951566032082E-004 );
+   xbin = id15->FindBin(   112.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.9425436172721643E-003 );
+  id15 -> SetBinError( xbin,    1.8199934989767579E-004 );
+   xbin = id15->FindBin(   117.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.8342239258854504E-003 );
+  id15 -> SetBinError( xbin,    1.8044749170178647E-004 );
+   xbin = id15->FindBin(   122.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.0623465504265173E-003 );
+  id15 -> SetBinError( xbin,    1.3044031958865654E-004 );
+   xbin = id15->FindBin(   127.50000000000000      );
+  id15 -> SetBinContent( xbin,    9.3492418115680002E-004 );
+  id15 -> SetBinError( xbin,    1.2033483777295729E-004 );
+   xbin = id15->FindBin(   132.50000000000000      );
+  id15 -> SetBinContent( xbin,    7.4937214140058134E-004 );
+  id15 -> SetBinError( xbin,    1.0522485082843840E-004 );
+   xbin = id15->FindBin(   137.50000000000000      );
+  id15 -> SetBinContent( xbin,    7.5627084696926021E-004 );
+  id15 -> SetBinError( xbin,    1.1099678077930530E-004 );
+   xbin = id15->FindBin(   142.50000000000000      );
+  id15 -> SetBinContent( xbin,    4.7995801041810827E-004 );
+  id15 -> SetBinError( xbin,    6.6447319881465509E-005 );
+   xbin = id15->FindBin(   147.50000000000000      );
+  id15 -> SetBinContent( xbin,    5.2353513972092330E-004 );
+  id15 -> SetBinError( xbin,    7.1766345111377657E-005 );
+   xbin = id15->FindBin(   152.50000000000000      );
+  id15 -> SetBinContent( xbin,    3.9627543085065607E-004 );
+  id15 -> SetBinError( xbin,    6.3544621838941911E-005 );
+   xbin = id15->FindBin(   157.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.3430575727049572E-004 );
+  id15 -> SetBinError( xbin,    2.9929087867980261E-005 );
+   xbin = id15->FindBin(   162.50000000000000      );
+  id15 -> SetBinContent( xbin,    2.1521499926249491E-004 );
+  id15 -> SetBinError( xbin,    4.2196487338525939E-005 );
+   xbin = id15->FindBin(   167.50000000000000      );
+  id15 -> SetBinContent( xbin,    2.3175641727848323E-004 );
+  id15 -> SetBinError( xbin,    3.6102272270773521E-005 );
+   xbin = id15->FindBin(   172.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.3058122713039446E-004 );
+  id15 -> SetBinError( xbin,    2.8826963339003374E-005 );
+   xbin = id15->FindBin(   177.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.5234404069164805E-004 );
+  id15 -> SetBinError( xbin,    2.9368595286323667E-005 );
+   xbin = id15->FindBin(   182.50000000000000      );
+  id15 -> SetBinContent( xbin,    1.3988415009140678E-004 );
+  id15 -> SetBinError( xbin,    3.1488056525654980E-005 );
+   xbin = id15->FindBin(   187.50000000000000      );
+  id15 -> SetBinContent( xbin,    7.1615303183001963E-005 );
+  id15 -> SetBinError( xbin,    1.6883617475155168E-005 );
+   xbin = id15->FindBin(   192.50000000000000      );
+  id15 -> SetBinContent( xbin,    7.6507554789267387E-005 );
+  id15 -> SetBinError( xbin,    1.7755203806883999E-005 );
+   xbin = id15->FindBin(   197.50000000000000      );
+  id15 -> SetBinContent( xbin,    9.7908871034022753E-005 );
+  id15 -> SetBinError( xbin,    2.0289763159722735E-005 );
+//  hist15 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist16 = new TH1F( "id16", "y(5)", 20,      -2.4000,       2.4000);
+
+  id16 -> GetXaxis() -> SetTitle("y(5)");
+  id16 -> GetYaxis() -> SetTitle(" d#sigma/dy(5) [fb]");
+
+  id16 -> GetYaxis() -> SetTitleOffset(1.2);
+  id16 -> SetStats(false);
+   xbin = id16->FindBin(  -2.2799999999999998      );
+  id16 -> SetBinContent( xbin,    5.2845500335494178      );
+  id16 -> SetBinError( xbin,   0.19863854911830731      );
+   xbin = id16->FindBin(  -2.0400000000000000      );
+  id16 -> SetBinContent( xbin,    5.9996846028227795      );
+  id16 -> SetBinError( xbin,   0.19377461683416472      );
+   xbin = id16->FindBin(  -1.7999999999999998      );
+  id16 -> SetBinContent( xbin,    6.8557613662127075      );
+  id16 -> SetBinError( xbin,   0.20471389278958349      );
+   xbin = id16->FindBin(  -1.5600000000000001      );
+  id16 -> SetBinContent( xbin,    3.4156412726774694      );
+  id16 -> SetBinError( xbin,   0.13734713608881724      );
+   xbin = id16->FindBin(  -1.3199999999999998      );
+  id16 -> SetBinContent( xbin,    5.8620644861675171      );
+  id16 -> SetBinError( xbin,   0.17568741865804111      );
+   xbin = id16->FindBin(  -1.0800000000000001      );
+  id16 -> SetBinContent( xbin,    8.6160755114925873      );
+  id16 -> SetBinError( xbin,   0.20553787820305086      );
+   xbin = id16->FindBin( -0.83999999999999986      );
+  id16 -> SetBinContent( xbin,    8.9440067420535012      );
+  id16 -> SetBinError( xbin,   0.20179656259008910      );
+   xbin = id16->FindBin( -0.60000000000000009      );
+  id16 -> SetBinContent( xbin,    9.9824696621070981      );
+  id16 -> SetBinError( xbin,   0.22286655242397616      );
+   xbin = id16->FindBin( -0.35999999999999988      );
+  id16 -> SetBinContent( xbin,    9.5845864904137965      );
+  id16 -> SetBinError( xbin,   0.20424565407594650      );
+   xbin = id16->FindBin( -0.12000000000000011      );
+  id16 -> SetBinContent( xbin,    9.9844544056916700      );
+  id16 -> SetBinError( xbin,   0.20978889127629122      );
+   xbin = id16->FindBin(  0.12000000000000011      );
+  id16 -> SetBinContent( xbin,    9.7766621909371292      );
+  id16 -> SetBinError( xbin,   0.20676596199172903      );
+   xbin = id16->FindBin(  0.35999999999999988      );
+  id16 -> SetBinContent( xbin,    9.2884544427067475      );
+  id16 -> SetBinError( xbin,   0.20359699987567451      );
+   xbin = id16->FindBin(  0.60000000000000009      );
+  id16 -> SetBinContent( xbin,    9.2486161439977810      );
+  id16 -> SetBinError( xbin,   0.19907532790004204      );
+   xbin = id16->FindBin(  0.83999999999999986      );
+  id16 -> SetBinContent( xbin,    8.9208182577001409      );
+  id16 -> SetBinError( xbin,   0.20017118190164085      );
+   xbin = id16->FindBin(   1.0800000000000001      );
+  id16 -> SetBinContent( xbin,    8.3133093884143392      );
+  id16 -> SetBinError( xbin,   0.20560323561109042      );
+   xbin = id16->FindBin(   1.3199999999999998      );
+  id16 -> SetBinContent( xbin,    5.3923025247795948      );
+  id16 -> SetBinError( xbin,   0.16365287760966937      );
+   xbin = id16->FindBin(   1.5600000000000001      );
+  id16 -> SetBinContent( xbin,    3.8330419695223399      );
+  id16 -> SetBinError( xbin,   0.15019824398079598      );
+   xbin = id16->FindBin(   1.8000000000000003      );
+  id16 -> SetBinContent( xbin,    6.7167952686510510      );
+  id16 -> SetBinError( xbin,   0.21030606693171408      );
+   xbin = id16->FindBin(   2.0399999999999996      );
+  id16 -> SetBinContent( xbin,    5.8707378466782973      );
+  id16 -> SetBinError( xbin,   0.19470540549112675      );
+   xbin = id16->FindBin(   2.2799999999999998      );
+  id16 -> SetBinContent( xbin,    5.3629157415911211      );
+  id16 -> SetBinError( xbin,   0.22383781812313069      );
+//  hist16 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist17 = new TH1F( "id17", "m(34)", 60,       0.0000,     300.0000);
+
+  id17 -> GetXaxis() -> SetTitle("m(34)");
+  id17 -> GetYaxis() -> SetTitle(" d#sigma/dm(34) [fb]");
+
+  id17 -> GetYaxis() -> SetTitleOffset(1.2);
+  id17 -> SetStats(false);
+   xbin = id17->FindBin(   27.500000000000000      );
+  id17 -> SetBinContent( xbin,    5.8865401330384457E-003 );
+  id17 -> SetBinError( xbin,    4.5738271145002573E-003 );
+   xbin = id17->FindBin(   32.500000000000000      );
+  id17 -> SetBinContent( xbin,    2.1550187245042492E-002 );
+  id17 -> SetBinError( xbin,    3.4332236997343178E-003 );
+   xbin = id17->FindBin(   37.500000000000000      );
+  id17 -> SetBinContent( xbin,    9.3207849701527248E-002 );
+  id17 -> SetBinError( xbin,    6.9453210337094250E-003 );
+   xbin = id17->FindBin(   42.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.20641517575251972      );
+  id17 -> SetBinError( xbin,    9.6878364121322953E-003 );
+   xbin = id17->FindBin(   47.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.31992539618951688      );
+  id17 -> SetBinError( xbin,    1.0920975003698733E-002 );
+   xbin = id17->FindBin(   52.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.38329901791820936      );
+  id17 -> SetBinError( xbin,    1.0846732216402508E-002 );
+   xbin = id17->FindBin(   57.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.41517273331341514      );
+  id17 -> SetBinError( xbin,    1.0932354512092729E-002 );
+   xbin = id17->FindBin(   62.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.40159608954315185      );
+  id17 -> SetBinError( xbin,    1.0081990238902799E-002 );
+   xbin = id17->FindBin(   67.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.38728075386891053      );
+  id17 -> SetBinError( xbin,    9.7843841715029040E-003 );
+   xbin = id17->FindBin(   72.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.37351703340107167      );
+  id17 -> SetBinError( xbin,    9.0208911057497662E-003 );
+   xbin = id17->FindBin(   77.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.34648169608693236      );
+  id17 -> SetBinError( xbin,    8.4785922013652006E-003 );
+   xbin = id17->FindBin(   82.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.31688369103998720      );
+  id17 -> SetBinError( xbin,    8.3418062894174885E-003 );
+   xbin = id17->FindBin(   87.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.29005521951347740      );
+  id17 -> SetBinError( xbin,    7.6962066726715041E-003 );
+   xbin = id17->FindBin(   92.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.26559954915132977      );
+  id17 -> SetBinError( xbin,    7.3747593513426276E-003 );
+   xbin = id17->FindBin(   97.500000000000000      );
+  id17 -> SetBinContent( xbin,   0.23462044762065148      );
+  id17 -> SetBinError( xbin,    6.7946900910473389E-003 );
+   xbin = id17->FindBin(   102.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.21089773590615005      );
+  id17 -> SetBinError( xbin,    6.4569923075421887E-003 );
+   xbin = id17->FindBin(   107.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.20518196629917346      );
+  id17 -> SetBinError( xbin,    6.1410922385316561E-003 );
+   xbin = id17->FindBin(   112.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.19641565385121479      );
+  id17 -> SetBinError( xbin,    6.2531776768225949E-003 );
+   xbin = id17->FindBin(   117.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.16660506619192875      );
+  id17 -> SetBinError( xbin,    5.4682158066255322E-003 );
+   xbin = id17->FindBin(   122.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.15560039821076177      );
+  id17 -> SetBinError( xbin,    5.5072651574206138E-003 );
+   xbin = id17->FindBin(   127.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.13247614952609821      );
+  id17 -> SetBinError( xbin,    4.7488989845521383E-003 );
+   xbin = id17->FindBin(   132.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.12309099157138133      );
+  id17 -> SetBinError( xbin,    4.4577191378012884E-003 );
+   xbin = id17->FindBin(   137.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.12173569881521412      );
+  id17 -> SetBinError( xbin,    5.0102859960928338E-003 );
+   xbin = id17->FindBin(   142.50000000000000      );
+  id17 -> SetBinContent( xbin,   0.10725975918962521      );
+  id17 -> SetBinError( xbin,    4.5008276127942067E-003 );
+   xbin = id17->FindBin(   147.50000000000000      );
+  id17 -> SetBinContent( xbin,    9.7991190404291731E-002 );
+  id17 -> SetBinError( xbin,    4.3382501756615175E-003 );
+   xbin = id17->FindBin(   152.50000000000000      );
+  id17 -> SetBinContent( xbin,    8.8189066518386566E-002 );
+  id17 -> SetBinError( xbin,    3.9873950538424205E-003 );
+   xbin = id17->FindBin(   157.50000000000000      );
+  id17 -> SetBinContent( xbin,    7.5910240139491256E-002 );
+  id17 -> SetBinError( xbin,    3.5105917641034667E-003 );
+   xbin = id17->FindBin(   162.50000000000000      );
+  id17 -> SetBinContent( xbin,    7.4173721013840427E-002 );
+  id17 -> SetBinError( xbin,    3.5062871791097603E-003 );
+   xbin = id17->FindBin(   167.50000000000000      );
+  id17 -> SetBinContent( xbin,    7.1905705515138960E-002 );
+  id17 -> SetBinError( xbin,    3.5442097194939410E-003 );
+   xbin = id17->FindBin(   172.50000000000000      );
+  id17 -> SetBinContent( xbin,    6.5526106899342462E-002 );
+  id17 -> SetBinError( xbin,    3.2862132004349521E-003 );
+   xbin = id17->FindBin(   177.50000000000000      );
+  id17 -> SetBinContent( xbin,    6.3549851922334782E-002 );
+  id17 -> SetBinError( xbin,    3.7379460062987391E-003 );
+   xbin = id17->FindBin(   182.50000000000000      );
+  id17 -> SetBinContent( xbin,    5.5613676026954058E-002 );
+  id17 -> SetBinError( xbin,    3.0480428748400424E-003 );
+   xbin = id17->FindBin(   187.50000000000000      );
+  id17 -> SetBinContent( xbin,    5.5466835564150357E-002 );
+  id17 -> SetBinError( xbin,    3.4123146664065359E-003 );
+   xbin = id17->FindBin(   192.50000000000000      );
+  id17 -> SetBinContent( xbin,    5.0342625119282974E-002 );
+  id17 -> SetBinError( xbin,    2.8734966059973609E-003 );
+   xbin = id17->FindBin(   197.50000000000000      );
+  id17 -> SetBinContent( xbin,    4.3523341537570162E-002 );
+  id17 -> SetBinError( xbin,    2.6792202203052107E-003 );
+   xbin = id17->FindBin(   202.50000000000000      );
+  id17 -> SetBinContent( xbin,    4.4402571226904219E-002 );
+  id17 -> SetBinError( xbin,    2.7843777476397437E-003 );
+   xbin = id17->FindBin(   207.50000000000000      );
+  id17 -> SetBinContent( xbin,    4.2294292961165818E-002 );
+  id17 -> SetBinError( xbin,    2.7314640690867874E-003 );
+   xbin = id17->FindBin(   212.50000000000000      );
+  id17 -> SetBinContent( xbin,    3.2370318379599375E-002 );
+  id17 -> SetBinError( xbin,    2.2326755040627884E-003 );
+   xbin = id17->FindBin(   217.50000000000000      );
+  id17 -> SetBinContent( xbin,    3.0808622697994087E-002 );
+  id17 -> SetBinError( xbin,    2.3361115715168457E-003 );
+   xbin = id17->FindBin(   222.50000000000000      );
+  id17 -> SetBinContent( xbin,    2.8537980109143352E-002 );
+  id17 -> SetBinError( xbin,    2.0361072024448904E-003 );
+   xbin = id17->FindBin(   227.50000000000000      );
+  id17 -> SetBinContent( xbin,    3.3084825803420807E-002 );
+  id17 -> SetBinError( xbin,    2.7400741732071811E-003 );
+   xbin = id17->FindBin(   232.50000000000000      );
+  id17 -> SetBinContent( xbin,    2.8820724091996219E-002 );
+  id17 -> SetBinError( xbin,    2.1127463419163607E-003 );
+   xbin = id17->FindBin(   237.50000000000000      );
+  id17 -> SetBinContent( xbin,    2.2380955312149727E-002 );
+  id17 -> SetBinError( xbin,    1.8673376398008147E-003 );
+   xbin = id17->FindBin(   242.50000000000000      );
+  id17 -> SetBinContent( xbin,    2.8508943954593906E-002 );
+  id17 -> SetBinError( xbin,    2.3510596345561923E-003 );
+   xbin = id17->FindBin(   247.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.7276223002096570E-002 );
+  id17 -> SetBinError( xbin,    1.4895867148652596E-003 );
+   xbin = id17->FindBin(   252.50000000000000      );
+  id17 -> SetBinContent( xbin,    2.0528417578359739E-002 );
+  id17 -> SetBinError( xbin,    1.8005731882938815E-003 );
+   xbin = id17->FindBin(   257.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.4110862793959726E-002 );
+  id17 -> SetBinError( xbin,    1.4207892196096276E-003 );
+   xbin = id17->FindBin(   262.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.5554985208769950E-002 );
+  id17 -> SetBinError( xbin,    1.7178317974803521E-003 );
+   xbin = id17->FindBin(   267.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.7656545108390813E-002 );
+  id17 -> SetBinError( xbin,    1.6677837566664200E-003 );
+   xbin = id17->FindBin(   272.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.4939529141858265E-002 );
+  id17 -> SetBinError( xbin,    1.4257706307920627E-003 );
+   xbin = id17->FindBin(   277.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.7246242290159558E-002 );
+  id17 -> SetBinError( xbin,    1.7291939727913912E-003 );
+   xbin = id17->FindBin(   282.50000000000000      );
+  id17 -> SetBinContent( xbin,    4.3839708684679738E-003 );
+  id17 -> SetBinError( xbin,    6.7903975789108115E-004 );
+   xbin = id17->FindBin(   287.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.3073617890787257E-002 );
+  id17 -> SetBinError( xbin,    1.3414806523278091E-003 );
+   xbin = id17->FindBin(   292.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.2765283101451393E-002 );
+  id17 -> SetBinError( xbin,    1.4403789816188391E-003 );
+   xbin = id17->FindBin(   297.50000000000000      );
+  id17 -> SetBinContent( xbin,    1.1818613371213899E-002 );
+  id17 -> SetBinError( xbin,    1.1970342513625745E-003 );
+//  hist17 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist18 = new TH1F( "id18", "pt(34)", 40,       0.0000,     200.0000);
+
+  id18 -> GetXaxis() -> SetTitle("pt(34)");
+  id18 -> GetYaxis() -> SetTitle(" d#sigma/dpt(34) [fb]");
+
+  id18 -> GetYaxis() -> SetTitleOffset(1.2);
+  id18 -> SetStats(false);
+   xbin = id18->FindBin(   17.500000000000000      );
+  id18 -> SetBinContent( xbin,    4.0210424513411418      );
+  id18 -> SetBinError( xbin,    3.6378584251413236E-002 );
+   xbin = id18->FindBin(   22.500000000000000      );
+  id18 -> SetBinContent( xbin,    1.5585616763279728      );
+  id18 -> SetBinError( xbin,    1.7547975163260000E-002 );
+   xbin = id18->FindBin(   27.500000000000000      );
+  id18 -> SetBinContent( xbin,   0.70116086453204418      );
+  id18 -> SetBinError( xbin,    9.5828088936609577E-003 );
+   xbin = id18->FindBin(   32.500000000000000      );
+  id18 -> SetBinContent( xbin,   0.37963536744393955      );
+  id18 -> SetBinError( xbin,    6.9630424224272442E-003 );
+   xbin = id18->FindBin(   37.500000000000000      );
+  id18 -> SetBinContent( xbin,   0.20755361505252254      );
+  id18 -> SetBinError( xbin,    4.4791589609958814E-003 );
+   xbin = id18->FindBin(   42.500000000000000      );
+  id18 -> SetBinContent( xbin,   0.12639173362676129      );
+  id18 -> SetBinError( xbin,    3.3772318759310153E-003 );
+   xbin = id18->FindBin(   47.500000000000000      );
+  id18 -> SetBinContent( xbin,    8.4775302775145833E-002 );
+  id18 -> SetBinError( xbin,    2.6688603660265896E-003 );
+   xbin = id18->FindBin(   52.500000000000000      );
+  id18 -> SetBinContent( xbin,    5.4032833467824809E-002 );
+  id18 -> SetBinError( xbin,    1.6417647496195118E-003 );
+   xbin = id18->FindBin(   57.500000000000000      );
+  id18 -> SetBinContent( xbin,    3.5815397185827547E-002 );
+  id18 -> SetBinError( xbin,    1.3659918552095327E-003 );
+   xbin = id18->FindBin(   62.500000000000000      );
+  id18 -> SetBinContent( xbin,    2.8408242084367413E-002 );
+  id18 -> SetBinError( xbin,    1.2928361743339198E-003 );
+   xbin = id18->FindBin(   67.500000000000000      );
+  id18 -> SetBinContent( xbin,    1.9342247612417846E-002 );
+  id18 -> SetBinError( xbin,    9.5344159971142437E-004 );
+   xbin = id18->FindBin(   72.500000000000000      );
+  id18 -> SetBinContent( xbin,    1.3138115064086291E-002 );
+  id18 -> SetBinError( xbin,    7.7871482779037554E-004 );
+   xbin = id18->FindBin(   77.500000000000000      );
+  id18 -> SetBinContent( xbin,    1.1978450690583869E-002 );
+  id18 -> SetBinError( xbin,    6.5514173081704830E-004 );
+   xbin = id18->FindBin(   82.500000000000000      );
+  id18 -> SetBinContent( xbin,    6.8091686707953680E-003 );
+  id18 -> SetBinError( xbin,    4.4572602296185526E-004 );
+   xbin = id18->FindBin(   87.500000000000000      );
+  id18 -> SetBinContent( xbin,    5.3704179249406681E-003 );
+  id18 -> SetBinError( xbin,    3.9843145829460158E-004 );
+   xbin = id18->FindBin(   92.500000000000000      );
+  id18 -> SetBinContent( xbin,    4.6047227981620784E-003 );
+  id18 -> SetBinError( xbin,    3.6172595188459710E-004 );
+   xbin = id18->FindBin(   97.500000000000000      );
+  id18 -> SetBinContent( xbin,    3.3305927541380548E-003 );
+  id18 -> SetBinError( xbin,    2.6369162723353159E-004 );
+   xbin = id18->FindBin(   102.50000000000000      );
+  id18 -> SetBinContent( xbin,    3.2424252869630121E-003 );
+  id18 -> SetBinError( xbin,    3.2411212406970941E-004 );
+   xbin = id18->FindBin(   107.50000000000000      );
+  id18 -> SetBinContent( xbin,    2.2673674228237406E-003 );
+  id18 -> SetBinError( xbin,    2.0379951566032082E-004 );
+   xbin = id18->FindBin(   112.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.9425436172721643E-003 );
+  id18 -> SetBinError( xbin,    1.8199934989767579E-004 );
+   xbin = id18->FindBin(   117.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.8342239258854504E-003 );
+  id18 -> SetBinError( xbin,    1.8044749170178647E-004 );
+   xbin = id18->FindBin(   122.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.0623465504265173E-003 );
+  id18 -> SetBinError( xbin,    1.3044031958865654E-004 );
+   xbin = id18->FindBin(   127.50000000000000      );
+  id18 -> SetBinContent( xbin,    9.3492418115680002E-004 );
+  id18 -> SetBinError( xbin,    1.2033483777295729E-004 );
+   xbin = id18->FindBin(   132.50000000000000      );
+  id18 -> SetBinContent( xbin,    7.4937214140058134E-004 );
+  id18 -> SetBinError( xbin,    1.0522485082843840E-004 );
+   xbin = id18->FindBin(   137.50000000000000      );
+  id18 -> SetBinContent( xbin,    7.5627084696926021E-004 );
+  id18 -> SetBinError( xbin,    1.1099678077930530E-004 );
+   xbin = id18->FindBin(   142.50000000000000      );
+  id18 -> SetBinContent( xbin,    4.7995801041810827E-004 );
+  id18 -> SetBinError( xbin,    6.6447319881465509E-005 );
+   xbin = id18->FindBin(   147.50000000000000      );
+  id18 -> SetBinContent( xbin,    5.2353513972092330E-004 );
+  id18 -> SetBinError( xbin,    7.1766345111377657E-005 );
+   xbin = id18->FindBin(   152.50000000000000      );
+  id18 -> SetBinContent( xbin,    3.9627543085065607E-004 );
+  id18 -> SetBinError( xbin,    6.3544621838941911E-005 );
+   xbin = id18->FindBin(   157.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.3430575727049572E-004 );
+  id18 -> SetBinError( xbin,    2.9929087867980261E-005 );
+   xbin = id18->FindBin(   162.50000000000000      );
+  id18 -> SetBinContent( xbin,    2.1521499926249491E-004 );
+  id18 -> SetBinError( xbin,    4.2196487338525939E-005 );
+   xbin = id18->FindBin(   167.50000000000000      );
+  id18 -> SetBinContent( xbin,    2.3175641727848323E-004 );
+  id18 -> SetBinError( xbin,    3.6102272270773521E-005 );
+   xbin = id18->FindBin(   172.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.3058122713039446E-004 );
+  id18 -> SetBinError( xbin,    2.8826963339003374E-005 );
+   xbin = id18->FindBin(   177.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.5234404069164805E-004 );
+  id18 -> SetBinError( xbin,    2.9368595286323667E-005 );
+   xbin = id18->FindBin(   182.50000000000000      );
+  id18 -> SetBinContent( xbin,    1.3988415009140678E-004 );
+  id18 -> SetBinError( xbin,    3.1488056525654980E-005 );
+   xbin = id18->FindBin(   187.50000000000000      );
+  id18 -> SetBinContent( xbin,    7.1615303183001963E-005 );
+  id18 -> SetBinError( xbin,    1.6883617475155168E-005 );
+   xbin = id18->FindBin(   192.50000000000000      );
+  id18 -> SetBinContent( xbin,    7.6507554789267387E-005 );
+  id18 -> SetBinError( xbin,    1.7755203806883999E-005 );
+   xbin = id18->FindBin(   197.50000000000000      );
+  id18 -> SetBinContent( xbin,    9.7908871034022753E-005 );
+  id18 -> SetBinError( xbin,    2.0289763159722735E-005 );
+//  hist18 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist19 = new TH1F( "id19", "y(34)", 25,      -5.0000,       5.0000);
+
+  id19 -> GetXaxis() -> SetTitle("y(34)");
+  id19 -> GetYaxis() -> SetTitle(" d#sigma/dy(34) [fb]");
+
+  id19 -> GetYaxis() -> SetTitleOffset(1.2);
+  id19 -> SetStats(false);
+   xbin = id19->FindBin(  -2.3999999999999999      );
+  id19 -> SetBinContent( xbin,   0.67403528263360191      );
+  id19 -> SetBinError( xbin,    6.7922591839030169E-002 );
+   xbin = id19->FindBin(  -2.0000000000000000      );
+  id19 -> SetBinContent( xbin,    3.1140120349472791      );
+  id19 -> SetBinError( xbin,   0.12133593934629980      );
+   xbin = id19->FindBin(  -1.5999999999999996      );
+  id19 -> SetBinContent( xbin,    5.5501414912841254      );
+  id19 -> SetBinError( xbin,   0.13345214513134535      );
+   xbin = id19->FindBin(  -1.1999999999999997      );
+  id19 -> SetBinContent( xbin,    8.3604691767725701      );
+  id19 -> SetBinError( xbin,   0.16369490120769700      );
+   xbin = id19->FindBin( -0.79999999999999982      );
+  id19 -> SetBinContent( xbin,    10.137219996658599      );
+  id19 -> SetBinError( xbin,   0.17616184937662796      );
+   xbin = id19->FindBin( -0.39999999999999947      );
+  id19 -> SetBinContent( xbin,    11.890068500139735      );
+  id19 -> SetBinError( xbin,   0.18560187207505244      );
+   xbin = id19->FindBin(   0.0000000000000000      );
+  id19 -> SetBinContent( xbin,    12.045867296071876      );
+  id19 -> SetBinError( xbin,   0.18109191620113921      );
+   xbin = id19->FindBin(  0.40000000000000036      );
+  id19 -> SetBinContent( xbin,    11.342776774623859      );
+  id19 -> SetBinError( xbin,   0.17375101988960151      );
+   xbin = id19->FindBin(  0.80000000000000071      );
+  id19 -> SetBinContent( xbin,    9.8609526191456531      );
+  id19 -> SetBinError( xbin,   0.16824714185570247      );
+   xbin = id19->FindBin(   1.2000000000000002      );
+  id19 -> SetBinContent( xbin,    8.1559889942343755      );
+  id19 -> SetBinError( xbin,   0.16741587039961406      );
+   xbin = id19->FindBin(   1.6000000000000005      );
+  id19 -> SetBinContent( xbin,    5.5766375332052940      );
+  id19 -> SetBinError( xbin,   0.14476723474459058      );
+   xbin = id19->FindBin(   2.0000000000000000      );
+  id19 -> SetBinContent( xbin,    3.3374987407074057      );
+  id19 -> SetBinError( xbin,   0.12755659408306391      );
+   xbin = id19->FindBin(   2.4000000000000004      );
+  id19 -> SetBinContent( xbin,   0.57839823540073798      );
+  id19 -> SetBinError( xbin,    5.7700559108297106E-002 );
+//  hist19 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist20 = new TH1F( "id20", "|y(34)|", 20,       0.0000,       5.0000);
+
+  id20 -> GetXaxis() -> SetTitle("|y(34)|");
+  id20 -> GetYaxis() -> SetTitle(" d#sigma/d|y(34)| [fb]");
+
+  id20 -> GetYaxis() -> SetTitleOffset(1.2);
+  id20 -> SetStats(false);
+   xbin = id20->FindBin(  0.12500000000000000      );
+  id20 -> SetBinContent( xbin,    23.907489778461667      );
+  id20 -> SetBinError( xbin,   0.31855185627707905      );
+   xbin = id20->FindBin(  0.37500000000000000      );
+  id20 -> SetBinContent( xbin,    23.236727940445792      );
+  id20 -> SetBinError( xbin,   0.31999354833505261      );
+   xbin = id20->FindBin(  0.62500000000000000      );
+  id20 -> SetBinContent( xbin,    22.033773934995999      );
+  id20 -> SetBinError( xbin,   0.32332759737923988      );
+   xbin = id20->FindBin(  0.87500000000000000      );
+  id20 -> SetBinContent( xbin,    19.322045379326291      );
+  id20 -> SetBinError( xbin,   0.30590969255165162      );
+   xbin = id20->FindBin(   1.1250000000000000      );
+  id20 -> SetBinContent( xbin,    17.412908697405818      );
+  id20 -> SetBinError( xbin,   0.29255321655095579      );
+   xbin = id20->FindBin(   1.3750000000000000      );
+  id20 -> SetBinContent( xbin,    14.616290857371323      );
+  id20 -> SetBinError( xbin,   0.28756531504394373      );
+   xbin = id20->FindBin(   1.6250000000000000      );
+  id20 -> SetBinContent( xbin,    10.550839278461973      );
+  id20 -> SetBinError( xbin,   0.24963992257170309      );
+   xbin = id20->FindBin(   1.8750000000000000      );
+  id20 -> SetBinContent( xbin,    7.2168090526628310      );
+  id20 -> SetBinError( xbin,   0.20939481205795030      );
+   xbin = id20->FindBin(   2.1250000000000000      );
+  id20 -> SetBinContent( xbin,    5.4421152811773794      );
+  id20 -> SetBinError( xbin,   0.23060750346725684      );
+   xbin = id20->FindBin(   2.3750000000000000      );
+  id20 -> SetBinContent( xbin,    1.4356822596890113      );
+  id20 -> SetBinError( xbin,   0.12397897682019143      );
+//  hist20 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist21 = new TH1F( "id21", "m(35)", 60,       0.0000,     300.0000);
+
+  id21 -> GetXaxis() -> SetTitle("m(35)");
+  id21 -> GetYaxis() -> SetTitle(" d#sigma/dm(35) [fb]");
+
+  id21 -> GetYaxis() -> SetTitleOffset(1.2);
+  id21 -> SetStats(false);
+   xbin = id21->FindBin(   27.500000000000000      );
+  id21 -> SetBinContent( xbin,    6.3016039183981217E-003 );
+  id21 -> SetBinError( xbin,    3.3892154317197603E-003 );
+   xbin = id21->FindBin(   32.500000000000000      );
+  id21 -> SetBinContent( xbin,    9.3872339940137800E-002 );
+  id21 -> SetBinError( xbin,    6.8910106498177139E-003 );
+   xbin = id21->FindBin(   37.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.29609018867549464      );
+  id21 -> SetBinError( xbin,    1.1446119129052496E-002 );
+   xbin = id21->FindBin(   42.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.45574052551188615      );
+  id21 -> SetBinError( xbin,    1.2774501169676992E-002 );
+   xbin = id21->FindBin(   47.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.59918956810070068      );
+  id21 -> SetBinError( xbin,    1.3626385987682156E-002 );
+   xbin = id21->FindBin(   52.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.63447227154507313      );
+  id21 -> SetBinError( xbin,    1.3261842516571420E-002 );
+   xbin = id21->FindBin(   57.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.59778548553463129      );
+  id21 -> SetBinError( xbin,    1.2049244982019735E-002 );
+   xbin = id21->FindBin(   62.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.52754967487805038      );
+  id21 -> SetBinError( xbin,    1.0837634339794693E-002 );
+   xbin = id21->FindBin(   67.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.48291890252126746      );
+  id21 -> SetBinError( xbin,    1.0207029996421816E-002 );
+   xbin = id21->FindBin(   72.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.41946511920564938      );
+  id21 -> SetBinError( xbin,    9.3457985654416213E-003 );
+   xbin = id21->FindBin(   77.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.35333926567566598      );
+  id21 -> SetBinError( xbin,    8.2410144916424347E-003 );
+   xbin = id21->FindBin(   82.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.30306202254061437      );
+  id21 -> SetBinError( xbin,    7.9892205696991715E-003 );
+   xbin = id21->FindBin(   87.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.25917963613857181      );
+  id21 -> SetBinError( xbin,    7.0028939700375586E-003 );
+   xbin = id21->FindBin(   92.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.23237064987971531      );
+  id21 -> SetBinError( xbin,    7.1733054501995682E-003 );
+   xbin = id21->FindBin(   97.500000000000000      );
+  id21 -> SetBinContent( xbin,   0.21018492550535028      );
+  id21 -> SetBinError( xbin,    6.3229284775712267E-003 );
+   xbin = id21->FindBin(   102.50000000000000      );
+  id21 -> SetBinContent( xbin,   0.17520671119143844      );
+  id21 -> SetBinError( xbin,    5.8942499601914132E-003 );
+   xbin = id21->FindBin(   107.50000000000000      );
+  id21 -> SetBinContent( xbin,   0.15376747882602360      );
+  id21 -> SetBinError( xbin,    5.3747073546785437E-003 );
+   xbin = id21->FindBin(   112.50000000000000      );
+  id21 -> SetBinContent( xbin,   0.13328738436844764      );
+  id21 -> SetBinError( xbin,    5.0687545624797086E-003 );
+   xbin = id21->FindBin(   117.50000000000000      );
+  id21 -> SetBinContent( xbin,   0.11742144209780643      );
+  id21 -> SetBinError( xbin,    4.9700651723088261E-003 );
+   xbin = id21->FindBin(   122.50000000000000      );
+  id21 -> SetBinContent( xbin,   0.10691836301885127      );
+  id21 -> SetBinError( xbin,    4.5906250302494098E-003 );
+   xbin = id21->FindBin(   127.50000000000000      );
+  id21 -> SetBinContent( xbin,    9.1452709923392439E-002 );
+  id21 -> SetBinError( xbin,    4.0128468540149816E-003 );
+   xbin = id21->FindBin(   132.50000000000000      );
+  id21 -> SetBinContent( xbin,    8.0827224675012188E-002 );
+  id21 -> SetBinError( xbin,    3.8178344092982910E-003 );
+   xbin = id21->FindBin(   137.50000000000000      );
+  id21 -> SetBinContent( xbin,    7.4628047124688679E-002 );
+  id21 -> SetBinError( xbin,    3.8151760224862793E-003 );
+   xbin = id21->FindBin(   142.50000000000000      );
+  id21 -> SetBinContent( xbin,    6.2179518443545828E-002 );
+  id21 -> SetBinError( xbin,    3.2439077627436134E-003 );
+   xbin = id21->FindBin(   147.50000000000000      );
+  id21 -> SetBinContent( xbin,    5.8899330863998671E-002 );
+  id21 -> SetBinError( xbin,    3.1849532902158513E-003 );
+   xbin = id21->FindBin(   152.50000000000000      );
+  id21 -> SetBinContent( xbin,    5.0541761237786080E-002 );
+  id21 -> SetBinError( xbin,    3.2377549944044913E-003 );
+   xbin = id21->FindBin(   157.50000000000000      );
+  id21 -> SetBinContent( xbin,    4.1883868755142745E-002 );
+  id21 -> SetBinError( xbin,    2.4072498699388390E-003 );
+   xbin = id21->FindBin(   162.50000000000000      );
+  id21 -> SetBinContent( xbin,    4.2272109884050522E-002 );
+  id21 -> SetBinError( xbin,    2.8573792205200373E-003 );
+   xbin = id21->FindBin(   167.50000000000000      );
+  id21 -> SetBinContent( xbin,    3.3028278063962399E-002 );
+  id21 -> SetBinError( xbin,    2.0822098396774515E-003 );
+   xbin = id21->FindBin(   172.50000000000000      );
+  id21 -> SetBinContent( xbin,    3.1544219856696476E-002 );
+  id21 -> SetBinError( xbin,    2.2836284544147903E-003 );
+   xbin = id21->FindBin(   177.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.8618340627362387E-002 );
+  id21 -> SetBinError( xbin,    2.0119953027866351E-003 );
+   xbin = id21->FindBin(   182.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.5353406010270117E-002 );
+  id21 -> SetBinError( xbin,    1.8450423942230009E-003 );
+   xbin = id21->FindBin(   187.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.4138958925334592E-002 );
+  id21 -> SetBinError( xbin,    1.8853927340608167E-003 );
+   xbin = id21->FindBin(   192.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.1579206425205087E-002 );
+  id21 -> SetBinError( xbin,    1.7149678721314807E-003 );
+   xbin = id21->FindBin(   197.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.0564711117849695E-002 );
+  id21 -> SetBinError( xbin,    2.0237682550499976E-003 );
+   xbin = id21->FindBin(   202.50000000000000      );
+  id21 -> SetBinContent( xbin,    1.7444116027139175E-002 );
+  id21 -> SetBinError( xbin,    1.5774328851929523E-003 );
+   xbin = id21->FindBin(   207.50000000000000      );
+  id21 -> SetBinContent( xbin,    1.4883866642358332E-002 );
+  id21 -> SetBinError( xbin,    1.2495705056708871E-003 );
+   xbin = id21->FindBin(   212.50000000000000      );
+  id21 -> SetBinContent( xbin,    1.5631897683902416E-002 );
+  id21 -> SetBinError( xbin,    1.4208333905764655E-003 );
+   xbin = id21->FindBin(   217.50000000000000      );
+  id21 -> SetBinContent( xbin,    1.3719542383431191E-002 );
+  id21 -> SetBinError( xbin,    1.1794086249314534E-003 );
+   xbin = id21->FindBin(   222.50000000000000      );
+  id21 -> SetBinContent( xbin,    1.4059014692408472E-002 );
+  id21 -> SetBinError( xbin,    1.3367026290576317E-003 );
+   xbin = id21->FindBin(   227.50000000000000      );
+  id21 -> SetBinContent( xbin,    7.2318970489582551E-003 );
+  id21 -> SetBinError( xbin,    6.8884781699455385E-004 );
+   xbin = id21->FindBin(   232.50000000000000      );
+  id21 -> SetBinContent( xbin,    9.2505418353875934E-003 );
+  id21 -> SetBinError( xbin,    1.0498732614063443E-003 );
+   xbin = id21->FindBin(   237.50000000000000      );
+  id21 -> SetBinContent( xbin,    8.6358217152194550E-003 );
+  id21 -> SetBinError( xbin,    9.3991165238577277E-004 );
+   xbin = id21->FindBin(   242.50000000000000      );
+  id21 -> SetBinContent( xbin,    6.2906708624119682E-003 );
+  id21 -> SetBinError( xbin,    6.6435714269920084E-004 );
+   xbin = id21->FindBin(   247.50000000000000      );
+  id21 -> SetBinContent( xbin,    5.8079009635900961E-003 );
+  id21 -> SetBinError( xbin,    6.3188898987748916E-004 );
+   xbin = id21->FindBin(   252.50000000000000      );
+  id21 -> SetBinContent( xbin,    7.3082534488942757E-003 );
+  id21 -> SetBinError( xbin,    9.4150339563426114E-004 );
+   xbin = id21->FindBin(   257.50000000000000      );
+  id21 -> SetBinContent( xbin,    7.0467275748926465E-003 );
+  id21 -> SetBinError( xbin,    9.6429152612906072E-004 );
+   xbin = id21->FindBin(   262.50000000000000      );
+  id21 -> SetBinContent( xbin,    5.7332689994144884E-003 );
+  id21 -> SetBinError( xbin,    7.5109832215687795E-004 );
+   xbin = id21->FindBin(   267.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.9235260683451872E-003 );
+  id21 -> SetBinError( xbin,    3.9189900496486784E-004 );
+   xbin = id21->FindBin(   272.50000000000000      );
+  id21 -> SetBinContent( xbin,    3.0590330130524741E-003 );
+  id21 -> SetBinError( xbin,    4.0116351665936954E-004 );
+   xbin = id21->FindBin(   277.50000000000000      );
+  id21 -> SetBinContent( xbin,    4.2314086228060870E-003 );
+  id21 -> SetBinError( xbin,    5.8942457973287896E-004 );
+   xbin = id21->FindBin(   282.50000000000000      );
+  id21 -> SetBinContent( xbin,    3.7471929971945174E-003 );
+  id21 -> SetBinError( xbin,    4.8793281635326906E-004 );
+   xbin = id21->FindBin(   287.50000000000000      );
+  id21 -> SetBinContent( xbin,    3.2827095863825402E-003 );
+  id21 -> SetBinError( xbin,    4.0870228210201909E-004 );
+   xbin = id21->FindBin(   292.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.6739815778514422E-003 );
+  id21 -> SetBinError( xbin,    3.4222166088995477E-004 );
+   xbin = id21->FindBin(   297.50000000000000      );
+  id21 -> SetBinContent( xbin,    2.1563850582532306E-003 );
+  id21 -> SetBinError( xbin,    3.6945477649009419E-004 );
+//  hist21 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist22 = new TH1F( "id22", "pt(35)", 40,       0.0000,     200.0000);
+
+  id22 -> GetXaxis() -> SetTitle("pt(35)");
+  id22 -> GetYaxis() -> SetTitle(" d#sigma/dpt(35) [fb]");
+
+  id22 -> GetYaxis() -> SetTitleOffset(1.2);
+  id22 -> SetStats(false);
+   xbin = id22->FindBin(   17.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.98319806723107539      );
+  id22 -> SetBinError( xbin,    2.2132513363252154E-002 );
+   xbin = id22->FindBin(   22.500000000000000      );
+  id22 -> SetBinContent( xbin,    1.3723541828046932      );
+  id22 -> SetBinError( xbin,    2.0732413089158127E-002 );
+   xbin = id22->FindBin(   27.500000000000000      );
+  id22 -> SetBinContent( xbin,    1.1095671568572203      );
+  id22 -> SetBinError( xbin,    1.5977527553846588E-002 );
+   xbin = id22->FindBin(   32.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.81049543176981176      );
+  id22 -> SetBinError( xbin,    1.2331196853605233E-002 );
+   xbin = id22->FindBin(   37.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.58711284791795737      );
+  id22 -> SetBinError( xbin,    1.0293217756774029E-002 );
+   xbin = id22->FindBin(   42.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.42973828407089759      );
+  id22 -> SetBinError( xbin,    7.9922005420569996E-003 );
+   xbin = id22->FindBin(   47.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.32797641448313919      );
+  id22 -> SetBinError( xbin,    6.9960356121422668E-003 );
+   xbin = id22->FindBin(   52.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.25822618451451124      );
+  id22 -> SetBinError( xbin,    6.0962439518343617E-003 );
+   xbin = id22->FindBin(   57.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.22015515488282994      );
+  id22 -> SetBinError( xbin,    6.0711748593658705E-003 );
+   xbin = id22->FindBin(   62.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.15839213118913231      );
+  id22 -> SetBinError( xbin,    4.7192559656470835E-003 );
+   xbin = id22->FindBin(   67.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.13430126199645204      );
+  id22 -> SetBinError( xbin,    4.1756550423399054E-003 );
+   xbin = id22->FindBin(   72.500000000000000      );
+  id22 -> SetBinContent( xbin,   0.11601775265412623      );
+  id22 -> SetBinError( xbin,    4.2884996450097560E-003 );
+   xbin = id22->FindBin(   77.500000000000000      );
+  id22 -> SetBinContent( xbin,    9.8756217237728219E-002 );
+  id22 -> SetBinError( xbin,    3.7355778141253330E-003 );
+   xbin = id22->FindBin(   82.500000000000000      );
+  id22 -> SetBinContent( xbin,    7.4448427983517654E-002 );
+  id22 -> SetBinError( xbin,    3.1379980331728377E-003 );
+   xbin = id22->FindBin(   87.500000000000000      );
+  id22 -> SetBinContent( xbin,    6.2217946548580712E-002 );
+  id22 -> SetBinError( xbin,    2.9185667418096172E-003 );
+   xbin = id22->FindBin(   92.500000000000000      );
+  id22 -> SetBinContent( xbin,    5.1669894776060252E-002 );
+  id22 -> SetBinError( xbin,    2.5438020390935426E-003 );
+   xbin = id22->FindBin(   97.500000000000000      );
+  id22 -> SetBinContent( xbin,    4.0516863498458573E-002 );
+  id22 -> SetBinError( xbin,    2.3372051316582370E-003 );
+   xbin = id22->FindBin(   102.50000000000000      );
+  id22 -> SetBinContent( xbin,    4.0552303724948828E-002 );
+  id22 -> SetBinError( xbin,    2.3752311245062332E-003 );
+   xbin = id22->FindBin(   107.50000000000000      );
+  id22 -> SetBinContent( xbin,    3.3209609200775689E-002 );
+  id22 -> SetBinError( xbin,    2.0660700592844495E-003 );
+   xbin = id22->FindBin(   112.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.7751922570718398E-002 );
+  id22 -> SetBinError( xbin,    2.0066114418467521E-003 );
+   xbin = id22->FindBin(   117.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.5877342314364320E-002 );
+  id22 -> SetBinError( xbin,    2.1992820560777209E-003 );
+   xbin = id22->FindBin(   122.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.2373135647978507E-002 );
+  id22 -> SetBinError( xbin,    1.8048589993719154E-003 );
+   xbin = id22->FindBin(   127.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.0682305777595885E-002 );
+  id22 -> SetBinError( xbin,    2.0223817820803954E-003 );
+   xbin = id22->FindBin(   132.50000000000000      );
+  id22 -> SetBinContent( xbin,    1.3461132345694975E-002 );
+  id22 -> SetBinError( xbin,    1.2489946041738746E-003 );
+   xbin = id22->FindBin(   137.50000000000000      );
+  id22 -> SetBinContent( xbin,    1.1899327493372700E-002 );
+  id22 -> SetBinError( xbin,    1.0514197002106100E-003 );
+   xbin = id22->FindBin(   142.50000000000000      );
+  id22 -> SetBinContent( xbin,    1.0443255551982581E-002 );
+  id22 -> SetBinError( xbin,    1.0160249873016074E-003 );
+   xbin = id22->FindBin(   147.50000000000000      );
+  id22 -> SetBinContent( xbin,    9.9918627483435440E-003 );
+  id22 -> SetBinError( xbin,    1.1587639255195147E-003 );
+   xbin = id22->FindBin(   152.50000000000000      );
+  id22 -> SetBinContent( xbin,    9.7814746796664742E-003 );
+  id22 -> SetBinError( xbin,    1.0242253218478610E-003 );
+   xbin = id22->FindBin(   157.50000000000000      );
+  id22 -> SetBinContent( xbin,    8.2719526934902764E-003 );
+  id22 -> SetBinError( xbin,    8.5453843186346292E-004 );
+   xbin = id22->FindBin(   162.50000000000000      );
+  id22 -> SetBinContent( xbin,    5.2103819779359753E-003 );
+  id22 -> SetBinError( xbin,    6.2904512670977348E-004 );
+   xbin = id22->FindBin(   167.50000000000000      );
+  id22 -> SetBinContent( xbin,    6.8754713869831835E-003 );
+  id22 -> SetBinError( xbin,    9.4897545499929975E-004 );
+   xbin = id22->FindBin(   172.50000000000000      );
+  id22 -> SetBinContent( xbin,    3.2227305188033367E-003 );
+  id22 -> SetBinError( xbin,    4.5030930137916297E-004 );
+   xbin = id22->FindBin(   177.50000000000000      );
+  id22 -> SetBinContent( xbin,    4.1922700805390040E-003 );
+  id22 -> SetBinError( xbin,    5.3570613603490475E-004 );
+   xbin = id22->FindBin(   182.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.5339272639802535E-003 );
+  id22 -> SetBinError( xbin,    3.9587601936999012E-004 );
+   xbin = id22->FindBin(   187.50000000000000      );
+  id22 -> SetBinContent( xbin,    3.4521674730977167E-003 );
+  id22 -> SetBinError( xbin,    4.7724313637670553E-004 );
+   xbin = id22->FindBin(   192.50000000000000      );
+  id22 -> SetBinContent( xbin,    3.3050485251029135E-003 );
+  id22 -> SetBinError( xbin,    5.9597116010436958E-004 );
+   xbin = id22->FindBin(   197.50000000000000      );
+  id22 -> SetBinContent( xbin,    2.2670940703193271E-003 );
+  id22 -> SetBinError( xbin,    4.1578764063823027E-004 );
+//  hist22 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist23 = new TH1F( "id23", "y(35)", 25,      -5.0000,       5.0000);
+
+  id23 -> GetXaxis() -> SetTitle("y(35)");
+  id23 -> GetYaxis() -> SetTitle(" d#sigma/dy(35) [fb]");
+
+  id23 -> GetYaxis() -> SetTitleOffset(1.2);
+  id23 -> SetStats(false);
+   xbin = id23->FindBin(  -2.3999999999999999      );
+  id23 -> SetBinContent( xbin,   0.71577240124401587      );
+  id23 -> SetBinError( xbin,    6.9822171636214569E-002 );
+   xbin = id23->FindBin(  -2.0000000000000000      );
+  id23 -> SetBinContent( xbin,    3.7696318495694809      );
+  id23 -> SetBinError( xbin,   0.14330190024810441      );
+   xbin = id23->FindBin(  -1.5999999999999996      );
+  id23 -> SetBinContent( xbin,    5.8228317270670953      );
+  id23 -> SetBinError( xbin,   0.14595782608913541      );
+   xbin = id23->FindBin(  -1.1999999999999997      );
+  id23 -> SetBinContent( xbin,    8.0370267385681604      );
+  id23 -> SetBinError( xbin,   0.15903848011406566      );
+   xbin = id23->FindBin( -0.79999999999999982      );
+  id23 -> SetBinContent( xbin,    9.9982026370729322      );
+  id23 -> SetBinError( xbin,   0.16555599512677655      );
+   xbin = id23->FindBin( -0.39999999999999947      );
+  id23 -> SetBinContent( xbin,    11.505898141913470      );
+  id23 -> SetBinError( xbin,   0.16877636207571733      );
+   xbin = id23->FindBin(   0.0000000000000000      );
+  id23 -> SetBinContent( xbin,    11.831964681509756      );
+  id23 -> SetBinError( xbin,   0.17745425293128617      );
+   xbin = id23->FindBin(  0.40000000000000036      );
+  id23 -> SetBinContent( xbin,    11.416200531816081      );
+  id23 -> SetBinError( xbin,   0.18085378271076008      );
+   xbin = id23->FindBin(  0.80000000000000071      );
+  id23 -> SetBinContent( xbin,    9.7906515148715378      );
+  id23 -> SetBinError( xbin,   0.16175798072879766      );
+   xbin = id23->FindBin(   1.2000000000000002      );
+  id23 -> SetBinContent( xbin,    7.7497264518555653      );
+  id23 -> SetBinError( xbin,   0.16197424632120097      );
+   xbin = id23->FindBin(   1.6000000000000005      );
+  id23 -> SetBinContent( xbin,    5.5925851251134677      );
+  id23 -> SetBinError( xbin,   0.14116598719726167      );
+   xbin = id23->FindBin(   2.0000000000000000      );
+  id23 -> SetBinContent( xbin,    3.5551815850799207      );
+  id23 -> SetBinError( xbin,   0.13176908812589574      );
+   xbin = id23->FindBin(   2.4000000000000004      );
+  id23 -> SetBinContent( xbin,   0.83135750587843960      );
+  id23 -> SetBinError( xbin,    7.8334495811995794E-002 );
+//  hist23 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist24 = new TH1F( "id24", "|y(35)|", 20,       0.0000,       5.0000);
+
+  id24 -> GetXaxis() -> SetTitle("|y(35)|");
+  id24 -> GetYaxis() -> SetTitle(" d#sigma/d|y(35)| [fb]");
+
+  id24 -> GetYaxis() -> SetTitleOffset(1.2);
+  id24 -> SetStats(false);
+   xbin = id24->FindBin(  0.12500000000000000      );
+  id24 -> SetBinContent( xbin,    23.623029942615897      );
+  id24 -> SetBinError( xbin,   0.31453576656996080      );
+   xbin = id24->FindBin(  0.37500000000000000      );
+  id24 -> SetBinContent( xbin,    23.277823009757380      );
+  id24 -> SetBinError( xbin,   0.31862202224227032      );
+   xbin = id24->FindBin(  0.62500000000000000      );
+  id24 -> SetBinContent( xbin,    20.867577569687185      );
+  id24 -> SetBinError( xbin,   0.29324840266121133      );
+   xbin = id24->FindBin(  0.87500000000000000      );
+  id24 -> SetBinContent( xbin,    19.550360320816189      );
+  id24 -> SetBinError( xbin,   0.29618189327309929      );
+   xbin = id24->FindBin(   1.1250000000000000      );
+  id24 -> SetBinContent( xbin,    16.911470610314051      );
+  id24 -> SetBinError( xbin,   0.29104366551812344      );
+   xbin = id24->FindBin(   1.3750000000000000      );
+  id24 -> SetBinContent( xbin,    13.465317571527882      );
+  id24 -> SetBinError( xbin,   0.26673458455972909      );
+   xbin = id24->FindBin(   1.6250000000000000      );
+  id24 -> SetBinContent( xbin,    11.265228937122171      );
+  id24 -> SetBinError( xbin,   0.26015273670646627      );
+   xbin = id24->FindBin(   1.8750000000000000      );
+  id24 -> SetBinContent( xbin,    9.0490904551140261      );
+  id24 -> SetBinError( xbin,   0.26465707727099252      );
+   xbin = id24->FindBin(   2.1250000000000000      );
+  id24 -> SetBinContent( xbin,    5.4945237111914036      );
+  id24 -> SetBinError( xbin,   0.22493666636540696      );
+   xbin = id24->FindBin(   2.3750000000000000      );
+  id24 -> SetBinContent( xbin,    1.7159627616115767      );
+  id24 -> SetBinError( xbin,   0.14695335896191561      );
+//  hist24 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist25 = new TH1F( "id25", "m(45)", 60,       0.0000,     300.0000);
+
+  id25 -> GetXaxis() -> SetTitle("m(45)");
+  id25 -> GetYaxis() -> SetTitle(" d#sigma/dm(45) [fb]");
+
+  id25 -> GetYaxis() -> SetTitleOffset(1.2);
+  id25 -> SetStats(false);
+   xbin = id25->FindBin(   7.5000000000000000      );
+  id25 -> SetBinContent( xbin,    6.5004813765948327E-002 );
+  id25 -> SetBinError( xbin,    5.2248423510086808E-003 );
+   xbin = id25->FindBin(   12.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.25812202394759842      );
+  id25 -> SetBinError( xbin,    9.2811740385002391E-003 );
+   xbin = id25->FindBin(   17.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.36627128689930372      );
+  id25 -> SetBinError( xbin,    1.0328690470668134E-002 );
+   xbin = id25->FindBin(   22.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.53305921517128163      );
+  id25 -> SetBinError( xbin,    1.3406181919870605E-002 );
+   xbin = id25->FindBin(   27.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.66851157941697315      );
+  id25 -> SetBinError( xbin,    1.4751709989507440E-002 );
+   xbin = id25->FindBin(   32.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.75126383333607516      );
+  id25 -> SetBinError( xbin,    1.4916552784844132E-002 );
+   xbin = id25->FindBin(   37.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.64793178583220346      );
+  id25 -> SetBinError( xbin,    1.2261251327093797E-002 );
+   xbin = id25->FindBin(   42.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.59758158407525430      );
+  id25 -> SetBinError( xbin,    1.1537404775662591E-002 );
+   xbin = id25->FindBin(   47.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.47311000960768018      );
+  id25 -> SetBinError( xbin,    9.7772822102000986E-003 );
+   xbin = id25->FindBin(   52.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.42345386754102282      );
+  id25 -> SetBinError( xbin,    9.3335119096909173E-003 );
+   xbin = id25->FindBin(   57.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.33083211088845160      );
+  id25 -> SetBinError( xbin,    8.2071236470034926E-003 );
+   xbin = id25->FindBin(   62.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.27853712311261286      );
+  id25 -> SetBinError( xbin,    8.2096160981836360E-003 );
+   xbin = id25->FindBin(   67.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.22723379592595996      );
+  id25 -> SetBinError( xbin,    6.5741077876416238E-003 );
+   xbin = id25->FindBin(   72.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.18793896285766618      );
+  id25 -> SetBinError( xbin,    5.5252947945687693E-003 );
+   xbin = id25->FindBin(   77.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.17517124138662948      );
+  id25 -> SetBinError( xbin,    6.3505800544014224E-003 );
+   xbin = id25->FindBin(   82.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.14276424603800789      );
+  id25 -> SetBinError( xbin,    5.0775282777090498E-003 );
+   xbin = id25->FindBin(   87.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.11853845590594764      );
+  id25 -> SetBinError( xbin,    4.5218557748405502E-003 );
+   xbin = id25->FindBin(   92.500000000000000      );
+  id25 -> SetBinContent( xbin,   0.10362137628437269      );
+  id25 -> SetBinError( xbin,    4.1873540264502464E-003 );
+   xbin = id25->FindBin(   97.500000000000000      );
+  id25 -> SetBinContent( xbin,    9.7600570548688273E-002 );
+  id25 -> SetBinError( xbin,    4.9001289563682720E-003 );
+   xbin = id25->FindBin(   102.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.2157351349635754E-002 );
+  id25 -> SetBinError( xbin,    3.9948976474351418E-003 );
+   xbin = id25->FindBin(   107.50000000000000      );
+  id25 -> SetBinContent( xbin,    6.3392617481820873E-002 );
+  id25 -> SetBinError( xbin,    3.2443835534822548E-003 );
+   xbin = id25->FindBin(   112.50000000000000      );
+  id25 -> SetBinContent( xbin,    5.8312779809754613E-002 );
+  id25 -> SetBinError( xbin,    3.2747653346262050E-003 );
+   xbin = id25->FindBin(   117.50000000000000      );
+  id25 -> SetBinContent( xbin,    4.7407469847584358E-002 );
+  id25 -> SetBinError( xbin,    2.8002348530184679E-003 );
+   xbin = id25->FindBin(   122.50000000000000      );
+  id25 -> SetBinContent( xbin,    3.8558969617595418E-002 );
+  id25 -> SetBinError( xbin,    2.3409237644943059E-003 );
+   xbin = id25->FindBin(   127.50000000000000      );
+  id25 -> SetBinContent( xbin,    3.7529446146746484E-002 );
+  id25 -> SetBinError( xbin,    2.3049730780749689E-003 );
+   xbin = id25->FindBin(   132.50000000000000      );
+  id25 -> SetBinContent( xbin,    2.8442827832739551E-002 );
+  id25 -> SetBinError( xbin,    1.8679361580983683E-003 );
+   xbin = id25->FindBin(   137.50000000000000      );
+  id25 -> SetBinContent( xbin,    2.8407918357257249E-002 );
+  id25 -> SetBinError( xbin,    2.2658335675476977E-003 );
+   xbin = id25->FindBin(   142.50000000000000      );
+  id25 -> SetBinContent( xbin,    2.6950067322193450E-002 );
+  id25 -> SetBinError( xbin,    2.2219378305245096E-003 );
+   xbin = id25->FindBin(   147.50000000000000      );
+  id25 -> SetBinContent( xbin,    2.3076290596097358E-002 );
+  id25 -> SetBinError( xbin,    2.0970940417390496E-003 );
+   xbin = id25->FindBin(   152.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.8063213049954330E-002 );
+  id25 -> SetBinError( xbin,    1.5986732245330776E-003 );
+   xbin = id25->FindBin(   157.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.6988418038436863E-002 );
+  id25 -> SetBinError( xbin,    1.4524938521379191E-003 );
+   xbin = id25->FindBin(   162.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.4433014089029675E-002 );
+  id25 -> SetBinError( xbin,    1.2768705102288154E-003 );
+   xbin = id25->FindBin(   167.50000000000000      );
+  id25 -> SetBinContent( xbin,    9.7804440309470844E-003 );
+  id25 -> SetBinError( xbin,    1.0057263926091450E-003 );
+   xbin = id25->FindBin(   172.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.2760320753160000E-002 );
+  id25 -> SetBinError( xbin,    1.2920061112216749E-003 );
+   xbin = id25->FindBin(   177.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.0645582341448474E-002 );
+  id25 -> SetBinError( xbin,    1.0965974187554101E-003 );
+   xbin = id25->FindBin(   182.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.4578204709420714E-003 );
+  id25 -> SetBinError( xbin,    8.7532775753215806E-004 );
+   xbin = id25->FindBin(   187.50000000000000      );
+  id25 -> SetBinContent( xbin,    7.5093130706490457E-003 );
+  id25 -> SetBinError( xbin,    7.6836194944052464E-004 );
+   xbin = id25->FindBin(   192.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.3671063174428073E-003 );
+  id25 -> SetBinError( xbin,    9.6471386763590428E-004 );
+   xbin = id25->FindBin(   197.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.6410583241595586E-003 );
+  id25 -> SetBinError( xbin,    1.0399140640851791E-003 );
+   xbin = id25->FindBin(   202.50000000000000      );
+  id25 -> SetBinContent( xbin,    6.9591284109822927E-003 );
+  id25 -> SetBinError( xbin,    7.9913654263281183E-004 );
+   xbin = id25->FindBin(   207.50000000000000      );
+  id25 -> SetBinContent( xbin,    3.4679966203400945E-003 );
+  id25 -> SetBinError( xbin,    5.0526474457730384E-004 );
+   xbin = id25->FindBin(   212.50000000000000      );
+  id25 -> SetBinContent( xbin,    5.2308287117680749E-003 );
+  id25 -> SetBinError( xbin,    6.4836460633994127E-004 );
+   xbin = id25->FindBin(   217.50000000000000      );
+  id25 -> SetBinContent( xbin,    4.8560901079213910E-003 );
+  id25 -> SetBinError( xbin,    6.9977114997977748E-004 );
+   xbin = id25->FindBin(   222.50000000000000      );
+  id25 -> SetBinContent( xbin,    4.6079709192011799E-003 );
+  id25 -> SetBinError( xbin,    5.7118762429923223E-004 );
+   xbin = id25->FindBin(   227.50000000000000      );
+  id25 -> SetBinContent( xbin,    4.2087134012744366E-003 );
+  id25 -> SetBinError( xbin,    6.3267615827522386E-004 );
+   xbin = id25->FindBin(   232.50000000000000      );
+  id25 -> SetBinContent( xbin,    3.7470062173734589E-003 );
+  id25 -> SetBinError( xbin,    6.2899311025654250E-004 );
+   xbin = id25->FindBin(   237.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.9886843393524009E-003 );
+  id25 -> SetBinError( xbin,    3.6486981958217744E-004 );
+   xbin = id25->FindBin(   242.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.7897491919221854E-003 );
+  id25 -> SetBinError( xbin,    3.4412048485090260E-004 );
+   xbin = id25->FindBin(   247.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.1951890365416230E-003 );
+  id25 -> SetBinError( xbin,    2.5542187562062341E-004 );
+   xbin = id25->FindBin(   252.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.5170349874368699E-003 );
+  id25 -> SetBinError( xbin,    2.4248628207187577E-004 );
+   xbin = id25->FindBin(   257.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.4827152094009969E-003 );
+  id25 -> SetBinError( xbin,    2.4464450582907543E-004 );
+   xbin = id25->FindBin(   262.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.4052154005391414E-003 );
+  id25 -> SetBinError( xbin,    2.4300061548436050E-004 );
+   xbin = id25->FindBin(   267.50000000000000      );
+  id25 -> SetBinContent( xbin,    7.3765871354541045E-004 );
+  id25 -> SetBinError( xbin,    1.6080835804065178E-004 );
+   xbin = id25->FindBin(   272.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.9982361499014190E-003 );
+  id25 -> SetBinError( xbin,    3.3444604759165833E-004 );
+   xbin = id25->FindBin(   277.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.5947262961480421E-004 );
+  id25 -> SetBinError( xbin,    1.6768085008242499E-004 );
+   xbin = id25->FindBin(   282.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.2167405533053820E-003 );
+  id25 -> SetBinError( xbin,    2.1293035613153242E-004 );
+   xbin = id25->FindBin(   287.50000000000000      );
+  id25 -> SetBinContent( xbin,    8.6239058537519698E-004 );
+  id25 -> SetBinError( xbin,    1.5935844496314623E-004 );
+   xbin = id25->FindBin(   292.50000000000000      );
+  id25 -> SetBinContent( xbin,    1.1300642947576771E-003 );
+  id25 -> SetBinError( xbin,    2.4268060592687955E-004 );
+   xbin = id25->FindBin(   297.50000000000000      );
+  id25 -> SetBinContent( xbin,    3.0731560518598499E-004 );
+  id25 -> SetBinError( xbin,    9.2756921446845235E-005 );
+//  hist25 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist26 = new TH1F( "id26", "pt(45)", 40,       0.0000,     200.0000);
+
+  id26 -> GetXaxis() -> SetTitle("pt(45)");
+  id26 -> GetYaxis() -> SetTitle(" d#sigma/dpt(45) [fb]");
+
+  id26 -> GetYaxis() -> SetTitleOffset(1.2);
+  id26 -> SetStats(false);
+   xbin = id26->FindBin(   17.500000000000000      );
+  id26 -> SetBinContent( xbin,    8.9767068520263768E-002 );
+  id26 -> SetBinError( xbin,    7.9401945216845612E-003 );
+   xbin = id26->FindBin(   22.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.45664821383417825      );
+  id26 -> SetBinError( xbin,    1.4224635650957143E-002 );
+   xbin = id26->FindBin(   27.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.71820479441189711      );
+  id26 -> SetBinError( xbin,    1.6023705410640496E-002 );
+   xbin = id26->FindBin(   32.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.96970600871974355      );
+  id26 -> SetBinError( xbin,    1.7781495460812213E-002 );
+   xbin = id26->FindBin(   37.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.89655564148586453      );
+  id26 -> SetBinError( xbin,    1.5333095195627313E-002 );
+   xbin = id26->FindBin(   42.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.73436095040280580      );
+  id26 -> SetBinError( xbin,    1.3027210216369644E-002 );
+   xbin = id26->FindBin(   47.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.58853277149019978      );
+  id26 -> SetBinError( xbin,    1.0395765427209191E-002 );
+   xbin = id26->FindBin(   52.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.46745777585270104      );
+  id26 -> SetBinError( xbin,    9.1797642978355409E-003 );
+   xbin = id26->FindBin(   57.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.35815020074324838      );
+  id26 -> SetBinError( xbin,    7.4303315556062850E-003 );
+   xbin = id26->FindBin(   62.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.29753507388991685      );
+  id26 -> SetBinError( xbin,    7.0457119769932941E-003 );
+   xbin = id26->FindBin(   67.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.23582421960430114      );
+  id26 -> SetBinError( xbin,    5.6719116392676822E-003 );
+   xbin = id26->FindBin(   72.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.19806810101507510      );
+  id26 -> SetBinError( xbin,    5.5508305581136062E-003 );
+   xbin = id26->FindBin(   77.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.15974596556146214      );
+  id26 -> SetBinError( xbin,    4.8733478738570120E-003 );
+   xbin = id26->FindBin(   82.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.13458444745519829      );
+  id26 -> SetBinError( xbin,    4.4115887064401114E-003 );
+   xbin = id26->FindBin(   87.500000000000000      );
+  id26 -> SetBinContent( xbin,   0.11172496272889966      );
+  id26 -> SetBinError( xbin,    3.7471300644097909E-003 );
+   xbin = id26->FindBin(   92.500000000000000      );
+  id26 -> SetBinContent( xbin,    9.4390426721746482E-002 );
+  id26 -> SetBinError( xbin,    3.4327497282526545E-003 );
+   xbin = id26->FindBin(   97.500000000000000      );
+  id26 -> SetBinContent( xbin,    7.2848180085668263E-002 );
+  id26 -> SetBinError( xbin,    3.0420381722969596E-003 );
+   xbin = id26->FindBin(   102.50000000000000      );
+  id26 -> SetBinContent( xbin,    6.5813809463411990E-002 );
+  id26 -> SetBinError( xbin,    2.9454660011160806E-003 );
+   xbin = id26->FindBin(   107.50000000000000      );
+  id26 -> SetBinContent( xbin,    5.6410191817298831E-002 );
+  id26 -> SetBinError( xbin,    2.6414776828902285E-003 );
+   xbin = id26->FindBin(   112.50000000000000      );
+  id26 -> SetBinContent( xbin,    5.9979192859170846E-002 );
+  id26 -> SetBinError( xbin,    3.3085474985166930E-003 );
+   xbin = id26->FindBin(   117.50000000000000      );
+  id26 -> SetBinContent( xbin,    4.1653218712332088E-002 );
+  id26 -> SetBinError( xbin,    2.1367211685598070E-003 );
+   xbin = id26->FindBin(   122.50000000000000      );
+  id26 -> SetBinContent( xbin,    3.7789057391378111E-002 );
+  id26 -> SetBinError( xbin,    2.2994350539328754E-003 );
+   xbin = id26->FindBin(   127.50000000000000      );
+  id26 -> SetBinContent( xbin,    2.9969886774194949E-002 );
+  id26 -> SetBinError( xbin,    1.9819792014089312E-003 );
+   xbin = id26->FindBin(   132.50000000000000      );
+  id26 -> SetBinContent( xbin,    2.7478466376979854E-002 );
+  id26 -> SetBinError( xbin,    2.0510386802178007E-003 );
+   xbin = id26->FindBin(   137.50000000000000      );
+  id26 -> SetBinContent( xbin,    2.7418940826137588E-002 );
+  id26 -> SetBinError( xbin,    2.0929330570121675E-003 );
+   xbin = id26->FindBin(   142.50000000000000      );
+  id26 -> SetBinContent( xbin,    2.2337487127660215E-002 );
+  id26 -> SetBinError( xbin,    1.8481580796836535E-003 );
+   xbin = id26->FindBin(   147.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.8507611608867131E-002 );
+  id26 -> SetBinError( xbin,    1.4329056927531963E-003 );
+   xbin = id26->FindBin(   152.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.6964575243178286E-002 );
+  id26 -> SetBinError( xbin,    1.3423033036685176E-003 );
+   xbin = id26->FindBin(   157.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.4177802192090761E-002 );
+  id26 -> SetBinError( xbin,    1.1788792613708721E-003 );
+   xbin = id26->FindBin(   162.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.3954241419229161E-002 );
+  id26 -> SetBinError( xbin,    1.2207046660129581E-003 );
+   xbin = id26->FindBin(   167.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.1437786520653335E-002 );
+  id26 -> SetBinError( xbin,    1.0367791731493584E-003 );
+   xbin = id26->FindBin(   172.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.0478323353567402E-002 );
+  id26 -> SetBinError( xbin,    1.0970180574492205E-003 );
+   xbin = id26->FindBin(   177.50000000000000      );
+  id26 -> SetBinContent( xbin,    1.0234957082948061E-002 );
+  id26 -> SetBinError( xbin,    9.9242463110779319E-004 );
+   xbin = id26->FindBin(   182.50000000000000      );
+  id26 -> SetBinContent( xbin,    5.9697239614933915E-003 );
+  id26 -> SetBinError( xbin,    6.1794047666960644E-004 );
+   xbin = id26->FindBin(   187.50000000000000      );
+  id26 -> SetBinContent( xbin,    5.3671614161779034E-003 );
+  id26 -> SetBinError( xbin,    5.5657063696058643E-004 );
+   xbin = id26->FindBin(   192.50000000000000      );
+  id26 -> SetBinContent( xbin,    7.6599790778658977E-003 );
+  id26 -> SetBinError( xbin,    9.4747024897779070E-004 );
+   xbin = id26->FindBin(   197.50000000000000      );
+  id26 -> SetBinContent( xbin,    4.1461516574652201E-003 );
+  id26 -> SetBinError( xbin,    4.5992490383150601E-004 );
+//  hist26 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist27 = new TH1F( "id27", "y(45)", 25,      -5.0000,       5.0000);
+
+  id27 -> GetXaxis() -> SetTitle("y(45)");
+  id27 -> GetYaxis() -> SetTitle(" d#sigma/dy(45) [fb]");
+
+  id27 -> GetYaxis() -> SetTitleOffset(1.2);
+  id27 -> SetStats(false);
+   xbin = id27->FindBin(  -2.3999999999999999      );
+  id27 -> SetBinContent( xbin,   0.67475206166933388      );
+  id27 -> SetBinError( xbin,    6.7533793199258077E-002 );
+   xbin = id27->FindBin(  -2.0000000000000000      );
+  id27 -> SetBinContent( xbin,    3.6256241174808115      );
+  id27 -> SetBinError( xbin,   0.13862037867720350      );
+   xbin = id27->FindBin(  -1.5999999999999996      );
+  id27 -> SetBinContent( xbin,    5.6679111444621579      );
+  id27 -> SetBinError( xbin,   0.13837236301681924      );
+   xbin = id27->FindBin(  -1.1999999999999997      );
+  id27 -> SetBinContent( xbin,    7.8966251727563224      );
+  id27 -> SetBinError( xbin,   0.16007323694856890      );
+   xbin = id27->FindBin( -0.79999999999999982      );
+  id27 -> SetBinContent( xbin,    10.102863386615988      );
+  id27 -> SetBinError( xbin,   0.16253662170437735      );
+   xbin = id27->FindBin( -0.39999999999999947      );
+  id27 -> SetBinContent( xbin,    11.427770769648404      );
+  id27 -> SetBinError( xbin,   0.17388102149753673      );
+   xbin = id27->FindBin(   0.0000000000000000      );
+  id27 -> SetBinContent( xbin,    12.113280608584367      );
+  id27 -> SetBinError( xbin,   0.17793850848146017      );
+   xbin = id27->FindBin(  0.40000000000000036      );
+  id27 -> SetBinContent( xbin,    11.398060426144120      );
+  id27 -> SetBinError( xbin,   0.17484635382701008      );
+   xbin = id27->FindBin(  0.80000000000000071      );
+  id27 -> SetBinContent( xbin,    10.170804090388556      );
+  id27 -> SetBinError( xbin,   0.17279756451520800      );
+   xbin = id27->FindBin(   1.2000000000000002      );
+  id27 -> SetBinContent( xbin,    7.8834152915987241      );
+  id27 -> SetBinError( xbin,   0.16361900918965863      );
+   xbin = id27->FindBin(   1.6000000000000005      );
+  id27 -> SetBinContent( xbin,    5.5451113246178760      );
+  id27 -> SetBinError( xbin,   0.14354158443996193      );
+   xbin = id27->FindBin(   2.0000000000000000      );
+  id27 -> SetBinContent( xbin,    3.3472459012397286      );
+  id27 -> SetBinError( xbin,   0.13154038641830565      );
+   xbin = id27->FindBin(   2.4000000000000004      );
+  id27 -> SetBinContent( xbin,   0.74259551083714870      );
+  id27 -> SetBinError( xbin,    7.2836286416782317E-002 );
+//  hist27 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist28 = new TH1F( "id28", "|y(45)|", 20,       0.0000,       5.0000);
+
+  id28 -> GetXaxis() -> SetTitle("|y(45)|");
+  id28 -> GetYaxis() -> SetTitle(" d#sigma/d|y(45)| [fb]");
+
+  id28 -> GetYaxis() -> SetTitleOffset(1.2);
+  id28 -> SetStats(false);
+   xbin = id28->FindBin(  0.12500000000000000      );
+  id28 -> SetBinContent( xbin,    24.175553967300470      );
+  id28 -> SetBinError( xbin,   0.31497609754220174      );
+   xbin = id28->FindBin(  0.37500000000000000      );
+  id28 -> SetBinContent( xbin,    23.009307970505070      );
+  id28 -> SetBinError( xbin,   0.31441846287337422      );
+   xbin = id28->FindBin(  0.62500000000000000      );
+  id28 -> SetBinContent( xbin,    21.592147561395883      );
+  id28 -> SetBinError( xbin,   0.30936749378326261      );
+   xbin = id28->FindBin(  0.87500000000000000      );
+  id28 -> SetBinContent( xbin,    19.568746809008275      );
+  id28 -> SetBinError( xbin,   0.29328838101882421      );
+   xbin = id28->FindBin(   1.1250000000000000      );
+  id28 -> SetBinContent( xbin,    16.492303172472777      );
+  id28 -> SetBinError( xbin,   0.29227836419411474      );
+   xbin = id28->FindBin(   1.3750000000000000      );
+  id28 -> SetBinContent( xbin,    13.977817510617141      );
+  id28 -> SetBinError( xbin,   0.27427256982669551      );
+   xbin = id28->FindBin(   1.6250000000000000      );
+  id28 -> SetBinContent( xbin,    10.832522744754751      );
+  id28 -> SetBinError( xbin,   0.25050073187487687      );
+   xbin = id28->FindBin(   1.8750000000000000      );
+  id28 -> SetBinContent( xbin,    8.2723706053441362      );
+  id28 -> SetBinError( xbin,   0.24831551052647741      );
+   xbin = id28->FindBin(   2.1250000000000000      );
+  id28 -> SetBinContent( xbin,    5.5696485425824580      );
+  id28 -> SetBinError( xbin,   0.23038501144198278      );
+   xbin = id28->FindBin(   2.3750000000000000      );
+  id28 -> SetBinContent( xbin,    1.5939636260009247      );
+  id28 -> SetBinError( xbin,   0.13387905262531991      );
+//  hist28 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist29 = new TH1F( "id29", "m(345)", 80,       0.0000,     400.0000);
+
+  id29 -> GetXaxis() -> SetTitle("m(345)");
+  id29 -> GetYaxis() -> SetTitle(" d#sigma/dm(345) [fb]");
+
+  id29 -> GetYaxis() -> SetTitleOffset(1.2);
+  id29 -> SetStats(false);
+   xbin = id29->FindBin(   57.500000000000000      );
+  id29 -> SetBinContent( xbin,    1.6828205112491060E-002 );
+  id29 -> SetBinError( xbin,    4.6116465854834747E-003 );
+   xbin = id29->FindBin(   62.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.10481389512927325      );
+  id29 -> SetBinError( xbin,    7.8983058701989212E-003 );
+   xbin = id29->FindBin(   67.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.18931224242375705      );
+  id29 -> SetBinError( xbin,    9.1317553163249715E-003 );
+   xbin = id29->FindBin(   72.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.23116239447093548      );
+  id29 -> SetBinError( xbin,    9.2893795124000377E-003 );
+   xbin = id29->FindBin(   77.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.27635333390670175      );
+  id29 -> SetBinError( xbin,    9.2869471227058440E-003 );
+   xbin = id29->FindBin(   82.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.30025642359426497      );
+  id29 -> SetBinError( xbin,    9.3129985130970556E-003 );
+   xbin = id29->FindBin(   87.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.30680243547218400      );
+  id29 -> SetBinError( xbin,    8.9792618091234944E-003 );
+   xbin = id29->FindBin(   92.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.29708066776234704      );
+  id29 -> SetBinError( xbin,    8.5241715080552252E-003 );
+   xbin = id29->FindBin(   97.500000000000000      );
+  id29 -> SetBinContent( xbin,   0.31403052585736663      );
+  id29 -> SetBinError( xbin,    8.5501948338297471E-003 );
+   xbin = id29->FindBin(   102.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.28648069780718582      );
+  id29 -> SetBinError( xbin,    8.0865299846682153E-003 );
+   xbin = id29->FindBin(   107.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.28806004145492881      );
+  id29 -> SetBinError( xbin,    7.9257902929291777E-003 );
+   xbin = id29->FindBin(   112.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.28672411502657352      );
+  id29 -> SetBinError( xbin,    7.9113235979076085E-003 );
+   xbin = id29->FindBin(   117.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.25623803845008386      );
+  id29 -> SetBinError( xbin,    7.4483028621436589E-003 );
+   xbin = id29->FindBin(   122.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.23518164697612359      );
+  id29 -> SetBinError( xbin,    6.9180694479681320E-003 );
+   xbin = id29->FindBin(   127.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.22928596137451179      );
+  id29 -> SetBinError( xbin,    6.8657385582436377E-003 );
+   xbin = id29->FindBin(   132.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.21293094265620383      );
+  id29 -> SetBinError( xbin,    6.8205679845788399E-003 );
+   xbin = id29->FindBin(   137.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.18462859342431903      );
+  id29 -> SetBinError( xbin,    5.9419977307972674E-003 );
+   xbin = id29->FindBin(   142.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.18599255454016594      );
+  id29 -> SetBinError( xbin,    6.2126463194792673E-003 );
+   xbin = id29->FindBin(   147.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.17689581324599765      );
+  id29 -> SetBinError( xbin,    5.8745808135440922E-003 );
+   xbin = id29->FindBin(   152.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.16150128807141553      );
+  id29 -> SetBinError( xbin,    5.5310359200187774E-003 );
+   xbin = id29->FindBin(   157.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.13866718082966581      );
+  id29 -> SetBinError( xbin,    5.1564899226192590E-003 );
+   xbin = id29->FindBin(   162.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.14374986039972068      );
+  id29 -> SetBinError( xbin,    5.5963445979719398E-003 );
+   xbin = id29->FindBin(   167.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.12261164764629814      );
+  id29 -> SetBinError( xbin,    4.7526663966507201E-003 );
+   xbin = id29->FindBin(   172.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.11940668856063287      );
+  id29 -> SetBinError( xbin,    4.7689331886265366E-003 );
+   xbin = id29->FindBin(   177.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.10980649869153175      );
+  id29 -> SetBinError( xbin,    4.5725840150798473E-003 );
+   xbin = id29->FindBin(   182.50000000000000      );
+  id29 -> SetBinContent( xbin,   0.10530906485227554      );
+  id29 -> SetBinError( xbin,    4.4149987073684076E-003 );
+   xbin = id29->FindBin(   187.50000000000000      );
+  id29 -> SetBinContent( xbin,    9.3138436329168101E-002 );
+  id29 -> SetBinError( xbin,    4.2106836928202229E-003 );
+   xbin = id29->FindBin(   192.50000000000000      );
+  id29 -> SetBinContent( xbin,    8.2023226578576636E-002 );
+  id29 -> SetBinError( xbin,    3.9085966314567960E-003 );
+   xbin = id29->FindBin(   197.50000000000000      );
+  id29 -> SetBinContent( xbin,    8.6428523147756287E-002 );
+  id29 -> SetBinError( xbin,    4.3068576799171381E-003 );
+   xbin = id29->FindBin(   202.50000000000000      );
+  id29 -> SetBinContent( xbin,    7.2989543877100563E-002 );
+  id29 -> SetBinError( xbin,    3.4789694147746909E-003 );
+   xbin = id29->FindBin(   207.50000000000000      );
+  id29 -> SetBinContent( xbin,    6.9422488665532384E-002 );
+  id29 -> SetBinError( xbin,    3.5104862963758858E-003 );
+   xbin = id29->FindBin(   212.50000000000000      );
+  id29 -> SetBinContent( xbin,    6.8003681901206758E-002 );
+  id29 -> SetBinError( xbin,    3.5272722534469172E-003 );
+   xbin = id29->FindBin(   217.50000000000000      );
+  id29 -> SetBinContent( xbin,    6.5800106043092749E-002 );
+  id29 -> SetBinError( xbin,    3.3238004835745619E-003 );
+   xbin = id29->FindBin(   222.50000000000000      );
+  id29 -> SetBinContent( xbin,    6.0750070337615307E-002 );
+  id29 -> SetBinError( xbin,    3.4952751223391765E-003 );
+   xbin = id29->FindBin(   227.50000000000000      );
+  id29 -> SetBinContent( xbin,    5.0548043484323409E-002 );
+  id29 -> SetBinError( xbin,    2.8024251627658658E-003 );
+   xbin = id29->FindBin(   232.50000000000000      );
+  id29 -> SetBinContent( xbin,    5.7198216823637058E-002 );
+  id29 -> SetBinError( xbin,    3.3532337069440174E-003 );
+   xbin = id29->FindBin(   237.50000000000000      );
+  id29 -> SetBinContent( xbin,    4.4601147664985796E-002 );
+  id29 -> SetBinError( xbin,    2.5369029817445951E-003 );
+   xbin = id29->FindBin(   242.50000000000000      );
+  id29 -> SetBinContent( xbin,    4.5302830203072651E-002 );
+  id29 -> SetBinError( xbin,    2.8781923317669060E-003 );
+   xbin = id29->FindBin(   247.50000000000000      );
+  id29 -> SetBinContent( xbin,    4.8496329155541099E-002 );
+  id29 -> SetBinError( xbin,    2.8601824161777864E-003 );
+   xbin = id29->FindBin(   252.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.8038295442438377E-002 );
+  id29 -> SetBinError( xbin,    2.5742412788942555E-003 );
+   xbin = id29->FindBin(   257.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.4338133760905692E-002 );
+  id29 -> SetBinError( xbin,    2.2124782579095309E-003 );
+   xbin = id29->FindBin(   262.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.4422789264278095E-002 );
+  id29 -> SetBinError( xbin,    2.4136010670924046E-003 );
+   xbin = id29->FindBin(   267.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.2286041384531700E-002 );
+  id29 -> SetBinError( xbin,    2.5217663419577750E-003 );
+   xbin = id29->FindBin(   272.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.2096372991074935E-002 );
+  id29 -> SetBinError( xbin,    2.4424141081228700E-003 );
+   xbin = id29->FindBin(   277.50000000000000      );
+  id29 -> SetBinContent( xbin,    3.1139284272908418E-002 );
+  id29 -> SetBinError( xbin,    2.6082746714517139E-003 );
+   xbin = id29->FindBin(   282.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.3516133401161411E-002 );
+  id29 -> SetBinError( xbin,    1.7815564442406795E-003 );
+   xbin = id29->FindBin(   287.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.5001619104300966E-002 );
+  id29 -> SetBinError( xbin,    2.1893453689820390E-003 );
+   xbin = id29->FindBin(   292.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.3398786181948940E-002 );
+  id29 -> SetBinError( xbin,    1.7385356736932692E-003 );
+   xbin = id29->FindBin(   297.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.6146117535414830E-002 );
+  id29 -> SetBinError( xbin,    2.4720210199791317E-003 );
+   xbin = id29->FindBin(   302.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.0630640249032588E-002 );
+  id29 -> SetBinError( xbin,    1.9579129379445233E-003 );
+   xbin = id29->FindBin(   307.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.8812858258270962E-002 );
+  id29 -> SetBinError( xbin,    1.7588442949164034E-003 );
+   xbin = id29->FindBin(   312.50000000000000      );
+  id29 -> SetBinContent( xbin,    2.0212009637356230E-002 );
+  id29 -> SetBinError( xbin,    1.6639551452522984E-003 );
+   xbin = id29->FindBin(   317.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.9416682179813020E-002 );
+  id29 -> SetBinError( xbin,    1.7663228985501747E-003 );
+   xbin = id29->FindBin(   322.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.7869057475078963E-002 );
+  id29 -> SetBinError( xbin,    1.6495510460207744E-003 );
+   xbin = id29->FindBin(   327.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.4619420296652912E-002 );
+  id29 -> SetBinError( xbin,    1.4505173513758216E-003 );
+   xbin = id29->FindBin(   332.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.5876929719131322E-002 );
+  id29 -> SetBinError( xbin,    1.5384306484767611E-003 );
+   xbin = id29->FindBin(   337.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.3809204326804566E-002 );
+  id29 -> SetBinError( xbin,    1.2911421887569102E-003 );
+   xbin = id29->FindBin(   342.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.2496172215688177E-002 );
+  id29 -> SetBinError( xbin,    1.3214703046536679E-003 );
+   xbin = id29->FindBin(   347.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.5886498111035666E-002 );
+  id29 -> SetBinError( xbin,    1.7591093426079587E-003 );
+   xbin = id29->FindBin(   352.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.1747193969665058E-002 );
+  id29 -> SetBinError( xbin,    1.2978316790351709E-003 );
+   xbin = id29->FindBin(   357.50000000000000      );
+  id29 -> SetBinContent( xbin,    5.7371073442244094E-003 );
+  id29 -> SetBinError( xbin,    6.4842472584364537E-004 );
+   xbin = id29->FindBin(   362.50000000000000      );
+  id29 -> SetBinContent( xbin,    1.1793222168604407E-002 );
+  id29 -> SetBinError( xbin,    1.3436872266737369E-003 );
+   xbin = id29->FindBin(   367.50000000000000      );
+  id29 -> SetBinContent( xbin,    8.6659380706163077E-003 );
+  id29 -> SetBinError( xbin,    9.5591609188474082E-004 );
+   xbin = id29->FindBin(   372.50000000000000      );
+  id29 -> SetBinContent( xbin,    8.7687325658905198E-003 );
+  id29 -> SetBinError( xbin,    1.0306644049864072E-003 );
+   xbin = id29->FindBin(   377.50000000000000      );
+  id29 -> SetBinContent( xbin,    6.8818211593041287E-003 );
+  id29 -> SetBinError( xbin,    8.5554762568206889E-004 );
+   xbin = id29->FindBin(   382.50000000000000      );
+  id29 -> SetBinContent( xbin,    5.2214844915162038E-003 );
+  id29 -> SetBinError( xbin,    7.6933325272807401E-004 );
+   xbin = id29->FindBin(   387.50000000000000      );
+  id29 -> SetBinContent( xbin,    8.8683846317391402E-003 );
+  id29 -> SetBinError( xbin,    1.0017737087709110E-003 );
+   xbin = id29->FindBin(   392.50000000000000      );
+  id29 -> SetBinContent( xbin,    9.8809311850674153E-003 );
+  id29 -> SetBinError( xbin,    1.0266420723282696E-003 );
+   xbin = id29->FindBin(   397.50000000000000      );
+  id29 -> SetBinContent( xbin,    7.1302025022255376E-003 );
+  id29 -> SetBinError( xbin,    8.4409931583208971E-004 );
+//  hist29 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist30 = new TH1F( "id30", "pt(345)", 40,       0.0000,     200.0000);
+
+  id30 -> GetXaxis() -> SetTitle("pt(345)");
+  id30 -> GetYaxis() -> SetTitle(" d#sigma/dpt(345) [fb]");
+
+  id30 -> GetYaxis() -> SetTitleOffset(1.2);
+  id30 -> SetStats(false);
+   xbin = id30->FindBin(   2.5000000000000000      );
+  id30 -> SetBinContent( xbin,    7.3097847545701367      );
+  id30 -> SetBinError( xbin,    4.1166005189291810E-002 );
+//  hist30 -> Draw("hist");
+
+
+
+  mcfmhisto -> cd();
+  TH1F *hist31 = new TH1F( "id31", "y(345)", 25,      -5.0000,       5.0000);
+
+  id31 -> GetXaxis() -> SetTitle("y(345)");
+  id31 -> GetYaxis() -> SetTitle(" d#sigma/dy(345) [fb]");
+
+  id31 -> GetYaxis() -> SetTitleOffset(1.2);
+  id31 -> SetStats(false);
+   xbin = id31->FindBin(  -2.3999999999999999      );
+  id31 -> SetBinContent( xbin,   0.15925000421262939      );
+  id31 -> SetBinError( xbin,    3.6148289001611135E-002 );
+   xbin = id31->FindBin(  -2.0000000000000000      );
+  id31 -> SetBinContent( xbin,    2.0264052463117346      );
+  id31 -> SetBinError( xbin,   0.10560437764108396      );
+   xbin = id31->FindBin(  -1.5999999999999996      );
+  id31 -> SetBinContent( xbin,    5.1295114836515472      );
+  id31 -> SetBinError( xbin,   0.13463889126843667      );
+   xbin = id31->FindBin(  -1.1999999999999997      );
+  id31 -> SetBinContent( xbin,    8.3449029139740514      );
+  id31 -> SetBinError( xbin,   0.16004506023600218      );
+   xbin = id31->FindBin( -0.79999999999999982      );
+  id31 -> SetBinContent( xbin,    10.879837350540802      );
+  id31 -> SetBinError( xbin,   0.17847014091211738      );
+   xbin = id31->FindBin( -0.39999999999999947      );
+  id31 -> SetBinContent( xbin,    12.601905539021175      );
+  id31 -> SetBinError( xbin,   0.18968102680114240      );
+   xbin = id31->FindBin(   0.0000000000000000      );
+  id31 -> SetBinContent( xbin,    12.773638528733319      );
+  id31 -> SetBinError( xbin,   0.19081718687788921      );
+   xbin = id31->FindBin(  0.40000000000000036      );
+  id31 -> SetBinContent( xbin,    12.423159682071811      );
+  id31 -> SetBinError( xbin,   0.18793374967370699      );
+   xbin = id31->FindBin(  0.80000000000000071      );
+  id31 -> SetBinContent( xbin,    10.212497659307033      );
+  id31 -> SetBinError( xbin,   0.16932231299251496      );
+   xbin = id31->FindBin(   1.2000000000000002      );
+  id31 -> SetBinContent( xbin,    8.5022894745930131      );
+  id31 -> SetBinError( xbin,   0.16795541238631834      );
+   xbin = id31->FindBin(   1.6000000000000005      );
+  id31 -> SetBinContent( xbin,    5.0302175400084117      );
+  id31 -> SetBinError( xbin,   0.14048289621538343      );
+   xbin = id31->FindBin(   2.0000000000000000      );
+  id31 -> SetBinContent( xbin,    2.1703094777054859      );
+  id31 -> SetBinError( xbin,   0.11192147073166105      );
+   xbin = id31->FindBin(   2.4000000000000004      );
+  id31 -> SetBinContent( xbin,    7.9556586500132573E-002 );
+  id31 -> SetBinError( xbin,    2.5862404945578822E-002 );
+//  hist31 -> Draw("hist");
+
+
+  mcfmhisto -> Write();
+ }

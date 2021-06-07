@@ -119,9 +119,9 @@ void plot(bool local=true, bool isHLT20=false, bool isHLT30_30_15=true){
 
   // ACTIONS:
   // compareATLAS(fNLO_atlas, fNLO_atlas13TeV);
-  // compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
+  compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
   //singlePhoEff(fSherpaNtuple);
   // compareData(fAAA, fAAA, isHLT20, isHLT30_30_15);
-  compareData(fAAA, fGGJets, isHLT20, isHLT30_30_15, false);
+  //compareData(fAAA, fGGJets, isHLT20, isHLT30_30_15, false);
 
 }
