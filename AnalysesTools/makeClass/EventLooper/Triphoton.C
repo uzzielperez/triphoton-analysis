@@ -3,6 +3,7 @@
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
+#include <cmath>
 
 void Triphoton::Loop()
 {
@@ -31,9 +32,13 @@ void Triphoton::Loop()
 //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
 
-   int minvNbins = 80;
+   bool isSvsB = false;
+   TString outFile = "data/AAA_histograms.root";
+   //TString outFile = "data/GGJets_histograms.root";
+
+   int minvNbins = (isSvsB == false) ? 80:10;
    int minMinv = 0;
-   int maxMinv = 400;
+   int maxMinv = (isSvsB == false) ? 400:1000;
 
    int qtNbins = 80;
    int minQt = 0;
@@ -44,25 +49,43 @@ void Triphoton::Loop()
    int maxPt = 200;
 
    int etaNbins = 20;
-   int minEta = -2.5;
-   int maxEta = 2.5;
+   double minEta = -2.5;
+   double maxEta = 2.5;
 
    int phiNbins  = 20;
-   int
+   int minPhi = -4;
+   int maxPhi = 4;
+
+   int diPhoNbins = 60;
+   int minDiPho = 0;
+   int maxDiPho = 300;
+
+   int dEtaNbins  = 40;
+   int minDEta = 0;
+   int maxDEta = 5;
+
+   int dPhiNbins  = (isSvsB == false) ? 40:35;
+   int minDPhi = 0;
+   int maxDPhi = (isSvsB == false) ? 4:7;
+
+   int absDetaNbins  = 40;
+   int minAbsDeta = 0;
+   int maxAbsDeta = 5;
+
 
    // def histograms
-   TH1D *h_mAAA = new TH1D("h_minv", "", 80, 0, 400);
-   TH1D *h_qt = new TH1D("h_qt", "", 80, 0, 400);
+   TH1D *h_mAAA = new TH1D("h_minv", "", minvNbins, minMinv, maxMinv);
+   TH1D *h_qt = new TH1D("h_qt", "", qtNbins, minQt, maxQt);
    //TH1D *h_mAAA = new TH1D("h_", "", 20, 0, 100); fAAA->Get("h_minv_unweighted"); //just for debugging.
-   TH1D *h_pT1  = new TH1D("h_pT1", "", 40, 0, 200);
-   TH1D *h_pT2  = new TH1D("h_pT2", "", 40, 0, 200);
-   TH1D *h_pT3  = new TH1D("h_pT3", "", 40, 0, 200);
-   TH1D *h_eta1  = new TH1D("h_eta1", "", 20, -2.5, 2.5);
-   TH1D *h_eta2  = new TH1D("h_eta2", "", 20, -2.5, 2.5);
-   TH1D *h_eta3  = new TH1D("h_eta3", "", 20, -2.5, 2.5);
-   TH1D *h_phi1  = new TH1D("h_phi1", "", 20, -4, 4);
-   TH1D *h_phi2  = new TH1D("h_phi2", "", 20, -4, 4);
-   TH1D *h_phi3  = new TH1D("h_phi3", "", 20, -4, 4);
+   TH1D *h_pT1  = new TH1D("h_pT1", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT2  = new TH1D("h_pT2", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT3  = new TH1D("h_pT3", "", ptNbins, minPt, maxPt);
+   TH1D *h_eta1  = new TH1D("h_eta1", "", etaNbins, minEta, maxEta);
+   TH1D *h_eta2  = new TH1D("h_eta2", "", etaNbins, minEta, maxEta);
+   TH1D *h_eta3  = new TH1D("h_eta3", "", etaNbins, minEta, maxEta);
+   TH1D *h_phi1  = new TH1D("h_phi1", "", phiNbins, minPhi, minPhi);
+   TH1D *h_phi2  = new TH1D("h_phi2", "", phiNbins, minPhi, minPhi);
+   TH1D *h_phi3  = new TH1D("h_phi3", "", phiNbins, minPhi, minPhi);
    h_mAAA->Sumw2();
    h_qt->Sumw2();
    h_pT1->Sumw2();
@@ -75,18 +98,18 @@ void Triphoton::Loop()
    h_phi2->Sumw2();
    h_phi3->Sumw2();
 
-   TH1D *h_mA1A2 = new TH1D("h_mA1A2", "", 60, 0, 300);
-   TH1D *h_mA1A3 = new TH1D("h_mA1A3", "", 60, 0, 300);
-   TH1D *h_mA2A3 = new TH1D("h_mA2A3", "", 60, 0, 300);
-   TH1D *h_dEta12 = new TH1D("h_dEta12", "", 40, 0, 4);
-   TH1D *h_dEta23 = new TH1D("h_dEta23", "", 40, 0, 4);
-   TH1D *h_dEta13 = new TH1D("h_dEta13", "", 40, 0, 4);
-   TH1D *h_dPhi12 = new TH1D("h_dPhi12", "", 40, 0, 4);
-   TH1D *h_dPhi23 = new TH1D("h_dPhi23", "", 40, 0, 4);
-   TH1D *h_dPhi13 = new TH1D("h_dPhi13", "", 40, 0, 4);
-   TH1D *h_dAbsEta12 = new TH1D("h_dAbsEta12", "", 40, 0, 4);
-   TH1D *h_dAbsEta23 = new TH1D("h_dAbsEta23", "", 40, 0, 4);
-   TH1D *h_dAbsEta13 = new TH1D("h_dAbsEta13", "", 40, 0, 4);
+   TH1D *h_mA1A2 = new TH1D("h_mA1A2", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_mA1A3 = new TH1D("h_mA1A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_mA2A3 = new TH1D("h_mA2A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_dEta12 = new TH1D("h_dEta12", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_dEta23 = new TH1D("h_dEta23", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_dEta13 = new TH1D("h_dEta13", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_dPhi12 = new TH1D("h_dPhi12", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_dPhi23 = new TH1D("h_dPhi23", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_dPhi13 = new TH1D("h_dPhi13", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_dAbsEta12 = new TH1D("h_dAbsEta12", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_dAbsEta23 = new TH1D("h_dAbsEta23", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_dAbsEta13 = new TH1D("h_dAbsEta13", "", absDetaNbins, minAbsDeta, maxAbsDeta);
 
 
    h_mA1A2->Sumw2();
@@ -105,18 +128,18 @@ void Triphoton::Loop()
    // 25-25-25 pt cut
 
    // def histograms
-   TH1D *h_pT25_mAAA = new TH1D("h_pT25_minv", "", 80, 0, 400);
-   TH1D *h_pT25_qt = new TH1D("h_pT25_qt", "", 80, 0, 400);
+   TH1D *h_pT25_mAAA = new TH1D("h_pT25_minv", "", minvNbins, minMinv, maxMinv);
+   TH1D *h_pT25_qt = new TH1D("h_pT25_qt", "", qtNbins, minQt, maxQt);
    //TH1D *h_pT25_mAAA = new TH1D("h_pT25_", "", 20, 0, 100); fAAA->Get("h_pT25_minv_unweighted"); //just for debugging.
-   TH1D *h_pT25_pT1  = new TH1D("h_pT25_pT1", "", 40, 0, 200);
-   TH1D *h_pT25_pT2  = new TH1D("h_pT25_pT2", "", 40, 0, 200);
-   TH1D *h_pT25_pT3  = new TH1D("h_pT25_pT3", "", 40, 0, 200);
-   TH1D *h_pT25_eta1  = new TH1D("h_pT25_eta1", "", 20, -2.5, 2.5);
-   TH1D *h_pT25_eta2  = new TH1D("h_pT25_eta2", "", 20, -2.5, 2.5);
-   TH1D *h_pT25_eta3  = new TH1D("h_pT25_eta3", "", 20, -2.5, 2.5);
-   TH1D *h_pT25_phi1  = new TH1D("h_pT25_phi1", "", 20, -4, 4);
-   TH1D *h_pT25_phi2  = new TH1D("h_pT25_phi2", "", 20, -4, 4);
-   TH1D *h_pT25_phi3  = new TH1D("h_pT25_phi3", "", 20, -4, 4);
+   TH1D *h_pT25_pT1  = new TH1D("h_pT25_pT1", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT25_pT2  = new TH1D("h_pT25_pT2", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT25_pT3  = new TH1D("h_pT25_pT3", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT25_eta1  = new TH1D("h_pT25_eta1", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT25_eta2  = new TH1D("h_pT25_eta2", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT25_eta3  = new TH1D("h_pT25_eta3", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT25_phi1  = new TH1D("h_pT25_phi1", "", phiNbins, minPhi, minPhi);
+   TH1D *h_pT25_phi2  = new TH1D("h_pT25_phi2", "", phiNbins, minPhi, minPhi);
+   TH1D *h_pT25_phi3  = new TH1D("h_pT25_phi3", "", phiNbins, minPhi, minPhi);
    h_pT25_mAAA->Sumw2();
    h_pT25_qt->Sumw2();
    h_pT25_pT1->Sumw2();
@@ -129,18 +152,18 @@ void Triphoton::Loop()
    h_pT25_phi2->Sumw2();
    h_pT25_phi3->Sumw2();
 
-   TH1D *h_pT25_mA1A2 = new TH1D("h_pT25_mA1A2", "", 60, 0, 300);
-   TH1D *h_pT25_mA1A3 = new TH1D("h_pT25_mA1A3", "", 60, 0, 300);
-   TH1D *h_pT25_mA2A3 = new TH1D("h_pT25_mA2A3", "", 60, 0, 300);
-   TH1D *h_pT25_dEta12 = new TH1D("h_pT25_dEta12", "", 40, 0, 4);
-   TH1D *h_pT25_dEta23 = new TH1D("h_pT25_dEta23", "", 40, 0, 4);
-   TH1D *h_pT25_dEta13 = new TH1D("h_pT25_dEta13", "", 40, 0, 4);
-   TH1D *h_pT25_dPhi12 = new TH1D("h_pT25_dPhi12", "", 40, 0, 4);
-   TH1D *h_pT25_dPhi23 = new TH1D("h_pT25_dPhi23", "", 40, 0, 4);
-   TH1D *h_pT25_dPhi13 = new TH1D("h_pT25_dPhi13", "", 40, 0, 4);
-   TH1D *h_pT25_dAbsEta12 = new TH1D("h_pT25_dAbsEta12", "", 40, 0, 4);
-   TH1D *h_pT25_dAbsEta23 = new TH1D("h_pT25_dAbsEta23", "", 40, 0, 4);
-   TH1D *h_pT25_dAbsEta13 = new TH1D("h_pT25_dAbsEta13", "", 40, 0, 4);
+   TH1D *h_pT25_mA1A2 = new TH1D("h_pT25_mA1A2", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT25_mA1A3 = new TH1D("h_pT25_mA1A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT25_mA2A3 = new TH1D("h_pT25_mA2A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT25_dEta12 = new TH1D("h_pT25_dEta12", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT25_dEta23 = new TH1D("h_pT25_dEta23", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT25_dEta13 = new TH1D("h_pT25_dEta13", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT25_dPhi12 = new TH1D("h_pT25_dPhi12", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT25_dPhi23 = new TH1D("h_pT25_dPhi23", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT25_dPhi13 = new TH1D("h_pT25_dPhi13", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT25_dAbsEta12 = new TH1D("h_pT25_dAbsEta12", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_pT25_dAbsEta23 = new TH1D("h_pT25_dAbsEta23", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_pT25_dAbsEta13 = new TH1D("h_pT25_dAbsEta13", "", absDetaNbins, minAbsDeta, maxAbsDeta);
 
 
    h_pT25_mA1A2->Sumw2();
@@ -159,18 +182,18 @@ void Triphoton::Loop()
    // 35-35-15 pt cut
 
    // def histograms
-   TH1D *h_pT35_35_15_mAAA = new TH1D("h_pT35_35_15_minv", "", 80, 0, 400);
-   TH1D *h_pT35_35_15_qt = new TH1D("h_pT35_35_15_qt", "", 80, 0, 400);
+   TH1D *h_pT35_35_15_mAAA = new TH1D("h_pT35_35_15_minv", "", minvNbins, minMinv, maxMinv);
+   TH1D *h_pT35_35_15_qt = new TH1D("h_pT35_35_15_qt", "", qtNbins, minQt, maxQt);
    //TH1D *h_pT35_35_15_mAAA = new TH1D("h_pT35_35_15_", "", 20, 0, 100); fAAA->Get("h_pT35_35_15_minv_unweighted"); //just for debugging.
-   TH1D *h_pT35_35_15_pT1  = new TH1D("h_pT35_35_15_pT1", "", 40, 0, 200);
-   TH1D *h_pT35_35_15_pT2  = new TH1D("h_pT35_35_15_pT2", "", 40, 0, 200);
-   TH1D *h_pT35_35_15_pT3  = new TH1D("h_pT35_35_15_pT3", "", 40, 0, 200);
-   TH1D *h_pT35_35_15_eta1  = new TH1D("h_pT35_35_15_eta1", "", 20, -2.5, 2.5);
-   TH1D *h_pT35_35_15_eta2  = new TH1D("h_pT35_35_15_eta2", "", 20, -2.5, 2.5);
-   TH1D *h_pT35_35_15_eta3  = new TH1D("h_pT35_35_15_eta3", "", 20, -2.5, 2.5);
-   TH1D *h_pT35_35_15_phi1  = new TH1D("h_pT35_35_15_phi1", "", 20, -4, 4);
-   TH1D *h_pT35_35_15_phi2  = new TH1D("h_pT35_35_15_phi2", "", 20, -4, 4);
-   TH1D *h_pT35_35_15_phi3  = new TH1D("h_pT35_35_15_phi3", "", 20, -4, 4);
+   TH1D *h_pT35_35_15_pT1  = new TH1D("h_pT35_35_15_pT1", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT35_35_15_pT2  = new TH1D("h_pT35_35_15_pT2", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT35_35_15_pT3  = new TH1D("h_pT35_35_15_pT3", "", ptNbins, minPt, maxPt);
+   TH1D *h_pT35_35_15_eta1  = new TH1D("h_pT35_35_15_eta1", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT35_35_15_eta2  = new TH1D("h_pT35_35_15_eta2", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT35_35_15_eta3  = new TH1D("h_pT35_35_15_eta3", "", etaNbins, minEta, maxEta);
+   TH1D *h_pT35_35_15_phi1  = new TH1D("h_pT35_35_15_phi1", "", phiNbins, minPhi, minPhi);
+   TH1D *h_pT35_35_15_phi2  = new TH1D("h_pT35_35_15_phi2", "", phiNbins, minPhi, minPhi);
+   TH1D *h_pT35_35_15_phi3  = new TH1D("h_pT35_35_15_phi3", "", phiNbins, minPhi, minPhi);
    h_pT35_35_15_mAAA->Sumw2();
    h_pT35_35_15_qt->Sumw2();
    h_pT35_35_15_pT1->Sumw2();
@@ -183,18 +206,18 @@ void Triphoton::Loop()
    h_pT35_35_15_phi2->Sumw2();
    h_pT35_35_15_phi3->Sumw2();
 
-   TH1D *h_pT35_35_15_mA1A2 = new TH1D("h_pT35_35_15_mA1A2", "", 60, 0, 300);
-   TH1D *h_pT35_35_15_mA1A3 = new TH1D("h_pT35_35_15_mA1A3", "", 60, 0, 300);
-   TH1D *h_pT35_35_15_mA2A3 = new TH1D("h_pT35_35_15_mA2A3", "", 60, 0, 300);
-   TH1D *h_pT35_35_15_dEta12 = new TH1D("h_pT35_35_15_dEta12", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dEta23 = new TH1D("h_pT35_35_15_dEta23", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dEta13 = new TH1D("h_pT35_35_15_dEta13", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dPhi12 = new TH1D("h_pT35_35_15_dPhi12", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dPhi23 = new TH1D("h_pT35_35_15_dPhi23", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dPhi13 = new TH1D("h_pT35_35_15_dPhi13", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dAbsEta12 = new TH1D("h_pT35_35_15_dAbsEta12", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dAbsEta23 = new TH1D("h_pT35_35_15_dAbsEta23", "", 40, 0, 4);
-   TH1D *h_pT35_35_15_dAbsEta13 = new TH1D("h_pT35_35_15_dAbsEta13", "", 40, 0, 4);
+   TH1D *h_pT35_35_15_mA1A2 = new TH1D("h_pT35_35_15_mA1A2", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT35_35_15_mA1A3 = new TH1D("h_pT35_35_15_mA1A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT35_35_15_mA2A3 = new TH1D("h_pT35_35_15_mA2A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_pT35_35_15_dEta12 = new TH1D("h_pT35_35_15_dEta12", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT35_35_15_dEta23 = new TH1D("h_pT35_35_15_dEta23", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT35_35_15_dEta13 = new TH1D("h_pT35_35_15_dEta13", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_pT35_35_15_dPhi12 = new TH1D("h_pT35_35_15_dPhi12", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT35_35_15_dPhi23 = new TH1D("h_pT35_35_15_dPhi23", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT35_35_15_dPhi13 = new TH1D("h_pT35_35_15_dPhi13", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_pT35_35_15_dAbsEta12 = new TH1D("h_pT35_35_15_dAbsEta12", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_pT35_35_15_dAbsEta23 = new TH1D("h_pT35_35_15_dAbsEta23", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_pT35_35_15_dAbsEta13 = new TH1D("h_pT35_35_15_dAbsEta13", "", absDetaNbins, minAbsDeta, maxAbsDeta);
 
 
    h_pT35_35_15_mA1A2->Sumw2();
@@ -212,18 +235,18 @@ void Triphoton::Loop()
 
    // PAT Photons
    // def histograms
-   TH1D *h_PAT_pT25_mAAA = new TH1D("h_PAT_pT25_minv", "", 80, 0, 400);
-   TH1D *h_PAT_pT25_qt = new TH1D("h_PAT_pT25_qt", "", 80, 0, 400);
+   TH1D *h_PAT_pT25_mAAA = new TH1D("h_PAT_pT25_minv", "", minvNbins, minMinv, maxMinv);
+   TH1D *h_PAT_pT25_qt = new TH1D("h_PAT_pT25_qt", "", qtNbins, minQt, maxQt);
    //TH1D *h_PAT_pT25_mAAA = new TH1D("h_PAT_pT25_", "", 20, 0, 100); fAAA->Get("h_PAT_pT25_minv_unweighted"); //just for debugging.
-   TH1D *h_PAT_pT25_pT1  = new TH1D("h_PAT_pT25_pT1", "", 40, 0, 200);
-   TH1D *h_PAT_pT25_pT2  = new TH1D("h_PAT_pT25_pT2", "", 40, 0, 200);
-   TH1D *h_PAT_pT25_pT3  = new TH1D("h_PAT_pT25_pT3", "", 40, 0, 200);
-   TH1D *h_PAT_pT25_eta1  = new TH1D("h_PAT_pT25_eta1", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT25_eta2  = new TH1D("h_PAT_pT25_eta2", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT25_eta3  = new TH1D("h_PAT_pT25_eta3", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT25_phi1  = new TH1D("h_PAT_pT25_phi1", "", 20, -4, 4);
-   TH1D *h_PAT_pT25_phi2  = new TH1D("h_PAT_pT25_phi2", "", 20, -4, 4);
-   TH1D *h_PAT_pT25_phi3  = new TH1D("h_PAT_pT25_phi3", "", 20, -4, 4);
+   TH1D *h_PAT_pT25_pT1  = new TH1D("h_PAT_pT25_pT1", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT25_pT2  = new TH1D("h_PAT_pT25_pT2", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT25_pT3  = new TH1D("h_PAT_pT25_pT3", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT25_eta1  = new TH1D("h_PAT_pT25_eta1", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT25_eta2  = new TH1D("h_PAT_pT25_eta2", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT25_eta3  = new TH1D("h_PAT_pT25_eta3", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT25_phi1  = new TH1D("h_PAT_pT25_phi1", "", phiNbins, minPhi, minPhi);
+   TH1D *h_PAT_pT25_phi2  = new TH1D("h_PAT_pT25_phi2", "", phiNbins, minPhi, minPhi);
+   TH1D *h_PAT_pT25_phi3  = new TH1D("h_PAT_pT25_phi3", "", phiNbins, minPhi, minPhi);
    h_PAT_pT25_mAAA->Sumw2();
    h_PAT_pT25_qt->Sumw2();
    h_PAT_pT25_pT1->Sumw2();
@@ -236,18 +259,18 @@ void Triphoton::Loop()
    h_PAT_pT25_phi2->Sumw2();
    h_PAT_pT25_phi3->Sumw2();
 
-   TH1D *h_PAT_pT25_mA1A2 = new TH1D("h_PAT_pT25_mA1A2", "", 60, 0, 300);
-   TH1D *h_PAT_pT25_mA1A3 = new TH1D("h_PAT_pT25_mA1A3", "", 60, 0, 300);
-   TH1D *h_PAT_pT25_mA2A3 = new TH1D("h_PAT_pT25_mA2A3", "", 60, 0, 300);
-   TH1D *h_PAT_pT25_dEta12 = new TH1D("h_PAT_pT25_dEta12", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dEta23 = new TH1D("h_PAT_pT25_dEta23", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dEta13 = new TH1D("h_PAT_pT25_dEta13", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dPhi12 = new TH1D("h_PAT_pT25_dPhi12", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dPhi23 = new TH1D("h_PAT_pT25_dPhi23", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dPhi13 = new TH1D("h_PAT_pT25_dPhi13", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dAbsEta12 = new TH1D("h_PAT_pT25_dAbsEta12", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dAbsEta23 = new TH1D("h_PAT_pT25_dAbsEta23", "", 40, 0, 4);
-   TH1D *h_PAT_pT25_dAbsEta13 = new TH1D("h_PAT_pT25_dAbsEta13", "", 40, 0, 4);
+   TH1D *h_PAT_pT25_mA1A2 = new TH1D("h_PAT_pT25_mA1A2", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT25_mA1A3 = new TH1D("h_PAT_pT25_mA1A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT25_mA2A3 = new TH1D("h_PAT_pT25_mA2A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT25_dEta12 = new TH1D("h_PAT_pT25_dEta12", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT25_dEta23 = new TH1D("h_PAT_pT25_dEta23", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT25_dEta13 = new TH1D("h_PAT_pT25_dEta13", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT25_dPhi12 = new TH1D("h_PAT_pT25_dPhi12", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT25_dPhi23 = new TH1D("h_PAT_pT25_dPhi23", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT25_dPhi13 = new TH1D("h_PAT_pT25_dPhi13", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT25_dAbsEta12 = new TH1D("h_PAT_pT25_dAbsEta12", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_PAT_pT25_dAbsEta23 = new TH1D("h_PAT_pT25_dAbsEta23", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_PAT_pT25_dAbsEta13 = new TH1D("h_PAT_pT25_dAbsEta13", "", absDetaNbins, minAbsDeta, maxAbsDeta);
 
 
    h_PAT_pT25_mA1A2->Sumw2();
@@ -266,18 +289,18 @@ void Triphoton::Loop()
    // 35-35-15 pt cut
 
    // def histograms
-   TH1D *h_PAT_pT35_35_15_mAAA = new TH1D("h_PAT_pT35_35_15_minv", "", 80, 0, 400);
-   TH1D *h_PAT_pT35_35_15_qt = new TH1D("h_PAT_pT35_35_15_qt", "", 80, 0, 400);
+   TH1D *h_PAT_pT35_35_15_mAAA = new TH1D("h_PAT_pT35_35_15_minv", "", minvNbins, minMinv, maxMinv);
+   TH1D *h_PAT_pT35_35_15_qt = new TH1D("h_PAT_pT35_35_15_qt", "", qtNbins, minQt, maxQt);
    //TH1D *h_PAT_pT35_35_15_mAAA = new TH1D("h_PAT_pT35_35_15_", "", 20, 0, 100); fAAA->Get("h_PAT_pT35_35_15_minv_unweighted"); //just for debugging.
-   TH1D *h_PAT_pT35_35_15_pT1  = new TH1D("h_PAT_pT35_35_15_pT1", "", 40, 0, 200);
-   TH1D *h_PAT_pT35_35_15_pT2  = new TH1D("h_PAT_pT35_35_15_pT2", "", 40, 0, 200);
-   TH1D *h_PAT_pT35_35_15_pT3  = new TH1D("h_PAT_pT35_35_15_pT3", "", 40, 0, 200);
-   TH1D *h_PAT_pT35_35_15_eta1  = new TH1D("h_PAT_pT35_35_15_eta1", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT35_35_15_eta2  = new TH1D("h_PAT_pT35_35_15_eta2", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT35_35_15_eta3  = new TH1D("h_PAT_pT35_35_15_eta3", "", 20, -2.5, 2.5);
-   TH1D *h_PAT_pT35_35_15_phi1  = new TH1D("h_PAT_pT35_35_15_phi1", "", 20, -4, 4);
-   TH1D *h_PAT_pT35_35_15_phi2  = new TH1D("h_PAT_pT35_35_15_phi2", "", 20, -4, 4);
-   TH1D *h_PAT_pT35_35_15_phi3  = new TH1D("h_PAT_pT35_35_15_phi3", "", 20, -4, 4);
+   TH1D *h_PAT_pT35_35_15_pT1  = new TH1D("h_PAT_pT35_35_15_pT1", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT35_35_15_pT2  = new TH1D("h_PAT_pT35_35_15_pT2", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT35_35_15_pT3  = new TH1D("h_PAT_pT35_35_15_pT3", "", ptNbins, minPt, maxPt);
+   TH1D *h_PAT_pT35_35_15_eta1  = new TH1D("h_PAT_pT35_35_15_eta1", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT35_35_15_eta2  = new TH1D("h_PAT_pT35_35_15_eta2", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT35_35_15_eta3  = new TH1D("h_PAT_pT35_35_15_eta3", "", etaNbins, minEta, maxEta);
+   TH1D *h_PAT_pT35_35_15_phi1  = new TH1D("h_PAT_pT35_35_15_phi1", "", phiNbins, minPhi, minPhi);
+   TH1D *h_PAT_pT35_35_15_phi2  = new TH1D("h_PAT_pT35_35_15_phi2", "", phiNbins, minPhi, minPhi);
+   TH1D *h_PAT_pT35_35_15_phi3  = new TH1D("h_PAT_pT35_35_15_phi3", "", phiNbins, minPhi, minPhi);
    h_PAT_pT35_35_15_mAAA->Sumw2();
    h_PAT_pT35_35_15_qt->Sumw2();
    h_PAT_pT35_35_15_pT1->Sumw2();
@@ -290,18 +313,18 @@ void Triphoton::Loop()
    h_PAT_pT35_35_15_phi2->Sumw2();
    h_PAT_pT35_35_15_phi3->Sumw2();
 
-   TH1D *h_PAT_pT35_35_15_mA1A2 = new TH1D("h_PAT_pT35_35_15_mA1A2", "", 60, 0, 300);
-   TH1D *h_PAT_pT35_35_15_mA1A3 = new TH1D("h_PAT_pT35_35_15_mA1A3", "", 60, 0, 300);
-   TH1D *h_PAT_pT35_35_15_mA2A3 = new TH1D("h_PAT_pT35_35_15_mA2A3", "", 60, 0, 300);
-   TH1D *h_PAT_pT35_35_15_dEta12 = new TH1D("h_PAT_pT35_35_15_dEta12", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dEta23 = new TH1D("h_PAT_pT35_35_15_dEta23", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dEta13 = new TH1D("h_PAT_pT35_35_15_dEta13", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dPhi12 = new TH1D("h_PAT_pT35_35_15_dPhi12", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dPhi23 = new TH1D("h_PAT_pT35_35_15_dPhi23", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dPhi13 = new TH1D("h_PAT_pT35_35_15_dPhi13", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dAbsEta12 = new TH1D("h_PAT_pT35_35_15_dAbsEta12", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dAbsEta23 = new TH1D("h_PAT_pT35_35_15_dAbsEta23", "", 40, 0, 4);
-   TH1D *h_PAT_pT35_35_15_dAbsEta13 = new TH1D("h_PAT_pT35_35_15_dAbsEta13", "", 40, 0, 4);
+   TH1D *h_PAT_pT35_35_15_mA1A2 = new TH1D("h_PAT_pT35_35_15_mA1A2", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT35_35_15_mA1A3 = new TH1D("h_PAT_pT35_35_15_mA1A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT35_35_15_mA2A3 = new TH1D("h_PAT_pT35_35_15_mA2A3", "", diPhoNbins, minDiPho, maxDiPho);
+   TH1D *h_PAT_pT35_35_15_dEta12 = new TH1D("h_PAT_pT35_35_15_dEta12", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT35_35_15_dEta23 = new TH1D("h_PAT_pT35_35_15_dEta23", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT35_35_15_dEta13 = new TH1D("h_PAT_pT35_35_15_dEta13", "", dEtaNbins, minDEta, maxDEta);
+   TH1D *h_PAT_pT35_35_15_dPhi12 = new TH1D("h_PAT_pT35_35_15_dPhi12", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT35_35_15_dPhi23 = new TH1D("h_PAT_pT35_35_15_dPhi23", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT35_35_15_dPhi13 = new TH1D("h_PAT_pT35_35_15_dPhi13", "", dPhiNbins, minDPhi, maxDPhi);
+   TH1D *h_PAT_pT35_35_15_dAbsEta12 = new TH1D("h_PAT_pT35_35_15_dAbsEta12", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_PAT_pT35_35_15_dAbsEta23 = new TH1D("h_PAT_pT35_35_15_dAbsEta23", "", absDetaNbins, minAbsDeta, maxAbsDeta);
+   TH1D *h_PAT_pT35_35_15_dAbsEta13 = new TH1D("h_PAT_pT35_35_15_dAbsEta13", "", absDetaNbins, minAbsDeta, maxAbsDeta);
 
 
    h_PAT_pT35_35_15_mA1A2->Sumw2();
@@ -370,9 +393,9 @@ void Triphoton::Loop()
       h_dEta12->Fill(GenDiPhoton12_deltaEta, evtwt);
       h_dEta23->Fill(GenDiPhoton23_deltaEta, evtwt);
       h_dEta13->Fill(GenDiPhoton13_deltaEta, evtwt);
-      h_dPhi12->Fill(GenDiPhoton12_deltaPhi, evtwt);
-      h_dPhi23->Fill(GenDiPhoton23_deltaPhi, evtwt);
-      h_dPhi13->Fill(GenDiPhoton13_deltaPhi, evtwt);
+      h_dPhi12->Fill(fabs(GenDiPhoton12_deltaPhi), evtwt);
+      h_dPhi23->Fill(fabs(GenDiPhoton23_deltaPhi), evtwt);
+      h_dPhi13->Fill(fabs(GenDiPhoton13_deltaPhi), evtwt);
       h_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta, evtwt);
       h_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta, evtwt);
       h_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, evtwt);
@@ -397,9 +420,9 @@ void Triphoton::Loop()
         h_pT25_dEta12->Fill(GenDiPhoton12_deltaEta, evtwt);
         h_pT25_dEta23->Fill(GenDiPhoton23_deltaEta, evtwt);
         h_pT25_dEta13->Fill(GenDiPhoton13_deltaEta, evtwt);
-        h_pT25_dPhi12->Fill(GenDiPhoton12_deltaPhi, evtwt);
-        h_pT25_dPhi23->Fill(GenDiPhoton23_deltaPhi, evtwt);
-        h_pT25_dPhi13->Fill(GenDiPhoton13_deltaPhi, evtwt);
+        h_pT25_dPhi12->Fill(fabs(GenDiPhoton12_deltaPhi), evtwt);
+        h_pT25_dPhi23->Fill(fabs(GenDiPhoton23_deltaPhi), evtwt);
+        h_pT25_dPhi13->Fill(fabs(GenDiPhoton13_deltaPhi), evtwt);
         h_pT25_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta, evtwt);
         h_pT25_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta, evtwt);
         h_pT25_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, evtwt);
@@ -429,9 +452,9 @@ void Triphoton::Loop()
         h_pT35_35_15_dEta12->Fill(GenDiPhoton12_deltaEta, evtwt);
         h_pT35_35_15_dEta23->Fill(GenDiPhoton23_deltaEta, evtwt);
         h_pT35_35_15_dEta13->Fill(GenDiPhoton13_deltaEta, evtwt);
-        h_pT35_35_15_dPhi12->Fill(GenDiPhoton12_deltaPhi, evtwt);
-        h_pT35_35_15_dPhi23->Fill(GenDiPhoton23_deltaPhi, evtwt);
-        h_pT35_35_15_dPhi13->Fill(GenDiPhoton13_deltaPhi, evtwt);
+        h_pT35_35_15_dPhi12->Fill(fabs(GenDiPhoton12_deltaPhi), evtwt);
+        h_pT35_35_15_dPhi23->Fill(fabs(GenDiPhoton23_deltaPhi), evtwt);
+        h_pT35_35_15_dPhi13->Fill(fabs(GenDiPhoton13_deltaPhi), evtwt);
         h_pT35_35_15_dAbsEta12->Fill(GenDiPhoton12_deltaAbsEta, evtwt);
         h_pT35_35_15_dAbsEta23->Fill(GenDiPhoton23_deltaAbsEta, evtwt);
         h_pT35_35_15_dAbsEta13->Fill(GenDiPhoton13_deltaAbsEta, evtwt);
@@ -499,7 +522,8 @@ void Triphoton::Loop()
     }//end CMScrack
 
    }
-   TFile file_out("data/AAA_histograms.root", "RECREATE");
+
+   TFile file_out(outFile, "RECREATE");
    //TFile file_out("data/GGJets_histograms.root", "RECREATE");
    // h_mAAA_weighted->Write();
    h_mAAA->Write();

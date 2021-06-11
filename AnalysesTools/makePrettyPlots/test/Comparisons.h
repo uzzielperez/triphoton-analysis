@@ -209,6 +209,7 @@ namespace TriPhotons
     h_dPhi->SetMinimum(0.1);
     h_dPhi_lo->SetLineColor(12);
     h_dPhi_lo->Draw("E1, SAME");
+    h_dPhi_nlo->SetMaximum(1.5*std::max(h_dPhi_nlo->GetMaximum(), h_dPhi->GetMaximum()));
 
     TLatex *t_label = new TLatex();
     t_label->SetTextSize(0.03);
