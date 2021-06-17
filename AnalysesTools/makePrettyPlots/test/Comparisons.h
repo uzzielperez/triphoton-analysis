@@ -476,7 +476,7 @@ namespace TriPhotons
 
 
 
-// FIXME Moved to Selections.h
+// FIXME Moved to Selections.h and Ratio.h
   // void createRatio(TH1F* hNumerator, TH1F* hDenominator, Color_t color, float min=-1, float max=4, TString yTitle="Pred./LO", TString xTitle="m_{#gamma #gamma #gamma} (GeV)", bool showRatio=false, TString experiment="CMS"){
   //   TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
   //   hRatio->SetLineColor(color);
