@@ -44,6 +44,9 @@ namespace ExoDiPhotons
     double eta;
     double phi;
 
+    // Other
+    double iso;
+
     // for matching
     double deltaR_match;
     double deltaR_matchDau;
@@ -77,13 +80,16 @@ namespace ExoDiPhotons
 
   };
 
-  std::string genParticleBranchDefString("pt/D:eta:phi:deltaR_match:deltaR_matchDau:ptDiff_match:minDeltaR:minDeltapT:minDeltaPhi:minDeltaEta:matchCategory/I:matchType:nPhotonMotherDaughters:status:motherStatus:grandmotherStatus:pdgId:motherPdgId:grandmotherPdgId:genmatchindex:patmatchindex:isMatched/B:isptdRmatched");
+  std::string genParticleBranchDefString("pt/D:eta:phi:iso:deltaR_match:deltaR_matchDau:ptDiff_match:minDeltaR:minDeltapT:minDeltaPhi:minDeltaEta:matchCategory/I:matchType:nPhotonMotherDaughters:status:motherStatus:grandmotherStatus:pdgId:motherPdgId:grandmotherPdgId:genmatchindex:patmatchindex:isMatched/B:isptdRmatched");
 
   void InitGenParticleInfo(genParticleInfo_t &genParticleInfo) {
     // kinematics
     genParticleInfo.pt  = -999999.99;
     genParticleInfo.eta = -999999.99;
     genParticleInfo.phi = -999999.99;
+
+    // other
+    genParticleInfo.iso = -999999.99;
 
     // for matching
     genParticleInfo.deltaR_match           = -999999.99;
@@ -176,6 +182,8 @@ namespace ExoDiPhotons
     genParticleInfo.phi = genParticle->phi();
 
   }//miniAOD
+
+  //FIXME: Update isolation information
 
 //Putting these here to avoid unecessary header PhotonInfo.h
   // sort two photons by highest pt with vector of structs

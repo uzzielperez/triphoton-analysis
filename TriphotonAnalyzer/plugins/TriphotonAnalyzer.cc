@@ -264,6 +264,8 @@ void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticl
   if (genPhoton1 && genPhoton2 && genPhoton3) ExoDiPhotons::FillTriphotonInfo(fGenTriphotonInfo,genPhoton1,genPhoton2,genPhoton3);
 } // end of fillGenInfo
 
+//FIXME: add isolation information 
+
 void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons){
 
   // Vectors

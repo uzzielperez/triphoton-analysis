@@ -155,14 +155,15 @@ namespace ExoDiPhotons
     double averageWeight = 1.00;
     eventInfo.weightLumi = xsec*normalizationLumi/(nEventsSample*averageWeight);
     eventInfo.weightAll = eventInfo.weight*eventInfo.weightLumi;
-//    std::cout << "WeightLumi: "                << eventInfo.weightLumi
-//              << "; xsec: "                    << xsec
-//              << "; normalizationLumi: "       << normalizationLumi
-//              << "; averageWeight: "           << averageWeight
-//              << "; number of events: "        << nEventsSample
-//              << "; weight: "                  << eventInfo.weight
-//              << "; EventWeightAll Computed: " << eventInfo.weightAll
-//              << std::endl;
+   std::cout << "WeightLumi: "                << eventInfo.weightLumi
+             << "; xsec: "                    << xsec
+             << "; normalizationLumi: "       << normalizationLumi
+             << "; averageWeight: "           << averageWeight
+             << "; number of events: "        << nEventsSample
+             << "; weight: "                  << eventInfo.weight
+             << "; EventWeightAll Computed: " << eventInfo.weightAll
+             // FIXME: check why this is 1. Check the xsec and nEventsSample (?)
+             << std::endl;
   }
 } // end of namespace
 
