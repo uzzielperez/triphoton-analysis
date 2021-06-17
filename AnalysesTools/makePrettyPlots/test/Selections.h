@@ -28,30 +28,6 @@ namespace TriPhotons
     c->SaveAs("plots/ratioPlot.pdf");
   }
 
-  void createRatio(TH1F* hNumerator, TH1F* hDenominator,
-                   Color_t color, float min=-1.2, float max=1.2, TString yTitle="efficiency",
-                   TString xTitle="p_{t} (GeV)", bool showRatio=false, TString experiment="CMS"){
-    TH1F *hRatio = (TH1F*) hNumerator->Clone("hNumerator");
-    hRatio->SetLineColor(color);
-    hRatio->SetMarkerColor(color);
-    // hRatio->SetMinimum(0.4);
-    // hRatio->SetMaximum(1.1);
-    hRatio->SetStats(0);
-    hRatio->Divide(hDenominator);
-    hRatio->Draw("ep, SAME");
-    hRatio->SetTitle("");
-    hRatio->GetYaxis()->SetTitle(xTitle);
-    // hRatio->GetYaxis()->SetTitleSize(25);
-    hRatio->GetYaxis()->SetTitleOffset(0.8);
-    hRatio->GetXaxis()->SetTitle(yTitle);
-    hRatio->GetXaxis()->SetTitleSize(25);
-    hRatio->GetXaxis()->SetTitleFont(43);
-    hRatio->GetXaxis()->SetTitleOffset(4.5);
-    hRatio->GetXaxis()->SetLabelFont(43);
-    hRatio->GetXaxis()->SetLabelSize(16);
-    // hRatio->SetMinimum(min);
-    // hRatio->SetMaximum(max);
-  }
 
   void efficiency(TString Ntuple, TString matchOrSelEff = "matching", TString region = "EB",  TString IDcat = "loose" ,double pTmin = 0, double pTmax = 200){
     TFile f(Ntuple);

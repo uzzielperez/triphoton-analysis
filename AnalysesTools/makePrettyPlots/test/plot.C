@@ -2,6 +2,7 @@
 #include "ATLASComparisons.h"
 #include "Selections.h"
 #include "DataComparisons.h"
+#include "Ratio.h"
 
 // Run as 'plot.C(true)' for local
 // FIXME: Clean by putting in separate Actions header file
@@ -69,20 +70,36 @@ void singlePhoEff(TString fSherpaNtuple){
   // TriPhotons::ratioplot2();
 }
 
-void compareData(TFile *fSim, TFile *fData, bool isHLT20=true, bool isHLT30_30_15=false, bool isGenVsPat = true, TString simLegLabel = "GGGJets", TString dataLegLabel = "GGJets"){
+void compareData(TFile *fSim, TFile *fData, bool isHLT20=false, bool isHLT30_30_15=true, bool isGenVsPat = true, TString simLegLabel = "GGGJets", TString dataLegLabel = "GGJets"){
   TriPhotons::compareDataMggg(fSim, fData, isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataPt(fSim, fData, "1", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataPt(fSim, fData, "2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataPt(fSim, fData, "3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDiphotonMinv(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDPhi(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDPhi(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDPhi(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDEta(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDEta(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
-  // TriPhotons::compareDataDEta(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataPt(fSim, fData, "1", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataPt(fSim, fData, "2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataPt(fSim, fData, "3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDiphotonMinv(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDiphotonMinv(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDPhi(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDPhi(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDPhi(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDEta(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDEta(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::compareDataDEta(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+}
+
+void getRatio(TFile *fSim, TFile *fData, bool isHLT20=false, bool isHLT30_30_15=true, bool isGenVsPat = true, TString simLegLabel = "GEN #gamma", TString dataLegLabel = "Tight PAT #gamma"){
+  TriPhotons::getRatioMggg(fSim, fData, isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioPt(fSim, fData, "1", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioPt(fSim, fData, "2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioPt(fSim, fData, "3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDiphotonMinv(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDiphotonMinv(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDiphotonMinv(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDPhi(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDPhi(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDPhi(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDEta(fSim, fData, "1","2", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDEta(fSim, fData, "1","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
+  TriPhotons::getRatioDEta(fSim, fData, "2","3", isHLT20, isHLT30_30_15, isGenVsPat, simLegLabel, dataLegLabel);
 }
 
 void plot(bool local=true, bool isHLT20=false, bool isHLT30_30_15=true){
@@ -111,6 +128,7 @@ void plot(bool local=true, bool isHLT20=false, bool isHLT30_30_15=true){
   std::cout << fNLOstr << std::endl;
 
   TFile *fAAA       = TFile::Open(makeClass_path+"makeClass/EventLooper/data/AAA_histograms.root");
+  TFile *fAAAExt    = TFile::Open(makeClass_path+"makeClass/EventLooper/data/AAA_histogramsExt.root");
   TFile *fGGJets    = TFile::Open(makeClass_path+"makeClass/EventLooper/data/GGJets_histograms.root");
   TFile *fNLO       = TFile::Open(mcfm_path+"rootfiles/"+fLOstr+".root");
   TFile *fLO        = TFile::Open(mcfm_path+"rootfiles/"+fNLOstr+".root");
@@ -119,9 +137,14 @@ void plot(bool local=true, bool isHLT20=false, bool isHLT30_30_15=true){
 
   // ACTIONS:
   // compareATLAS(fNLO_atlas, fNLO_atlas13TeV);
-  compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
+  // compareMCFMSherpa(fAAA, fNLO, fLO, isHLT20, isHLT30_30_15);
   //singlePhoEff(fSherpaNtuple);
-  // compareData(fAAA, fAAA, isHLT20, isHLT30_30_15);
-  //compareData(fAAA, fGGJets, isHLT20, isHLT30_30_15, false);
+
+  // Compare PAT vs GEN
+  getRatio(fAAA, fAAA, isHLT20, isHLT30_30_15);
+
+  // Compare Signal vs Background
+  // compareData(fAAA, fGGJets, isHLT20, isHLT30_30_15, false);
+  compareData(fAAAExt, fGGJets, isHLT20, isHLT30_30_15, false);
 
 }

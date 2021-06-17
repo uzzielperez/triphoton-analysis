@@ -32,11 +32,11 @@ void Triphoton::Loop()
 //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
 
-   bool isSvsB = false;
-   TString outFile = "data/AAA_histograms.root";
-   //TString outFile = "data/GGJets_histograms.root";
+   bool isSvsB = true;
+   TString outFile = (isSvsB == false) ? "data/AAA_histograms.root":"data/AAA_histogramsExt.root";
+   // TString outFile = "data/GGJets_histograms.root";
 
-   int minvNbins = (isSvsB == false) ? 80:10;
+   int minvNbins = (isSvsB == false) ? 80:50;
    int minMinv = 0;
    int maxMinv = (isSvsB == false) ? 400:1000;
 
@@ -64,9 +64,13 @@ void Triphoton::Loop()
    int minDEta = 0;
    int maxDEta = 5;
 
-   int dPhiNbins  = (isSvsB == false) ? 40:35;
+   // int dPhiNbins  = (isSvsB == false) ? 40:35;
+   // int minDPhi = 0;
+   // int maxDPhi = (isSvsB == false) ? 4:7;
+
+   int dPhiNbins  = (isSvsB == false) ? 40:40;
    int minDPhi = 0;
-   int maxDPhi = (isSvsB == false) ? 4:7;
+   int maxDPhi = (isSvsB == false) ? 4:4;
 
    int absDetaNbins  = 40;
    int minAbsDeta = 0;
