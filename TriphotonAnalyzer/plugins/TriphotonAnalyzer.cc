@@ -1,4 +1,5 @@
-#include "triphoton-analysis/CommonClasses/interface/TriphotonAnalyzer.h"
+//#include "triphoton-analysis/CommonClasses/interface/TriphotonAnalyzer.h"
+#include "triphoton-analysis/TriphotonAnalyzer/interface/TriphotonAnalyzer.h"
 
 // system include files
 #include <memory>
