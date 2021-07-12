@@ -3,6 +3,7 @@
 
 // system include files
 #include <memory>
+#include <fstream>
 
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
@@ -70,13 +71,21 @@ class PhotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
     bool passPhoID(const edm::Ptr<pat::Photon>, std::string IDtype);
     bool isTriphotonEvent(const edm::Handle<edm::View<pat::Photon> >& photons, std::string IDtype);
     void fillPassPhoID(const edm::Ptr<pat::Photon> pho, ExoDiPhotons::photonInfo_t& photonInfo);
+    void dumpMatchInfoToFile(const reco::GenParticle *genMatch, double deltaR, double deltaRcut);
     void dumpMatchInfo(const reco::GenParticle *genMatch, double deltaR, double deltaRcut);
     void doDeltaRMatching(const edm::Handle<edm::View<reco::GenParticle> > genParticles,
-                          const edm::Handle<edm::View<pat::Photon> >& photons, bool debug);
+                          const edm::Handle<edm::View<pat::Photon> >& photons,
+                          std::string IDtype,
+                          bool debug);
     void checkPhotonRealness(const reco::GenParticle *photon_gen_realMatch, double deltaR);
     auto getMother(const reco::GenParticle *gen);
     auto getMother(const reco::Candidate *gen);
+    auto getMotherToFile(const reco::GenParticle *gen, bool verbose);
+    auto getMotherToFile(const reco::Candidate *gen, bool verbose);
     void digGenAncestry(const reco::GenParticle *genMatch);
+    void digGenAncestryToFile(const reco::GenParticle *genMatch);
+    void dumpPromptStatus(const reco::GenParticle *genMatch, bool verbose);
+    void dumpPromptStatusToFile(const reco::GenParticle *genMatch, bool verbose);
     // PROMPT_STATUS_TYPE PhotonAnalyzer::getPromptStatus(const reco::GenParticle& p, const edm::Handle<vector<reco::GenParticle>>& particles);
 
   private:
@@ -122,6 +131,9 @@ class PhotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
     // std::vector<double> gen_match_pt;
     // std::vector<double> gen_match_eta;
     // std::vector<double> gen_match_phi;
+
+    std::string logfile = "triphotonGGJetsEventsLog.txt";
+    std::ofstream outfile;
 
 };
 

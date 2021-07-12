@@ -57,7 +57,7 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
 
     static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
     void fillGenInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles);
-    void fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons);
+    void fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons, const edm::Handle<edm::View<reco::GenParticle> > genParticles);
     void fillMatchingInfo(const edm::Handle<edm::View<reco::GenParticle> > genParticles,
                           const edm::Handle<edm::View<pat::Photon> >& photons);
     void fillgenPhoIDInfo( ExoDiPhotons::genParticleInfo_t &genParticleInfo,
@@ -65,7 +65,9 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
                            double minDeltaR );
     void fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo,
                            edm::Ptr<pat::Photon> pho  );
-    void photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons);
+    void photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons, const edm::Handle<edm::View<reco::GenParticle> > genParticles);
+    //bool isMCFake(const edm::Ptr<pat::Photon> pho, const edm::Handle<edm::View<reco::GenParticle> > genParticles, bool debug);
+    bool isMCFake(const pat::Photon*, const edm::Handle<edm::View<reco::GenParticle> > genParticles, bool debug);
 
     private:
       virtual void beginJob() override;
@@ -118,6 +120,7 @@ class TriphotonAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>
       // bool isMediumTriphotons_;
       bool isTightTriphotons_ ;
       // bool hasTriphotons_;
+      // bool runMCFakeEstimate_;
 
 };
 

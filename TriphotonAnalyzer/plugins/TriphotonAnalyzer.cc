@@ -72,6 +72,7 @@ TriphotonAnalyzer::TriphotonAnalyzer(const edm::ParameterSet& ps)
    photonsMiniAODToken_  = consumes<edm::View<pat::Photon> >       (ps.getParameter<edm::InputTag>("photonsMiniAOD"));
    nEventsSample_        =                                         (ps.getParameter<uint32_t>("nEventsSample"));
    outputFile_           =                                  TString(ps.getParameter<std::string>("outputFile"));
+   //runMCFakeEstimate_      =                                         (ps.getParameter<bool>("runMCFakeEstimate"));
 
 
    fTree = fs->make<TTree>("fTree", "TriphotonTree");
@@ -161,14 +162,14 @@ TriphotonAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   //ExoDiPhotons::FillEventWeights(fEventInfo, xsec_, nEventsSample_);
   ExoDiPhotons::FillEventWeights(fEventInfo, outputFile_, nEventsSample_);
   fillGenInfo(genParticles);
-  fillPhotonInfo(photons);
+  fillPhotonInfo(photons, genParticles);
   fTree->Fill();
 
   // Single Photon Studies
   ExoDiPhotons::FillBasicEventInfo(fSEventInfo, iEvent);
   ExoDiPhotons::FillGenEventInfo(fSEventInfo, &(*genInfo));
   ExoDiPhotons::FillEventWeights(fSEventInfo, outputFile_, nEventsSample_);
-  fillMatchingInfo(genParticles, photons);
+  fillMatchingInfo(genParticles, photons); // FIXME: extraneous?
 
   // ==== FIXME:
   // Update
@@ -265,23 +266,13 @@ void TriphotonAnalyzer::fillGenInfo(const edm::Handle<edm::View<reco::GenParticl
   if (genPhoton1 && genPhoton2 && genPhoton3) ExoDiPhotons::FillTriphotonInfo(fGenTriphotonInfo,genPhoton1,genPhoton2,genPhoton3);
 } // end of fillGenInfo
 
-void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons){
+void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> >&  photons, const edm::Handle<edm::View<reco::GenParticle> > genParticles){
 
   // Vectors
   std::vector<edm::Ptr<pat::Photon>>  patPhotons;
-  // std::vector<edm::Ptr<pat::Photon>>  loosePhotons;   // looseIDTriphotons
-  //std::vector<edm::Ptr<pat::Photon>>  mediumPhotons; // mediumIDTriphotons
-  std::vector<edm::Ptr<pat::Photon>>  tightPhotons;  // tightIDTriphotons, we're going to store "pure photons first"
-  // std::vector<edm::Ptr<pat::Photon>>  triphotons;
-  // lowPtIDTriphotons
-  // highPtIDTriphotons
+  std::vector<edm::Ptr<pat::Photon>>  tightPhotons;
+  //std::vector<edm::Ptr<pat::Photon>>  selectedPhotons;
 
-  // Flags
-  // isLooseTriphotons
-  // isMediumTriphotons
-  // isTightTriphotons
-  // islowPtIDTriphotons
-  // isHightPtIDTriphotons
 
   for (size_t i = 0; i < photons->size(); ++i){
     const auto pho = photons->ptrAt(i);
@@ -292,32 +283,25 @@ void TriphotonAnalyzer::fillPhotonInfo(const edm::Handle<edm::View<pat::Photon> 
     // bool passEGMMediumID = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-medium");
     bool passEGMTightID  = pho->photonID("cutBasedPhotonID-Fall17-94X-V1-tight");
 
-    // if (passEGMLooseID)  loosePhotons.push_back(pho);
-    // if (passEGMMediumID) mediumPhotons.push_back(pho);
-    if (passEGMTightID)  tightPhotons.push_back(pho);
+    if (passEGMTightID) tightPhotons.push_back(pho);
+    //if (passEGMTightID && !runMCFakeEstimate_) selectedPhotons.push_back(pho);
 
-    // if (passEGMLooseID || passEGMMediumID || passEGMTightID) triphotons.push_back(pho);
   }
 
-  // sort( loosePhotons.begin(),  loosePhotons.end(),  ExoDiPhotons::comparePhotonsByPt );
-  // sort( mediumPhotons.begin(), mediumPhotons.end(), ExoDiPhotons::comparePhotonsByPt );
   sort( tightPhotons.begin(),  tightPhotons.end(),  ExoDiPhotons::comparePhotonsByPt );
 
   // sort( triphotons.begin(),  triphotons.end(),  ExoDiPhotons::comparePhotonsByPt );
 
   if ( tightPhotons.size()  >=3 ){
+
+     std::cout << "There are 3 tight Photons in the event.." << std::endl;
      isTightTriphotons_  = true;
-     photonFiller( tightPhotons );
-
+     photonFiller( tightPhotons, genParticles );
   }
-  // if ( mediumPhotons.size() >=3 )  isMediumTriphotons_ = true;
-  // if ( tightPhotons.size()  >=3 )  isTightTriphotons_  = true;
 
-  // if ( loosePhotons.size() >=3 || mediumPhotons.size() >= 3 || tightPhotons.size() >=3 ){
-  //   photonFiller ( loosePhotons );
-  //   hasTriphotons_ = true;
-  // }
-  std::cout << "NPhotons = " << photons->size() << std::endl;
+  // photonFiller( tightPhotons, genParticles );
+
+  std::cout << "NPhotons = " << patPhotons.size() << "; NSelectedPhotons: "  << tightPhotons.size() << std::endl;
 
 } //end
 
@@ -325,7 +309,7 @@ void TriphotonAnalyzer::fillMatchingInfo(const edm::Handle<edm::View<reco::GenPa
                                          const edm::Handle<edm::View<pat::Photon> >& photons){
 
      //FIXME put in configuration file
-     bool debug = true;
+     bool debug = false;
      bool dRthreshold = 0.5;
 
      // FIXME: Put this sorter in a separate function
@@ -421,7 +405,7 @@ void TriphotonAnalyzer::fillpatPhoIDInfo( ExoDiPhotons::photonInfo_t& photonInfo
 
 
 
-void TriphotonAnalyzer::photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons){
+void TriphotonAnalyzer::photonFiller(const std::vector<edm::Ptr<pat::Photon>>& photons, const edm::Handle<edm::View<reco::GenParticle> > genParticles){
 
       std::cout << "filling photon information" << std::endl;
       //FIXME Make asingle function for each photon
@@ -444,10 +428,14 @@ void TriphotonAnalyzer::photonFiller(const std::vector<edm::Ptr<pat::Photon>>& p
       //
       bool debug = true;
 
+      fPhoton1Info.isMCTruthFake = isMCFake( &(*photons.at(0)), genParticles, false );
+      fPhoton2Info.isMCTruthFake = isMCFake( &(*photons.at(1)), genParticles, false );
+      fPhoton3Info.isMCTruthFake = isMCFake( &(*photons.at(2)), genParticles, false );
+
       if (debug) {
-        std::cout << "PATPho1 pt: "  << photons[0]->pt() << "; eta: " << photons[0]->eta() << "; phi: "<< photons[0]->phi() << std::endl;
-        std::cout << "PATPho1 pt: "  << photons[0]->pt() << "; eta: " << photons[0]->eta() << "; phi: "<< photons[0]->phi() << std::endl;
-        std::cout << "PATPho1 pt: "  << photons[0]->pt() << "; eta: " << photons[0]->eta() << "; phi: "<< photons[0]->phi() << std::endl;
+        std::cout << "PATPho1 pt: "  << photons[0]->pt() << "; eta: " << photons[0]->eta() << "; phi: "<< photons[0]->phi() << "; isMCFake " << fPhoton1Info.isMCTruthFake << std::endl;
+        std::cout << "PATPho2 pt: "  << photons[1]->pt() << "; eta: " << photons[1]->eta() << "; phi: "<< photons[1]->phi() << "; isMCFake " << fPhoton2Info.isMCTruthFake << std::endl;
+        std::cout << "PATPho3 pt: "  << photons[2]->pt() << "; eta: " << photons[2]->eta() << "; phi: "<< photons[2]->phi() << "; isMCFake " << fPhoton3Info.isMCTruthFake << std::endl;
       }
 
       // FIXME: Add the recHits For Saturation Info, and EGMidInfo effective areas
@@ -462,6 +450,73 @@ void TriphotonAnalyzer::photonFiller(const std::vector<edm::Ptr<pat::Photon>>& p
       ExoDiPhotons::FillTriphotonInfo( fTriphotonInfo, &(*photons[0]), &(*photons[1]), &(*photons[2]) );
 }
 
+// bool TriphotonAnalyzer::isMCFake(const edm::Ptr<pat::Photon> pho, const edm::Handle<edm::View<reco::GenParticle> > genParticles, bool debug=false){
+//
+//      double deltaR_cut = 0.1;
+//      bool hasPhotonFromHardInteraction = false;
+//      bool isLikelyFake = true;
+//
+//
+//      if ( debug ) std::cout << "------Finding match for: "
+//                             << " PAT pho pt: " << pho->pt()
+//                             << " eta: "  << pho->eta()
+//                             << " phi: "  << pho->phi()
+//                             << std::endl;
+//
+//     for (size_t i = 0; i < genParticles->size(); ++i){
+//
+//       const auto gen = genParticles->ptrAt(i);
+//
+//       bool isGenPhoton   = gen->pdgId()==22;
+//       bool isHardProcess = gen->isHardProcess();
+//
+//       double deltaR  = reco::deltaR(pho->eta(), pho->phi(), gen->eta(), gen->phi());
+//
+//       if ( deltaR < deltaR_cut ){
+//         if ( isGenPhoton && isHardProcess ) hasPhotonFromHardInteraction = true;
+//       }
+//
+//     } // end genParticles Loop
+//
+//     if ( hasPhotonFromHardInteraction ) isLikelyFake = false;
+//
+//     return isLikelyFake;
+//
+//   }
+
+  bool TriphotonAnalyzer::isMCFake(const pat::Photon* pho, const edm::Handle<edm::View<reco::GenParticle> > genParticles, bool debug=false){
+
+       double deltaR_cut = 0.1;
+       bool hasPhotonFromHardInteraction = false;
+       bool isLikelyFake = true;
+
+
+       if ( debug ) std::cout << "------Finding match for: "
+                              << " PAT pho pt: " << pho->pt()
+                              << " eta: "  << pho->eta()
+                              << " phi: "  << pho->phi()
+                              << std::endl;
+
+      for (size_t i = 0; i < genParticles->size(); ++i){
+
+        const auto gen = genParticles->ptrAt(i);
+
+        bool isGenPhoton   = gen->pdgId()==22;
+        bool isHardProcess = gen->isHardProcess();
+
+        double deltaR  = reco::deltaR(pho->eta(), pho->phi(), gen->eta(), gen->phi());
+
+        if ( deltaR < deltaR_cut ){
+          if ( isGenPhoton && isHardProcess ) hasPhotonFromHardInteraction = true;
+        }
+
+      } // end genParticles Loop
+
+      if ( hasPhotonFromHardInteraction ) isLikelyFake = false;
+
+      return isLikelyFake;
+
+    }
 
 //define this as a plug-in
 DEFINE_FWK_MODULE(TriphotonAnalyzer);

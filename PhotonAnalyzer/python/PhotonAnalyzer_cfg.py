@@ -18,7 +18,7 @@ options.setDefault('maxEvents', 100)
 
 options.parseArguments()
 
-outName = options.outputFile
+outName = "triphotonIDd"+options.outputFile
 print "Default output name: " + outName
 if "output" in outName: # if an input file name is specified, event weights can be determined
     outName = "out_" + basename(options.inputFiles[0])

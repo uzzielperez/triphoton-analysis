@@ -19,6 +19,7 @@ options.setDefault('maxEvents', 100)
 options.parseArguments()
 
 outName = options.outputFile
+
 print "Default output name: " + outName
 if "output" in outName: # if an input file name is specified, event weights can be determined
     outName = "out_" + basename(options.inputFiles[0])
@@ -91,6 +92,7 @@ from Configuration.AlCa.GlobalTag_condDBv2 import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v18')
 
 
+
 ################
 # Input Tags
 #
@@ -104,6 +106,12 @@ process.demo = cms.EDAnalyzer('TriphotonAnalyzer',
     # For calculation of Event Weights
     outputFile = cms.string(outName),
     nEventsSample = cms.uint32(options.nEventsSample),
+    #----Selections in order
+    # runMCFakeEstimate = cms.bool(True),
 )
+
+# if runMCFakeEstimate_ == True:
+#     outName = "out_runMCFakeEst" + basename(options.inputFiles[0])
+#     print "Output root file name: " + outName
 
 process.p = cms.Path(process.egammaPostRecoSeq*process.demo)

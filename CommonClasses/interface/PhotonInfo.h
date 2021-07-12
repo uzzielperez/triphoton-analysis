@@ -192,6 +192,7 @@ namespace ExoDiPhotons
    // Reco version of Gen
    // photonInfo.isGenRecoed = false;
    photonInfo.hasConversionTracks = false;
+   
  }
 
  void FillBasicPhotonInfo(photonInfo_t &photonInfo, const pat::Photon *photon)
